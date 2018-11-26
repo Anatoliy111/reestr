@@ -11,7 +11,8 @@ uses
   Progress in 'Progress.pas' {Prores},
   AllFrm in 'AllFrm.pas' {AllForm},
   AllMdiFrm in 'AllMdiFrm.pas' {AllMdiForm},
-  AllInEdFrm in 'AllInEdFrm.pas' {AllInEdForm};
+  AllInEdFrm in 'AllInEdFrm.pas' {AllInEdForm},
+  EditFrm in 'EditFrm.pas' {EditForm};
 
 {$R *.res}
 
@@ -21,6 +22,7 @@ begin
   Start := TStart.Create(Application);
   Application.Title := 'Розрахунок тарифів';
   Application.CreateForm(TDataM, DataM);
+  Application.CreateForm(TEditForm, EditForm);
   application.ProcessMessages;
   Start.Show;
 //  for i:=1 to 1000000 do
