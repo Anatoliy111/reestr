@@ -6,10 +6,12 @@ uses
   DataMod in 'DataMod.pas' {DataM: TDataModule},
   Zastavka in 'Zastavka.pas' {Start},
   Aboutt in 'Aboutt.pas' {About},
-  AllMDIChild in 'AllMDIChild.pas' {AllMDICh},
   MyLibrary in 'MyLibrary.pas',
   mytools in 'mytools.pas',
-  Progress in 'Progress.pas' {Prores};
+  Progress in 'Progress.pas' {Prores},
+  AllFrm in 'AllFrm.pas' {AllForm},
+  AllMdiFrm in 'AllMdiFrm.pas' {AllMdiForm},
+  AllInEdFrm in 'AllInEdFrm.pas' {AllInEdForm};
 
 {$R *.res}
 

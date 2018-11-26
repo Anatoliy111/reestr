@@ -10,8 +10,8 @@ uses
   System.Actions, System.ImageList, cxButtonEdit, cxBarEditItem, dxBarExtItems,
   Data.DB, IBX.IBCustomDataSet, IBX.IBDatabase, cxRichEdit, cxTextEdit,
   cxHyperLinkEdit, dxRatingControl, dxSparkline, dxToggleSwitch,AllMDIChild,
-  cxRadioGroup, cxTrackBar, dxRibbonGallery, IBX.IBQuery, ReportForm,
-  Data.Win.ADODB,SpView, cxStyles;
+  cxRadioGroup, cxTrackBar, dxRibbonGallery, IBX.IBQuery,
+  Data.Win.ADODB,cxStyles;
 
 type
   TMain = class(TForm)
@@ -121,10 +121,6 @@ var
   Main: TMain;
   ExB: WORD;
   HiForm:integer;
-
-  Report1: tReport;
-  Report2: tReport;
-  Report3: tReport;
 
  // TB:TToolButton;
 implementation
