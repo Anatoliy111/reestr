@@ -9,7 +9,7 @@ uses
   jpeg, cxContainer, cxEdit, cxImage, cxLabel, dxSkinsCore,
   System.Actions, System.ImageList, cxButtonEdit, cxBarEditItem, dxBarExtItems,
   Data.DB, IBX.IBCustomDataSet, IBX.IBDatabase, cxRichEdit, cxTextEdit,
-  cxHyperLinkEdit, dxRatingControl, dxSparkline, dxToggleSwitch,AllMDIChild,
+  cxHyperLinkEdit, dxRatingControl, dxSparkline, dxToggleSwitch,AllFrm,
   cxRadioGroup, cxTrackBar, dxRibbonGallery, IBX.IBQuery,
   Data.Win.ADODB,cxStyles;
 
@@ -154,7 +154,7 @@ begin
   NewButton.Caption:=frm.Caption;
   NewButton.Data:=frm;
 
-  TAllMDICh(frm).ABar := dxBarManager1Bar2;
+  TAllForm(frm).ABar := dxBarManager1Bar2;
  // TInsert(frm).ABar := dxBarManager1Bar2;
 end;
 
