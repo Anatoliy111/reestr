@@ -11,7 +11,7 @@ uses
   Data.DB, IBX.IBCustomDataSet, IBX.IBDatabase, cxRichEdit, cxTextEdit,
   cxHyperLinkEdit, dxRatingControl, dxSparkline, dxToggleSwitch,AllFrm,
   cxRadioGroup, cxTrackBar, dxRibbonGallery, IBX.IBQuery,
-  Data.Win.ADODB,cxStyles;
+  Data.Win.ADODB,cxStyles,Spr;
 
 type
   TMain = class(TForm)
@@ -163,6 +163,15 @@ type
     IBSPR_ULNAME: TIBStringField;
     IBSPR_VIDDOCID: TIntegerField;
     IBSPR_VIDDOCNAME: TIBStringField;
+    dxBarButton3: TdxBarButton;
+    dxBarButton4: TdxBarButton;
+    dxBarButton5: TdxBarButton;
+    dxBarButton6: TdxBarButton;
+    dxBarButton7: TdxBarButton;
+    dxBarButton8: TdxBarButton;
+    dxBarButton9: TdxBarButton;
+    dxBarButton10: TdxBarButton;
+    dxBarButton11: TdxBarButton;
     procedure Button1Click(Sender: TObject);
     procedure dxBarButton34Click(Sender: TObject);
     procedure dxBarButton19Click(Sender: TObject);
@@ -170,6 +179,15 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
+    procedure dxBarButton3Click(Sender: TObject);
+    procedure dxBarButton4Click(Sender: TObject);
+    procedure dxBarButton5Click(Sender: TObject);
+    procedure dxBarButton6Click(Sender: TObject);
+    procedure dxBarButton7Click(Sender: TObject);
+    procedure dxBarButton8Click(Sender: TObject);
+    procedure dxBarButton9Click(Sender: TObject);
+    procedure dxBarButton10Click(Sender: TObject);
+    procedure dxBarButton11Click(Sender: TObject);
     private
     { Private declarations }
     procedure ClickBarButton(Sender: TObject);
@@ -188,6 +206,17 @@ var
   Main: TMain;
   ExB: WORD;
   HiForm:integer;
+//  frm:TSprav;
+
+  SPR_GOROD: TFrmSpr;
+  SPR_GROMAD: TFrmSpr;
+  SPR_OBL: TFrmSpr;
+  SPR_ORGDOC: TFrmSpr;
+  SPR_RAION: TFrmSpr;
+  SPR_STRANA: TFrmSpr;
+  SPR_TIPUL: TFrmSpr;
+  SPR_UL: TFrmSpr;
+  SPR_VIDDOC: TFrmSpr;
 
  // TB:TToolButton;
 implementation
@@ -234,6 +263,40 @@ begin
 end;
 
 
+procedure TMain.dxBarButton10Click(Sender: TObject);
+begin
+ if SPR_ORGDOC=nil then
+ begin
+ Application.CreateForm(TFrmSpr,SPR_ORGDOC);
+ SPR_ORGDOC.Caption:=dxBarButton10.Caption;
+ //SPR_STRANA.AutoMAX;
+ AddToolBar(SPR_ORGDOC);
+ end
+ else
+ begin
+ SPR_ORGDOC.Show;
+ SPR_ORGDOC.SetFocus;
+ end;
+end;
+
+procedure TMain.dxBarButton11Click(Sender: TObject);
+begin
+ if SPR_GROMAD=nil then
+ begin
+ Application.CreateForm(TFrmSpr,SPR_GROMAD);
+ SPR_GROMAD.Caption:=dxBarButton11.Caption;
+ //SPR_STRANA.AutoMAX;
+ AddToolBar(SPR_GROMAD);
+ SPR_GROMAD.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_GROMAD;
+
+ end
+ else
+ begin
+ SPR_GROMAD.Show;
+ SPR_GROMAD.SetFocus;
+ end;
+end;
+
 procedure TMain.dxBarButton19Click(Sender: TObject);
 begin
 Close;
@@ -244,11 +307,123 @@ begin
   About.ShowModal;
 end;
 
+procedure TMain.dxBarButton3Click(Sender: TObject);
+begin
+ if SPR_STRANA=nil then
+ begin
+ Application.CreateForm(TFrmSpr,SPR_STRANA);
+ SPR_STRANA.Caption:=dxBarButton3.Caption;
+ //SPR_STRANA.AutoMAX;
+ AddToolBar(SPR_STRANA);
+ end
+ else
+ begin
+ SPR_STRANA.Show;
+ SPR_STRANA.SetFocus;
+ end;
+end;
+
 procedure TMain.dxBarButton42Click(Sender: TObject);
 var i: integer;
 begin
 for i:= 0 to MdiChildCount - 1 do
   MDIChildren[i].Close;
+end;
+
+procedure TMain.dxBarButton4Click(Sender: TObject);
+begin
+ if SPR_OBL=nil then
+ begin
+ Application.CreateForm(TFrmSpr,SPR_OBL);
+ SPR_OBL.Caption:=dxBarButton4.Caption;
+ //SPR_STRANA.AutoMAX;
+ AddToolBar(SPR_OBL);
+ end
+ else
+ begin
+ SPR_OBL.Show;
+ SPR_OBL.SetFocus;
+ end;
+end;
+
+procedure TMain.dxBarButton5Click(Sender: TObject);
+begin
+ if SPR_RAION=nil then
+ begin
+ Application.CreateForm(TFrmSpr,SPR_RAION);
+ SPR_RAION.Caption:=dxBarButton5.Caption;
+ //SPR_STRANA.AutoMAX;
+ AddToolBar(SPR_RAION);
+ end
+ else
+ begin
+ SPR_RAION.Show;
+ SPR_RAION.SetFocus;
+ end;
+end;
+
+procedure TMain.dxBarButton6Click(Sender: TObject);
+begin
+ if SPR_GOROD=nil then
+ begin
+ Application.CreateForm(TFrmSpr,SPR_GOROD);
+ SPR_GOROD.Caption:=dxBarButton6.Caption;
+ //SPR_STRANA.AutoMAX;
+ AddToolBar(SPR_GOROD);
+ end
+ else
+ begin
+ SPR_GOROD.Show;
+ SPR_GOROD.SetFocus;
+ end;
+end;
+
+procedure TMain.dxBarButton7Click(Sender: TObject);
+begin
+ if SPR_TIPUL=nil then
+ begin
+ Application.CreateForm(TFrmSpr,SPR_TIPUL);
+ SPR_TIPUL.Caption:=dxBarButton7.Caption;
+ //SPR_STRANA.AutoMAX;
+ AddToolBar(SPR_TIPUL);
+ end
+ else
+ begin
+ SPR_TIPUL.Show;
+ SPR_TIPUL.SetFocus;
+ end;
+end;
+
+procedure TMain.dxBarButton8Click(Sender: TObject);
+begin
+ if SPR_UL=nil then
+ begin
+ Application.CreateForm(TFrmSpr,SPR_UL);
+ SPR_UL.Caption:=dxBarButton8.Caption;
+ //SPR_STRANA.AutoMAX;
+ AddToolBar(SPR_UL);
+ end
+ else
+ begin
+ SPR_UL.Show;
+ SPR_UL.SetFocus;
+ end;
+end;
+
+procedure TMain.dxBarButton9Click(Sender: TObject);
+begin
+ if SPR_STRANA=nil then
+ begin
+ Application.CreateForm(TFrmSpr,SPR_STRANA);
+ SPR_STRANA.Caption:=dxBarButton9.Caption;
+ //SPR_STRANA.AutoMAX;
+ AddToolBar(SPR_STRANA);
+ end
+ else
+ begin
+ SPR_STRANA.Show;
+ SPR_STRANA.SetFocus;
+ end;
 end;
 
 procedure TMain.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -271,6 +446,20 @@ procedure TMain.FormCreate(Sender: TObject);
 begin
 if not IBTransaction1.Active then
 IBTransaction1.StartTransaction;
+
+IBSPR_GOROD.Open;
+IBSPR_GROMAD.Open;
+IBSPR_OBL.Open;
+IBSPR_ORGDOC.Open;
+IBSPR_RAION.Open;
+IBSPR_STRANA.Open;
+IBSPR_TIPUL.Open;
+IBSPR_UL.Open;
+IBSPR_VIDDOC.Open;
+
+
+
+
 
 end;
 

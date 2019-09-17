@@ -22,7 +22,7 @@ object Main: TMain
     Left = 608
     Top = 56
     Bitmap = {
-      494C010105000900E00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010105000900E80010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       00000000000000000000000000000000000000000000000000006473C1004254
       B300000000000000000000000000000000000000000000000000000000000000
@@ -419,7 +419,43 @@ object Main: TMain
       Caption = #1044#1086#1074#1110#1076#1085#1080#1082#1080
       Category = 0
       Visible = ivAlways
-      ItemLinks = <>
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarButton3'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton4'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton5'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton6'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton7'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton8'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton9'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton10'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton11'
+        end>
       ItemOptions.ShowDescriptions = False
       ItemOptions.ShowShortCuts = True
     end
@@ -923,6 +959,69 @@ object Main: TMain
       Visible = ivAlways
       ItemLinks = <>
     end
+    object dxBarButton3: TdxBarButton
+      Caption = #1050#1088#1072#1111#1085#1072
+      Category = 0
+      Hint = #1050#1088#1072#1111#1085#1072
+      Visible = ivAlways
+      OnClick = dxBarButton3Click
+    end
+    object dxBarButton4: TdxBarButton
+      Caption = #1054#1073#1083#1072#1089#1090#1100
+      Category = 0
+      Hint = #1054#1073#1083#1072#1089#1090#1100
+      Visible = ivAlways
+      OnClick = dxBarButton4Click
+    end
+    object dxBarButton5: TdxBarButton
+      Caption = #1056#1072#1081#1086#1085'/'#1056#1077#1075#1110#1086#1085
+      Category = 0
+      Hint = #1056#1072#1081#1086#1085'/'#1056#1077#1075#1110#1086#1085
+      Visible = ivAlways
+      OnClick = dxBarButton5Click
+    end
+    object dxBarButton6: TdxBarButton
+      Caption = #1053#1072#1089#1077#1083#1077#1085#1080#1081' '#1087#1091#1085#1082#1090
+      Category = 0
+      Hint = #1053#1072#1089#1077#1083#1077#1085#1080#1081' '#1087#1091#1085#1082#1090
+      Visible = ivAlways
+      OnClick = dxBarButton6Click
+    end
+    object dxBarButton7: TdxBarButton
+      Caption = #1058#1080#1087' '#1075#1077#1086#1085#1110#1084#1091
+      Category = 0
+      Hint = #1058#1080#1087' '#1075#1077#1086#1085#1110#1084#1091
+      Visible = ivAlways
+      OnClick = dxBarButton7Click
+    end
+    object dxBarButton8: TdxBarButton
+      Caption = #1043#1077#1086#1085#1110#1084' ('#1042#1091#1083#1080#1094#1103')'
+      Category = 0
+      Hint = #1043#1077#1086#1085#1110#1084' ('#1042#1091#1083#1080#1094#1103')'
+      Visible = ivAlways
+      OnClick = dxBarButton8Click
+    end
+    object dxBarButton9: TdxBarButton
+      Caption = #1042#1080#1076' '#1076#1086#1082#1091#1084#1077#1085#1090#1091
+      Category = 0
+      Hint = #1042#1080#1076' '#1076#1086#1082#1091#1084#1077#1085#1090#1091
+      Visible = ivAlways
+      OnClick = dxBarButton9Click
+    end
+    object dxBarButton10: TdxBarButton
+      Caption = #1054#1088#1075#1072#1085' '#1086#1092#1086#1088#1084'.'#1076#1086#1082#1091#1084#1077#1085#1090#1091
+      Category = 0
+      Hint = #1054#1088#1075#1072#1085' '#1086#1092#1086#1088#1084'.'#1076#1086#1082#1091#1084#1077#1085#1090#1091
+      Visible = ivAlways
+      OnClick = dxBarButton10Click
+    end
+    object dxBarButton11: TdxBarButton
+      Caption = #1043#1088#1086#1084#1072#1076#1103#1085#1089#1090#1074#1086
+      Category = 0
+      Hint = #1043#1088#1086#1084#1072#1076#1103#1085#1089#1090#1074#1086
+      Visible = ivAlways
+      OnClick = dxBarButton11Click
+    end
   end
   object ActionList1: TActionList
     Images = ImageList2
@@ -961,7 +1060,7 @@ object Main: TMain
     Left = 608
     Top = 112
     Bitmap = {
-      494C010112001400E00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010112001400E80010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000005000000001002000000000000050
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1809,7 +1908,7 @@ object Main: TMain
     Left = 568
     Top = 176
     Bitmap = {
-      494C010107000900E00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107000900E80010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000F5F3F500CFE0F40000000000000000000000
@@ -2081,7 +2180,6 @@ object Main: TMain
       000000000000}
   end
   object IBTransaction1: TIBTransaction
-    Active = True
     DefaultDatabase = DataM.IBDatabase1
     Params.Strings = (
       'read_committed'

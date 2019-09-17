@@ -24,8 +24,8 @@ begin
   Start := TStart.Create(Application);
   Application.Title := 'Розрахунок тарифів';
   Application.CreateForm(TDataM, DataM);
-  Application.CreateForm(TFrmReestr, FrmReestr);
-  Application.CreateForm(TFrmSpr, FrmSpr);
+  //Application.CreateForm(TFrmReestr, FrmReestr);
+ // Application.CreateForm(TFrmSpr, FrmSpr);
   application.ProcessMessages;
   Start.Show;
 //  for i:=1 to 1000000 do
