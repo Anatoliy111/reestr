@@ -26,7 +26,7 @@ object About: TAbout
   object cxLabel1: TcxLabel
     Left = 72
     Top = 96
-    Caption = #1056#1086#1079#1088#1072#1093#1091#1085#1086#1082' '#1090#1072#1088#1080#1092#1110#1074
+    Caption = #1056#1077#1108#1089#1090#1088#1072#1090#1086#1088
     ParentFont = False
     Style.Font.Charset = DEFAULT_CHARSET
     Style.Font.Color = clWindowText
@@ -48,6 +48,6 @@ object About: TAbout
   object cxLabel4: TcxLabel
     Left = 348
     Top = 319
-    Caption = '2018 '#1088'.'
+    Caption = '2019 '#1088'.'
   end
 end
