@@ -3,7 +3,7 @@ object AllForm: TAllForm
   Top = 0
   Caption = 'AllForm'
   ClientHeight = 534
-  ClientWidth = 515
+  ClientWidth = 728
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

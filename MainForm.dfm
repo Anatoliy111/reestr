@@ -22,7 +22,7 @@ object Main: TMain
     Left = 608
     Top = 56
     Bitmap = {
-      494C010105000900DC0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010105000900E00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       00000000000000000000000000000000000000000000000000006473C1004254
       B300000000000000000000000000000000000000000000000000000000000000
@@ -333,11 +333,11 @@ object Main: TMain
       ItemLinks = <
         item
           Visible = True
-          ItemName = 'dxBarSubItem2'
+          ItemName = 'dxBarSubItem13'
         end
         item
           Visible = True
-          ItemName = 'dxBarSubItem13'
+          ItemName = 'dxBarSubItem2'
         end
         item
           Visible = True
@@ -416,7 +416,7 @@ object Main: TMain
       WholeRow = False
     end
     object dxBarSubItem2: TdxBarSubItem
-      Caption = #1044#1086#1074#1110#1076#1085#1080#1082
+      Caption = #1044#1086#1074#1110#1076#1085#1080#1082#1080
       Category = 0
       Visible = ivAlways
       ItemLinks = <>
@@ -918,7 +918,7 @@ object Main: TMain
       PropertiesClassName = 'TcxTrackBarProperties'
     end
     object dxBarSubItem13: TdxBarSubItem
-      Caption = #1047#1074#1110#1090#1080
+      Caption = #1056#1077#1108#1089#1090#1088
       Category = 0
       Visible = ivAlways
       ItemLinks = <>
@@ -961,7 +961,7 @@ object Main: TMain
     Left = 608
     Top = 112
     Bitmap = {
-      494C010112001400DC0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010112001400E00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000005000000001002000000000000050
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1809,7 +1809,7 @@ object Main: TMain
     Left = 568
     Top = 176
     Bitmap = {
-      494C010107000900DC0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107000900E00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000F5F3F500CFE0F40000000000000000000000
@@ -2081,6 +2081,7 @@ object Main: TMain
       000000000000}
   end
   object IBTransaction1: TIBTransaction
+    Active = True
     DefaultDatabase = DataM.IBDatabase1
     Params.Strings = (
       'read_committed'
@@ -2101,5 +2102,711 @@ object Main: TMain
       AssignedValues = [svTextColor]
       TextColor = clInactiveCaptionText
     end
+  end
+  object IBREESTR: TIBDataSet
+    Database = DataM.IBDatabase1
+    Transaction = IBTransaction1
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from REESTR'
+      'where'
+      '  ID = :OLD_ID')
+    InsertSQL.Strings = (
+      'insert into REESTR'
+      
+        '  (ID, FAM, IM, OT, MN_DATA, MN_STRANA, MN_OBL, MN_RAION, MN_GOR' +
+        'OD, PR_STRANA, '
+      
+        '   PR_OBL, PR_RAION, PR_GOROD, PR_TIPUL, PR_UL, PR_DOM, PR_KORP,' +
+        ' PR_KV, '
+      
+        '   PR_RDATA, PR_ZDATA, GROMAD, EDDR, PRIBUV, VIBUV, DOCVID, DOCS' +
+        'ER, DOCNOM, '
+      '   DOCORG, DOCDATA)'
+      'values'
+      
+        '  (:ID, :FAM, :IM, :OT, :MN_DATA, :MN_STRANA, :MN_OBL, :MN_RAION' +
+        ', :MN_GOROD, '
+      
+        '   :PR_STRANA, :PR_OBL, :PR_RAION, :PR_GOROD, :PR_TIPUL, :PR_UL,' +
+        ' :PR_DOM, '
+      
+        '   :PR_KORP, :PR_KV, :PR_RDATA, :PR_ZDATA, :GROMAD, :EDDR, :PRIB' +
+        'UV, :VIBUV, '
+      '   :DOCVID, :DOCSER, :DOCNOM, :DOCORG, :DOCDATA)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  ID,'
+      '  FAM,'
+      '  IM,'
+      '  OT,'
+      '  MN_DATA,'
+      '  MN_STRANA,'
+      '  MN_OBL,'
+      '  MN_RAION,'
+      '  MN_GOROD,'
+      '  PR_STRANA,'
+      '  PR_OBL,'
+      '  PR_RAION,'
+      '  PR_GOROD,'
+      '  PR_TIPUL,'
+      '  PR_UL,'
+      '  PR_DOM,'
+      '  PR_KORP,'
+      '  PR_KV,'
+      '  PR_RDATA,'
+      '  PR_ZDATA,'
+      '  GROMAD,'
+      '  EDDR,'
+      '  PRIBUV,'
+      '  VIBUV,'
+      '  DOCVID,'
+      '  DOCSER,'
+      '  DOCNOM,'
+      '  DOCORG,'
+      '  DOCDATA'
+      'from REESTR '
+      'where'
+      '  ID = :ID')
+    SelectSQL.Strings = (
+      'select * from REESTR')
+    ModifySQL.Strings = (
+      'update REESTR'
+      'set'
+      '  ID = :ID,'
+      '  FAM = :FAM,'
+      '  IM = :IM,'
+      '  OT = :OT,'
+      '  MN_DATA = :MN_DATA,'
+      '  MN_STRANA = :MN_STRANA,'
+      '  MN_OBL = :MN_OBL,'
+      '  MN_RAION = :MN_RAION,'
+      '  MN_GOROD = :MN_GOROD,'
+      '  PR_STRANA = :PR_STRANA,'
+      '  PR_OBL = :PR_OBL,'
+      '  PR_RAION = :PR_RAION,'
+      '  PR_GOROD = :PR_GOROD,'
+      '  PR_TIPUL = :PR_TIPUL,'
+      '  PR_UL = :PR_UL,'
+      '  PR_DOM = :PR_DOM,'
+      '  PR_KORP = :PR_KORP,'
+      '  PR_KV = :PR_KV,'
+      '  PR_RDATA = :PR_RDATA,'
+      '  PR_ZDATA = :PR_ZDATA,'
+      '  GROMAD = :GROMAD,'
+      '  EDDR = :EDDR,'
+      '  PRIBUV = :PRIBUV,'
+      '  VIBUV = :VIBUV,'
+      '  DOCVID = :DOCVID,'
+      '  DOCSER = :DOCSER,'
+      '  DOCNOM = :DOCNOM,'
+      '  DOCORG = :DOCORG,'
+      '  DOCDATA = :DOCDATA'
+      'where'
+      '  ID = :OLD_ID')
+    ParamCheck = True
+    UniDirectional = False
+    Left = 104
+    Top = 304
+    object IBREESTRID: TIntegerField
+      FieldName = 'ID'
+      Origin = '"REESTR"."ID"'
+      Required = True
+    end
+    object IBREESTRFAM: TIBStringField
+      FieldName = 'FAM'
+      Origin = '"REESTR"."FAM"'
+      Size = 100
+    end
+    object IBREESTRIM: TIBStringField
+      FieldName = 'IM'
+      Origin = '"REESTR"."IM"'
+      Size = 100
+    end
+    object IBREESTROT: TIBStringField
+      FieldName = 'OT'
+      Origin = '"REESTR"."OT"'
+      Size = 100
+    end
+    object IBREESTRMN_DATA: TDateField
+      FieldName = 'MN_DATA'
+      Origin = '"REESTR"."MN_DATA"'
+    end
+    object IBREESTRMN_STRANA: TIBStringField
+      FieldName = 'MN_STRANA'
+      Origin = '"REESTR"."MN_STRANA"'
+      Size = 100
+    end
+    object IBREESTRMN_OBL: TIBStringField
+      FieldName = 'MN_OBL'
+      Origin = '"REESTR"."MN_OBL"'
+      Size = 150
+    end
+    object IBREESTRMN_RAION: TIBStringField
+      FieldName = 'MN_RAION'
+      Origin = '"REESTR"."MN_RAION"'
+      Size = 150
+    end
+    object IBREESTRMN_GOROD: TIBStringField
+      FieldName = 'MN_GOROD'
+      Origin = '"REESTR"."MN_GOROD"'
+      Size = 150
+    end
+    object IBREESTRPR_STRANA: TIBStringField
+      FieldName = 'PR_STRANA'
+      Origin = '"REESTR"."PR_STRANA"'
+      Size = 100
+    end
+    object IBREESTRPR_OBL: TIBStringField
+      FieldName = 'PR_OBL'
+      Origin = '"REESTR"."PR_OBL"'
+      Size = 150
+    end
+    object IBREESTRPR_RAION: TIBStringField
+      FieldName = 'PR_RAION'
+      Origin = '"REESTR"."PR_RAION"'
+      Size = 150
+    end
+    object IBREESTRPR_GOROD: TIBStringField
+      FieldName = 'PR_GOROD'
+      Origin = '"REESTR"."PR_GOROD"'
+      Size = 150
+    end
+    object IBREESTRPR_TIPUL: TIBStringField
+      FieldName = 'PR_TIPUL'
+      Origin = '"REESTR"."PR_TIPUL"'
+    end
+    object IBREESTRPR_UL: TIBStringField
+      FieldName = 'PR_UL'
+      Origin = '"REESTR"."PR_UL"'
+      Size = 100
+    end
+    object IBREESTRPR_DOM: TIBStringField
+      FieldName = 'PR_DOM'
+      Origin = '"REESTR"."PR_DOM"'
+      Size = 10
+    end
+    object IBREESTRPR_KORP: TIBStringField
+      FieldName = 'PR_KORP'
+      Origin = '"REESTR"."PR_KORP"'
+      Size = 10
+    end
+    object IBREESTRPR_KV: TIBStringField
+      FieldName = 'PR_KV'
+      Origin = '"REESTR"."PR_KV"'
+      Size = 10
+    end
+    object IBREESTRPR_RDATA: TDateField
+      FieldName = 'PR_RDATA'
+      Origin = '"REESTR"."PR_RDATA"'
+    end
+    object IBREESTRPR_ZDATA: TDateField
+      FieldName = 'PR_ZDATA'
+      Origin = '"REESTR"."PR_ZDATA"'
+    end
+    object IBREESTRGROMAD: TIBStringField
+      FieldName = 'GROMAD'
+      Origin = '"REESTR"."GROMAD"'
+      Size = 50
+    end
+    object IBREESTREDDR: TIntegerField
+      FieldName = 'EDDR'
+      Origin = '"REESTR"."EDDR"'
+    end
+    object IBREESTRPRIBUV: TIBStringField
+      FieldName = 'PRIBUV'
+      Origin = '"REESTR"."PRIBUV"'
+      Size = 100
+    end
+    object IBREESTRVIBUV: TIBStringField
+      FieldName = 'VIBUV'
+      Origin = '"REESTR"."VIBUV"'
+      Size = 100
+    end
+    object IBREESTRDOCVID: TIBStringField
+      FieldName = 'DOCVID'
+      Origin = '"REESTR"."DOCVID"'
+    end
+    object IBREESTRDOCSER: TIBStringField
+      FieldName = 'DOCSER'
+      Origin = '"REESTR"."DOCSER"'
+      Size = 10
+    end
+    object IBREESTRDOCNOM: TIBStringField
+      FieldName = 'DOCNOM'
+      Origin = '"REESTR"."DOCNOM"'
+    end
+    object IBREESTRDOCORG: TIBStringField
+      FieldName = 'DOCORG'
+      Origin = '"REESTR"."DOCORG"'
+      Size = 200
+    end
+    object IBREESTRDOCDATA: TDateField
+      FieldName = 'DOCDATA'
+      Origin = '"REESTR"."DOCDATA"'
+    end
+  end
+  object DSREESTR: TDataSource
+    DataSet = IBREESTR
+    Left = 104
+    Top = 360
+  end
+  object IBSPR_GOROD: TIBDataSet
+    Database = DataM.IBDatabase1
+    Transaction = IBTransaction1
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from SPR_GOROD'
+      'where'
+      '  ID = :OLD_ID')
+    InsertSQL.Strings = (
+      'insert into SPR_GOROD'
+      '  (ID, NAME)'
+      'values'
+      '  (:ID, :NAME)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  ID,'
+      '  NAME'
+      'from SPR_GOROD '
+      'where'
+      '  ID = :ID')
+    SelectSQL.Strings = (
+      'select * from SPR_GOROD')
+    ModifySQL.Strings = (
+      'update SPR_GOROD'
+      'set'
+      '  ID = :ID,'
+      '  NAME = :NAME'
+      'where'
+      '  ID = :OLD_ID')
+    ParamCheck = True
+    UniDirectional = False
+    Left = 168
+    Top = 304
+    object IBSPR_GORODID: TIntegerField
+      FieldName = 'ID'
+      Origin = '"SPR_GOROD"."ID"'
+      Required = True
+    end
+    object IBSPR_GORODNAME: TIBStringField
+      DisplayLabel = #1053#1072#1079#1074#1072
+      FieldName = 'NAME'
+      Origin = '"SPR_GOROD"."NAME"'
+      Size = 150
+    end
+  end
+  object DSSPR_GOROD: TDataSource
+    DataSet = IBSPR_GOROD
+    Left = 168
+    Top = 360
+  end
+  object IBSPR_GROMAD: TIBDataSet
+    Database = DataM.IBDatabase1
+    Transaction = IBTransaction1
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from SPR_GROMAD'
+      'where'
+      '  ID = :OLD_ID')
+    InsertSQL.Strings = (
+      'insert into SPR_GROMAD'
+      '  (ID, NAME)'
+      'values'
+      '  (:ID, :NAME)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  ID,'
+      '  NAME'
+      'from SPR_GROMAD '
+      'where'
+      '  ID = :ID')
+    SelectSQL.Strings = (
+      'select * from SPR_GROMAD')
+    ModifySQL.Strings = (
+      'update SPR_GROMAD'
+      'set'
+      '  ID = :ID,'
+      '  NAME = :NAME'
+      'where'
+      '  ID = :OLD_ID')
+    ParamCheck = True
+    UniDirectional = False
+    Left = 232
+    Top = 304
+    object IBSPR_GROMADID: TIntegerField
+      FieldName = 'ID'
+      Origin = '"SPR_GROMAD"."ID"'
+      Required = True
+    end
+    object IBSPR_GROMADNAME: TIBStringField
+      DisplayLabel = #1053#1072#1079#1074#1072
+      FieldName = 'NAME'
+      Origin = '"SPR_GROMAD"."NAME"'
+      Size = 50
+    end
+  end
+  object DSSPR_GROMAD: TDataSource
+    DataSet = IBSPR_GROMAD
+    Left = 232
+    Top = 360
+  end
+  object IBSPR_OBL: TIBDataSet
+    Database = DataM.IBDatabase1
+    Transaction = IBTransaction1
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from SPR_OBL'
+      'where'
+      '  ID = :OLD_ID')
+    InsertSQL.Strings = (
+      'insert into SPR_OBL'
+      '  (ID, NAME)'
+      'values'
+      '  (:ID, :NAME)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  ID,'
+      '  NAME'
+      'from SPR_OBL '
+      'where'
+      '  ID = :ID')
+    SelectSQL.Strings = (
+      'select * from SPR_OBL')
+    ModifySQL.Strings = (
+      'update SPR_OBL'
+      'set'
+      '  ID = :ID,'
+      '  NAME = :NAME'
+      'where'
+      '  ID = :OLD_ID')
+    ParamCheck = True
+    UniDirectional = False
+    Left = 296
+    Top = 304
+    object IBSPR_OBLID: TIntegerField
+      FieldName = 'ID'
+      Origin = '"SPR_OBL"."ID"'
+      Required = True
+    end
+    object IBSPR_OBLNAME: TIBStringField
+      DisplayLabel = #1053#1072#1079#1074#1072
+      FieldName = 'NAME'
+      Origin = '"SPR_OBL"."NAME"'
+      Size = 150
+    end
+  end
+  object DSSPR_OBL: TDataSource
+    DataSet = IBSPR_OBL
+    Left = 296
+    Top = 360
+  end
+  object IBSPR_ORGDOC: TIBDataSet
+    Database = DataM.IBDatabase1
+    Transaction = IBTransaction1
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from SPR_ORGDOC'
+      'where'
+      '  ID = :OLD_ID')
+    InsertSQL.Strings = (
+      'insert into SPR_ORGDOC'
+      '  (ID, NAME)'
+      'values'
+      '  (:ID, :NAME)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  ID,'
+      '  NAME'
+      'from SPR_ORGDOC '
+      'where'
+      '  ID = :ID')
+    SelectSQL.Strings = (
+      'select * from SPR_ORGDOC')
+    ModifySQL.Strings = (
+      'update SPR_ORGDOC'
+      'set'
+      '  ID = :ID,'
+      '  NAME = :NAME'
+      'where'
+      '  ID = :OLD_ID')
+    ParamCheck = True
+    UniDirectional = False
+    Left = 360
+    Top = 304
+    object IBSPR_ORGDOCID: TIntegerField
+      FieldName = 'ID'
+      Origin = '"SPR_ORGDOC"."ID"'
+      Required = True
+    end
+    object IBSPR_ORGDOCNAME: TIBStringField
+      DisplayLabel = #1053#1072#1079#1074#1072
+      FieldName = 'NAME'
+      Origin = '"SPR_ORGDOC"."NAME"'
+      Size = 200
+    end
+  end
+  object DSSPR_ORGDOC: TDataSource
+    DataSet = IBSPR_ORGDOC
+    Left = 360
+    Top = 360
+  end
+  object IBSPR_RAION: TIBDataSet
+    Database = DataM.IBDatabase1
+    Transaction = IBTransaction1
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from SPR_RAION'
+      'where'
+      '  ID = :OLD_ID')
+    InsertSQL.Strings = (
+      'insert into SPR_RAION'
+      '  (ID, NAME)'
+      'values'
+      '  (:ID, :NAME)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  ID,'
+      '  NAME'
+      'from SPR_RAION '
+      'where'
+      '  ID = :ID')
+    SelectSQL.Strings = (
+      'select * from SPR_RAION')
+    ModifySQL.Strings = (
+      'update SPR_RAION'
+      'set'
+      '  ID = :ID,'
+      '  NAME = :NAME'
+      'where'
+      '  ID = :OLD_ID')
+    ParamCheck = True
+    UniDirectional = False
+    Left = 424
+    Top = 304
+    object IBSPR_RAIONID: TIntegerField
+      FieldName = 'ID'
+      Origin = '"SPR_RAION"."ID"'
+      Required = True
+    end
+    object IBSPR_RAIONNAME: TIBStringField
+      DisplayLabel = #1053#1072#1079#1074#1072
+      FieldName = 'NAME'
+      Origin = '"SPR_RAION"."NAME"'
+      Size = 150
+    end
+  end
+  object DSSPR_RAION: TDataSource
+    DataSet = IBSPR_RAION
+    Left = 424
+    Top = 360
+  end
+  object IBSPR_STRANA: TIBDataSet
+    Database = DataM.IBDatabase1
+    Transaction = IBTransaction1
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from SPR_STRANA'
+      'where'
+      '  ID = :OLD_ID')
+    InsertSQL.Strings = (
+      'insert into SPR_STRANA'
+      '  (ID, NAME)'
+      'values'
+      '  (:ID, :NAME)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  ID,'
+      '  NAME'
+      'from SPR_STRANA '
+      'where'
+      '  ID = :ID')
+    SelectSQL.Strings = (
+      'select * from SPR_STRANA')
+    ModifySQL.Strings = (
+      'update SPR_STRANA'
+      'set'
+      '  ID = :ID,'
+      '  NAME = :NAME'
+      'where'
+      '  ID = :OLD_ID')
+    ParamCheck = True
+    UniDirectional = False
+    Left = 488
+    Top = 304
+    object IBSPR_STRANAID: TIntegerField
+      FieldName = 'ID'
+      Origin = '"SPR_STRANA"."ID"'
+      Required = True
+    end
+    object IBSPR_STRANANAME: TIBStringField
+      DisplayLabel = #1053#1072#1079#1074#1072
+      FieldName = 'NAME'
+      Origin = '"SPR_STRANA"."NAME"'
+      Size = 100
+    end
+  end
+  object DSSPR_STRANA: TDataSource
+    DataSet = IBSPR_STRANA
+    Left = 488
+    Top = 360
+  end
+  object IBSPR_TIPUL: TIBDataSet
+    Database = DataM.IBDatabase1
+    Transaction = IBTransaction1
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from SPR_TIPUL'
+      'where'
+      '  ID = :OLD_ID')
+    InsertSQL.Strings = (
+      'insert into SPR_TIPUL'
+      '  (ID, NAME)'
+      'values'
+      '  (:ID, :NAME)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  ID,'
+      '  NAME'
+      'from SPR_TIPUL '
+      'where'
+      '  ID = :ID')
+    SelectSQL.Strings = (
+      'select * from SPR_TIPUL')
+    ModifySQL.Strings = (
+      'update SPR_TIPUL'
+      'set'
+      '  ID = :ID,'
+      '  NAME = :NAME'
+      'where'
+      '  ID = :OLD_ID')
+    ParamCheck = True
+    UniDirectional = False
+    Left = 544
+    Top = 304
+    object IBSPR_TIPULID: TIntegerField
+      FieldName = 'ID'
+      Origin = '"SPR_TIPUL"."ID"'
+      Required = True
+    end
+    object IBSPR_TIPULNAME: TIBStringField
+      DisplayLabel = #1053#1072#1079#1074#1072
+      FieldName = 'NAME'
+      Origin = '"SPR_TIPUL"."NAME"'
+    end
+  end
+  object DSSPR_TIPUL: TDataSource
+    DataSet = IBSPR_TIPUL
+    Left = 544
+    Top = 360
+  end
+  object IBSPR_UL: TIBDataSet
+    Database = DataM.IBDatabase1
+    Transaction = IBTransaction1
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from SPR_UL'
+      'where'
+      '  ID = :OLD_ID')
+    InsertSQL.Strings = (
+      'insert into SPR_UL'
+      '  (ID, NAME)'
+      'values'
+      '  (:ID, :NAME)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  ID,'
+      '  NAME'
+      'from SPR_UL '
+      'where'
+      '  ID = :ID')
+    SelectSQL.Strings = (
+      'select * from SPR_UL')
+    ModifySQL.Strings = (
+      'update SPR_UL'
+      'set'
+      '  ID = :ID,'
+      '  NAME = :NAME'
+      'where'
+      '  ID = :OLD_ID')
+    ParamCheck = True
+    UniDirectional = False
+    Left = 600
+    Top = 304
+    object IBSPR_ULID: TIntegerField
+      FieldName = 'ID'
+      Origin = '"SPR_UL"."ID"'
+      Required = True
+    end
+    object IBSPR_ULNAME: TIBStringField
+      DisplayLabel = #1053#1072#1079#1074#1072
+      FieldName = 'NAME'
+      Origin = '"SPR_UL"."NAME"'
+      Size = 100
+    end
+  end
+  object DSSPR_UL: TDataSource
+    DataSet = IBSPR_UL
+    Left = 600
+    Top = 360
+  end
+  object IBSPR_VIDDOC: TIBDataSet
+    Database = DataM.IBDatabase1
+    Transaction = IBTransaction1
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from SPR_VIDDOC'
+      'where'
+      '  ID = :OLD_ID')
+    InsertSQL.Strings = (
+      'insert into SPR_VIDDOC'
+      '  (ID, NAME)'
+      'values'
+      '  (:ID, :NAME)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  ID,'
+      '  NAME'
+      'from SPR_VIDDOC '
+      'where'
+      '  ID = :ID')
+    SelectSQL.Strings = (
+      'select * from SPR_VIDDOC')
+    ModifySQL.Strings = (
+      'update SPR_VIDDOC'
+      'set'
+      '  ID = :ID,'
+      '  NAME = :NAME'
+      'where'
+      '  ID = :OLD_ID')
+    ParamCheck = True
+    UniDirectional = False
+    Left = 664
+    Top = 304
+    object IBSPR_VIDDOCID: TIntegerField
+      FieldName = 'ID'
+      Origin = '"SPR_VIDDOC"."ID"'
+      Required = True
+    end
+    object IBSPR_VIDDOCNAME: TIBStringField
+      DisplayLabel = #1053#1072#1079#1074#1072
+      FieldName = 'NAME'
+      Origin = '"SPR_VIDDOC"."NAME"'
+    end
+  end
+  object DSSPR_VIDDOC: TDataSource
+    DataSet = IBSPR_VIDDOC
+    Left = 664
+    Top = 360
   end
 end

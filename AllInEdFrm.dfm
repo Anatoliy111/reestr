@@ -1,45 +1,35 @@
 inherited AllInEdForm: TAllInEdForm
   Caption = 'AllInEdForm'
+  ClientWidth = 310
+  ExplicitWidth = 326
   PixelsPerInch = 96
   TextHeight = 13
   object Panel4: TPanel [0]
     Left = 0
     Top = 465
-    Width = 515
+    Width = 310
     Height = 69
     Align = alBottom
     TabOrder = 0
-    ExplicitLeft = -217
-    ExplicitTop = 448
-    ExplicitWidth = 732
+    ExplicitWidth = 728
     object Panel3: TPanel
-      Left = 358
+      Left = 234
       Top = 1
-      Width = 156
+      Width = 75
       Height = 43
       Align = alRight
       AutoSize = True
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitLeft = 575
-      object cxButton4: TcxButton
-        Left = 81
-        Top = 8
-        Width = 75
-        Height = 25
-        Caption = #1042#1110#1076#1084#1110#1085#1072
-        LookAndFeel.NativeStyle = False
-        TabOrder = 0
-        OnClick = cxButton4Click
-      end
+      ExplicitLeft = 571
       object cxButton3: TcxButton
         Left = 0
         Top = 8
         Width = 75
         Height = 25
-        Caption = #1054#1050
+        Caption = #1047#1072#1082#1088#1080#1090#1080
         LookAndFeel.NativeStyle = False
-        TabOrder = 1
+        TabOrder = 0
         OnClick = cxButton3Click
       end
     end
@@ -47,39 +37,31 @@ inherited AllInEdForm: TAllInEdForm
       AlignWithMargins = True
       Left = 4
       Top = 47
-      Width = 507
+      Width = 302
       Height = 18
       Panels = <
         item
           PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
           Fixed = False
-        end
-        item
-          PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
-          BiDiMode = bdRightToLeftReadingOnly
-          Fixed = False
-          ParentBiDiMode = False
-          Text = #1065#1086#1073' '#1087#1088#1080#1084#1110#1085#1080#1083#1080#1089#1103' '#1079#1084#1110#1085#1080' '#1090#1088#1077#1073#1072' '#1079#1073#1077#1088#1110#1075#1072#1090#1080' '#1087#1088#1080' '#1079#1072#1082#1088#1080#1090#1090#1110' '#1092#1086#1088#1084#1080
         end>
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
-      ExplicitWidth = 724
+      ExplicitWidth = 720
     end
   end
   object Panel2: TPanel [1]
     Left = 0
     Top = 0
-    Width = 515
+    Width = 310
     Height = 41
     Align = alTop
     TabOrder = 1
-    ExplicitLeft = -217
-    ExplicitWidth = 732
+    ExplicitWidth = 728
     object cxButton6: TcxButton
-      Left = 165
+      Left = 261
       Top = 1
       Width = 46
       Height = 39
@@ -219,9 +201,10 @@ inherited AllInEdForm: TAllInEdForm
         0000000000000000000000000000000000000000000000000000}
       OptionsImage.ImageIndex = 2
       TabOrder = 0
+      ExplicitLeft = 165
     end
     object cxButton7: TcxButton
-      Left = 123
+      Left = 219
       Top = 1
       Width = 42
       Height = 39
@@ -361,9 +344,10 @@ inherited AllInEdForm: TAllInEdForm
         0000000000000000000000000000000000000000000000000000}
       OptionsImage.Layout = blGlyphRight
       TabOrder = 1
+      ExplicitLeft = 123
     end
     object cxButton8: TcxButton
-      Left = 41
+      Left = 137
       Top = 1
       Width = 40
       Height = 39
@@ -503,9 +487,10 @@ inherited AllInEdForm: TAllInEdForm
         0000000000000000000000000000000000000000000000000000}
       OptionsImage.Layout = blGlyphRight
       TabOrder = 2
+      ExplicitLeft = 41
     end
     object cxButton9: TcxButton
-      Left = 1
+      Left = 97
       Top = 1
       Width = 40
       Height = 39
@@ -645,9 +630,10 @@ inherited AllInEdForm: TAllInEdForm
         0000000000000000000000000000000000000000000000000000}
       OptionsImage.Layout = blGlyphRight
       TabOrder = 3
+      ExplicitLeft = 1
     end
     object cxButton5: TcxButton
-      Left = 81
+      Left = 177
       Top = 1
       Width = 42
       Height = 39
@@ -787,6 +773,40 @@ inherited AllInEdForm: TAllInEdForm
         0000000000000000000000000000000000000000000000000000}
       OptionsImage.Layout = blGlyphRight
       TabOrder = 4
+      ExplicitLeft = 81
+    end
+    object cxButton1: TcxButton
+      Left = 1
+      Top = 1
+      Width = 96
+      Height = 39
+      Hint = #1042#1080#1073#1088#1072#1090#1080
+      Align = alLeft
+      Caption = #1042#1080#1073#1088#1072#1090#1080
+      LookAndFeel.NativeStyle = True
+      OptionsImage.Layout = blGlyphRight
+      TabOrder = 5
+    end
+  end
+  object cxGrid1: TcxGrid [2]
+    Left = 0
+    Top = 41
+    Width = 310
+    Height = 424
+    Align = alClient
+    TabOrder = 2
+    ExplicitLeft = 192
+    ExplicitTop = 152
+    ExplicitWidth = 250
+    ExplicitHeight = 200
+    object cxGrid1DBTableView1: TcxGridDBTableView
+      Navigator.Buttons.CustomButtons = <>
+      DataController.Summary.DefaultGroupSummaryItems = <>
+      DataController.Summary.FooterSummaryItems = <>
+      DataController.Summary.SummaryGroups = <>
+    end
+    object cxGrid1Level1: TcxGridLevel
+      GridView = cxGrid1DBTableView1
     end
   end
 end

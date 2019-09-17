@@ -12,7 +12,9 @@ uses
   AllFrm in 'AllFrm.pas' {AllForm},
   AllMdiFrm in 'AllMdiFrm.pas' {AllMdiForm},
   AllInEdFrm in 'AllInEdFrm.pas' {AllInEdForm},
-  EditFrm in 'EditFrm.pas' {EditForm};
+  EditFrm in 'EditFrm.pas' {EditForm},
+  ree in 'ree.pas' {FrmReestr},
+  Spr in 'Spr.pas' {FrmSpr};
 
 {$R *.res}
 
@@ -22,6 +24,8 @@ begin
   Start := TStart.Create(Application);
   Application.Title := 'Розрахунок тарифів';
   Application.CreateForm(TDataM, DataM);
+  Application.CreateForm(TFrmReestr, FrmReestr);
+  Application.CreateForm(TFrmSpr, FrmSpr);
   application.ProcessMessages;
   Start.Show;
 //  for i:=1 to 1000000 do

@@ -1,9 +1,9 @@
 inherited EditForm: TEditForm
   Caption = 'EditForm'
-  ClientHeight = 181
-  ClientWidth = 416
-  ExplicitWidth = 432
-  ExplicitHeight = 219
+  ClientHeight = 179
+  ClientWidth = 461
+  ExplicitWidth = 477
+  ExplicitHeight = 217
   PixelsPerInch = 96
   TextHeight = 13
   inherited IBTransaction1: TIBTransaction
