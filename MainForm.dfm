@@ -22,7 +22,7 @@ object Main: TMain
     Left = 608
     Top = 56
     Bitmap = {
-      494C010105000900E80010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010105000900F00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       00000000000000000000000000000000000000000000000000006473C1004254
       B300000000000000000000000000000000000000000000000000000000000000
@@ -333,7 +333,7 @@ object Main: TMain
       ItemLinks = <
         item
           Visible = True
-          ItemName = 'dxBarSubItem13'
+          ItemName = 'dxBarButton12'
         end
         item
           Visible = True
@@ -583,6 +583,7 @@ object Main: TMain
       Category = 0
       Hint = #1053#1072#1083#1072#1096#1090#1091#1074#1072#1085#1085#1103
       Visible = ivAlways
+      OnClick = dxBarButton32Click
     end
     object dxBarButton33: TdxBarButton
       Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080' '#1087#1088#1086#1075#1088#1072#1084#1084#1099
@@ -1022,6 +1023,13 @@ object Main: TMain
       Visible = ivAlways
       OnClick = dxBarButton11Click
     end
+    object dxBarButton12: TdxBarButton
+      Caption = #1056#1077#1108#1089#1090#1088
+      Category = 0
+      Hint = #1056#1077#1108#1089#1090#1088
+      Visible = ivAlways
+      OnClick = dxBarButton12Click
+    end
   end
   object ActionList1: TActionList
     Images = ImageList2
@@ -1060,7 +1068,7 @@ object Main: TMain
     Left = 608
     Top = 112
     Bitmap = {
-      494C010112001400E80010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010112001400F00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000005000000001002000000000000050
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1908,7 +1916,7 @@ object Main: TMain
     Left = 568
     Top = 176
     Bitmap = {
-      494C010107000900E80010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107000900F00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000F5F3F500CFE0F40000000000000000000000
@@ -2305,6 +2313,8 @@ object Main: TMain
       '  ID = :OLD_ID')
     ParamCheck = True
     UniDirectional = False
+    GeneratorField.Field = 'ID'
+    GeneratorField.Generator = 'GEN_REESTR_ID'
     Left = 104
     Top = 304
     object IBREESTRID: TIntegerField
@@ -2482,6 +2492,8 @@ object Main: TMain
       '  ID = :OLD_ID')
     ParamCheck = True
     UniDirectional = False
+    GeneratorField.Field = 'ID'
+    GeneratorField.Generator = 'GEN_SPR_GOROD_ID'
     Left = 168
     Top = 304
     object IBSPR_GORODID: TIntegerField
@@ -2533,6 +2545,8 @@ object Main: TMain
       '  ID = :OLD_ID')
     ParamCheck = True
     UniDirectional = False
+    GeneratorField.Field = 'ID'
+    GeneratorField.Generator = 'GEN_SPR_GROMAD_ID'
     Left = 232
     Top = 304
     object IBSPR_GROMADID: TIntegerField
@@ -2584,6 +2598,8 @@ object Main: TMain
       '  ID = :OLD_ID')
     ParamCheck = True
     UniDirectional = False
+    GeneratorField.Field = 'ID'
+    GeneratorField.Generator = 'GEN_SPR_OBL_ID'
     Left = 296
     Top = 304
     object IBSPR_OBLID: TIntegerField
@@ -2635,6 +2651,8 @@ object Main: TMain
       '  ID = :OLD_ID')
     ParamCheck = True
     UniDirectional = False
+    GeneratorField.Field = 'ID'
+    GeneratorField.Generator = 'GEN_SPR_ORGDOC_ID'
     Left = 360
     Top = 304
     object IBSPR_ORGDOCID: TIntegerField
@@ -2686,6 +2704,8 @@ object Main: TMain
       '  ID = :OLD_ID')
     ParamCheck = True
     UniDirectional = False
+    GeneratorField.Field = 'ID'
+    GeneratorField.Generator = 'GEN_SPR_RAION_ID'
     Left = 424
     Top = 304
     object IBSPR_RAIONID: TIntegerField
@@ -2737,6 +2757,8 @@ object Main: TMain
       '  ID = :OLD_ID')
     ParamCheck = True
     UniDirectional = False
+    GeneratorField.Field = 'ID'
+    GeneratorField.Generator = 'GEN_SPR_STRANA_ID'
     Left = 488
     Top = 304
     object IBSPR_STRANAID: TIntegerField
@@ -2788,6 +2810,8 @@ object Main: TMain
       '  ID = :OLD_ID')
     ParamCheck = True
     UniDirectional = False
+    GeneratorField.Field = 'ID'
+    GeneratorField.Generator = 'GEN_SPR_TIPUL_ID'
     Left = 544
     Top = 304
     object IBSPR_TIPULID: TIntegerField
@@ -2838,6 +2862,8 @@ object Main: TMain
       '  ID = :OLD_ID')
     ParamCheck = True
     UniDirectional = False
+    GeneratorField.Field = 'ID'
+    GeneratorField.Generator = 'GEN_SPR_UL_ID'
     Left = 600
     Top = 304
     object IBSPR_ULID: TIntegerField
@@ -2889,6 +2915,8 @@ object Main: TMain
       '  ID = :OLD_ID')
     ParamCheck = True
     UniDirectional = False
+    GeneratorField.Field = 'ID'
+    GeneratorField.Generator = 'GEN_SPR_VIDDOC_ID'
     Left = 664
     Top = 304
     object IBSPR_VIDDOCID: TIntegerField

@@ -172,6 +172,7 @@ type
     dxBarButton9: TdxBarButton;
     dxBarButton10: TdxBarButton;
     dxBarButton11: TdxBarButton;
+    dxBarButton12: TdxBarButton;
     procedure Button1Click(Sender: TObject);
     procedure dxBarButton34Click(Sender: TObject);
     procedure dxBarButton19Click(Sender: TObject);
@@ -188,6 +189,8 @@ type
     procedure dxBarButton9Click(Sender: TObject);
     procedure dxBarButton10Click(Sender: TObject);
     procedure dxBarButton11Click(Sender: TObject);
+    procedure dxBarButton12Click(Sender: TObject);
+    procedure dxBarButton32Click(Sender: TObject);
     private
     { Private declarations }
     procedure ClickBarButton(Sender: TObject);
@@ -218,10 +221,11 @@ var
   SPR_UL: TFrmSpr;
   SPR_VIDDOC: TFrmSpr;
 
+
  // TB:TToolButton;
 implementation
 
-uses Aboutt, DataMod, mytools, Progress, UITypes;
+uses Aboutt, DataMod, mytools, Progress, UITypes, ree, Setting;
 
 {$R *.dfm}
 
@@ -297,9 +301,38 @@ begin
  end;
 end;
 
+procedure TMain.dxBarButton12Click(Sender: TObject);
+begin
+ if FrmReestr=nil then
+ begin
+ Application.CreateForm(TFrmReestr,FrmReestr);
+ FrmReestr.AutoMAX;
+ AddToolBar(FrmReestr);
+ end
+ else
+ begin
+ FrmReestr.Show;
+ FrmReestr.SetFocus;
+ end;
+end;
+
 procedure TMain.dxBarButton19Click(Sender: TObject);
 begin
 Close;
+end;
+
+procedure TMain.dxBarButton32Click(Sender: TObject);
+begin
+ if SettingFrm=nil then
+ begin
+ Application.CreateForm(TSettingFrm,SettingFrm);
+ AddToolBar(SettingFrm);
+ end
+ else
+ begin
+ SettingFrm.Show;
+ SettingFrm.SetFocus;
+ end;
 end;
 
 procedure TMain.dxBarButton34Click(Sender: TObject);
@@ -456,6 +489,7 @@ IBSPR_STRANA.Open;
 IBSPR_TIPUL.Open;
 IBSPR_UL.Open;
 IBSPR_VIDDOC.Open;
+IBREESTR.Open;
 
 
 

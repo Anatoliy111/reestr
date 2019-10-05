@@ -14,7 +14,9 @@ uses
   AllInEdFrm in 'AllInEdFrm.pas' {AllInEdForm},
   EditFrm in 'EditFrm.pas' {EditForm},
   ree in 'ree.pas' {FrmReestr},
-  Spr in 'Spr.pas' {FrmSpr};
+  Spr in 'Spr.pas' {FrmSpr},
+  EditRee in 'EditRee.pas' {EditReeFrm},
+  Setting in 'Setting.pas' {SettingFrm};
 
 {$R *.res}
 
