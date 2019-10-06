@@ -9,16 +9,27 @@ uses
   Vcl.StdCtrls, cxButtons, Vcl.ExtCtrls, cxStyles, cxCustomData, cxFilter,
   cxData, cxDataStorage, cxEdit, cxNavigator, Data.DB, cxDBData, cxGridLevel,
   cxClasses, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
-  cxGridDBTableView, cxGrid;
+  cxGridDBTableView, cxGrid, cxContainer, cxLabel, cxTextEdit;
 
 type
   TFrmSpr = class(TAllInEdForm)
     cxGrid1DBTableView1NAME: TcxGridDBColumn;
+    Panel1: TPanel;
+    cxTextEdit1: TcxTextEdit;
+    cxLabel1: TcxLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure cxButton8Click(Sender: TObject);
+    procedure cxButton9Click(Sender: TObject);
+    procedure cxButton5Click(Sender: TObject);
+    procedure cxTextEdit1PropertiesEditValueChanged(Sender: TObject);
+    procedure cxTextEdit1PropertiesChange(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    form:TFrmSpr;
+
+
   end;
 
 var
@@ -26,15 +37,85 @@ var
   colum:TcxGridColumn;
   AColumn: TcxGridDBColumn;
 
+
 implementation
 
 {$R *.dfm}
 
-uses MainForm;
+uses MainForm, EditSpr;
+
+procedure TFrmSpr.cxButton5Click(Sender: TObject);
+begin
+  inherited;
+EditSprFrm.Caption:='Редагування '+self.Caption;
+EditSprFrm.cxDBTextEdit1.DataBinding.DataSource:=cxGrid1DBTableView1.DataController.DataSource;
+EditSprFrm.ShowModal;
+
+
+end;
+
+procedure TFrmSpr.cxButton8Click(Sender: TObject);
+begin
+  inherited;
+  case MessageBox(handle,pchar('Ви дійсно бажаєте видалити запис?'),pchar(''),36) of
+    IDYES: cxGrid1DBTableView1.DataController.DataSource.DataSet.Delete;
+  end;
+
+end;
+
+procedure TFrmSpr.cxButton9Click(Sender: TObject);
+begin
+  inherited;
+EditSprFrm.Caption:='Додати '+self.Caption;
+cxGrid1DBTableView1.DataController.DataSource.DataSet.Append;
+EditSprFrm.cxDBTextEdit1.DataBinding.DataSource:=cxGrid1DBTableView1.DataController.DataSource;
+EditSprFrm.Show;
+
+
+end;
+
+procedure TFrmSpr.cxTextEdit1PropertiesChange(Sender: TObject);
+begin
+  inherited;
+//View.DataControler.Filter.Options.lcoCaseInsensitive=True
+//View.DataControler.Options.dcoCaseInsensitive=True
+//отменить регистр символов
+
+  if cxTextEdit1.Text<>'' then
+  begin
+        cxGrid1DBTableView1.DataController.Filter.BeginUpdate;
+      try
+      cxGrid1DBTableView1.DataController.Filter.Root.Clear;
+      cxGrid1DBTableView1.DataController.Filter.Root.AddItem(cxGrid1DBTableView1NAME, foLike, '%'+cxTextEdit1.Text+'%', cxTextEdit1.Text);
+      finally
+      cxGrid1DBTableView1.DataController.Filter.EndUpdate;
+      end;
+      cxGrid1DBTableView1.DataController.Filter.Active := true;
+
+
+  end
+
+  else
+    cxGrid1DBTableView1.DataController.Filter.Active := false;
+end;
+
+procedure TFrmSpr.cxTextEdit1PropertiesEditValueChanged(Sender: TObject);
+begin
+  inherited;
+///cxGrid1DBTableView1.DataController.DataSource.DataSet.OnFilterRecord
+
+
+
+
+{чтобы добавить условие ИЛИ
+<cxGridDBTableView>.DataController.Filter.Root.BoolOperatorKind := fboOr
+}
+end;
 
 procedure TFrmSpr.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
+
   if  (SPR_GOROD <> nil) and (SPR_GOROD.Active) then SPR_GOROD:=nil;
   if  (SPR_GROMAD <> nil) and (SPR_GROMAD.Active) then SPR_GROMAD:=nil;
   if  (SPR_OBL <> nil) and (SPR_OBL.Active) then SPR_OBL:=nil;

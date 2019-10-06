@@ -20,6 +20,7 @@ inherited EditForm: TEditForm
       Height = 25
       Caption = 'OK'
       TabOrder = 0
+      OnClick = cxButton1Click
     end
     object cxButton2: TcxButton
       Left = 369
@@ -40,6 +41,12 @@ inherited EditForm: TEditForm
     Left = 184
     Top = 41
     Caption = #1042#1074#1077#1076#1110#1090#1100' '#1076#1072#1085#1110
+  end
+  object cxDBTextEdit1: TcxDBTextEdit [3]
+    Left = 82
+    Top = 104
+    TabOrder = 3
+    Width = 281
   end
   inherited IBTransaction1: TIBTransaction
     Left = 24

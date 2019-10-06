@@ -744,7 +744,19 @@ inherited FrmReestr: TFrmReestr
     Width = 959
     Height = 423
     Align = alClient
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 2
+    LockedStateImageOptions.AssignedValues = [lsiavFont]
+    LockedStateImageOptions.Font.Charset = DEFAULT_CHARSET
+    LockedStateImageOptions.Font.Color = clWindowText
+    LockedStateImageOptions.Font.Height = -13
+    LockedStateImageOptions.Font.Name = 'Tahoma'
+    LockedStateImageOptions.Font.Style = []
     object cxGrid1DBTableView1: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       Navigator.Buttons.First.Visible = True
@@ -769,105 +781,182 @@ inherited FrmReestr: TFrmReestr
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
       DataController.Summary.SummaryGroups = <>
+      OptionsData.Deleting = False
+      OptionsData.Inserting = False
       OptionsSelection.HideFocusRectOnExit = False
       OptionsView.CellEndEllipsis = True
       OptionsView.CellAutoHeight = True
       OptionsView.Footer = True
       OptionsView.FooterMultiSummaries = True
-      OptionsView.GroupByBox = False
+      OptionsView.Indicator = True
+      OptionsView.IndicatorWidth = 10
       object cxGrid1DBTableView1FAM: TcxGridDBColumn
         DataBinding.FieldName = 'FAM'
-        Width = 221
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1IM: TcxGridDBColumn
         DataBinding.FieldName = 'IM'
-        Width = 227
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1OT: TcxGridDBColumn
         DataBinding.FieldName = 'OT'
-        Width = 212
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1MN_DATA: TcxGridDBColumn
         DataBinding.FieldName = 'MN_DATA'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1MN_STRANA: TcxGridDBColumn
         DataBinding.FieldName = 'MN_STRANA'
-        Width = 114
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1MN_OBL: TcxGridDBColumn
         DataBinding.FieldName = 'MN_OBL'
-        Width = 439
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1MN_RAION: TcxGridDBColumn
         DataBinding.FieldName = 'MN_RAION'
-        Width = 272
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1MN_GOROD: TcxGridDBColumn
         DataBinding.FieldName = 'MN_GOROD'
-        Width = 422
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1PR_STRANA: TcxGridDBColumn
         DataBinding.FieldName = 'PR_STRANA'
-        Width = 147
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1PR_OBL: TcxGridDBColumn
         DataBinding.FieldName = 'PR_OBL'
-        Width = 110
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1PR_RAION: TcxGridDBColumn
         DataBinding.FieldName = 'PR_RAION'
-        Width = 378
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1PR_GOROD: TcxGridDBColumn
         DataBinding.FieldName = 'PR_GOROD'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1PR_TIPUL: TcxGridDBColumn
         DataBinding.FieldName = 'PR_TIPUL'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1PR_UL: TcxGridDBColumn
         DataBinding.FieldName = 'PR_UL'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1PR_DOM: TcxGridDBColumn
         DataBinding.FieldName = 'PR_DOM'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1PR_KORP: TcxGridDBColumn
         DataBinding.FieldName = 'PR_KORP'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1PR_KV: TcxGridDBColumn
         DataBinding.FieldName = 'PR_KV'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1PR_RDATA: TcxGridDBColumn
         DataBinding.FieldName = 'PR_RDATA'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1PR_ZDATA: TcxGridDBColumn
         DataBinding.FieldName = 'PR_ZDATA'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1GROMAD: TcxGridDBColumn
         DataBinding.FieldName = 'GROMAD'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1EDDR: TcxGridDBColumn
         DataBinding.FieldName = 'EDDR'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1PRIBUV: TcxGridDBColumn
         DataBinding.FieldName = 'PRIBUV'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1VIBUV: TcxGridDBColumn
         DataBinding.FieldName = 'VIBUV'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1DOCVID: TcxGridDBColumn
         DataBinding.FieldName = 'DOCVID'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1DOCSER: TcxGridDBColumn
         DataBinding.FieldName = 'DOCSER'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1DOCNOM: TcxGridDBColumn
         DataBinding.FieldName = 'DOCNOM'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1DOCORG: TcxGridDBColumn
         DataBinding.FieldName = 'DOCORG'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
       object cxGrid1DBTableView1DOCDATA: TcxGridDBColumn
         DataBinding.FieldName = 'DOCDATA'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 200
       end
     end
     object cxGrid1Level1: TcxGridLevel

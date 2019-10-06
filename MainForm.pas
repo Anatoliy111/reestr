@@ -272,7 +272,8 @@ begin
  if SPR_ORGDOC=nil then
  begin
  Application.CreateForm(TFrmSpr,SPR_ORGDOC);
- SPR_ORGDOC.Caption:=dxBarButton10.Caption;
+ SPR_ORGDOC.Caption:='Довідник '+dxBarButton10.Caption;
+  SPR_ORGDOC.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_ORGDOC;
  //SPR_STRANA.AutoMAX;
  AddToolBar(SPR_ORGDOC);
  end
@@ -287,11 +288,13 @@ procedure TMain.dxBarButton11Click(Sender: TObject);
 begin
  if SPR_GROMAD=nil then
  begin
+
  Application.CreateForm(TFrmSpr,SPR_GROMAD);
- SPR_GROMAD.Caption:=dxBarButton11.Caption;
+ SPR_GROMAD.Caption:='Довідник '+dxBarButton11.Caption;
+  SPR_GROMAD.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_GROMAD;
  //SPR_STRANA.AutoMAX;
  AddToolBar(SPR_GROMAD);
- SPR_GROMAD.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_GROMAD;
+
 
  end
  else
@@ -345,7 +348,9 @@ begin
  if SPR_STRANA=nil then
  begin
  Application.CreateForm(TFrmSpr,SPR_STRANA);
- SPR_STRANA.Caption:=dxBarButton3.Caption;
+ SPR_STRANA.cxButton1.Visible:=false;
+ SPR_STRANA.Caption:='Довідник '+dxBarButton3.Caption;
+ SPR_STRANA.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_STRANA;
  //SPR_STRANA.AutoMAX;
  AddToolBar(SPR_STRANA);
  end
@@ -368,7 +373,8 @@ begin
  if SPR_OBL=nil then
  begin
  Application.CreateForm(TFrmSpr,SPR_OBL);
- SPR_OBL.Caption:=dxBarButton4.Caption;
+ SPR_OBL.Caption:='Довідник '+dxBarButton4.Caption;
+  SPR_OBL.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_OBL;
  //SPR_STRANA.AutoMAX;
  AddToolBar(SPR_OBL);
  end
@@ -384,7 +390,8 @@ begin
  if SPR_RAION=nil then
  begin
  Application.CreateForm(TFrmSpr,SPR_RAION);
- SPR_RAION.Caption:=dxBarButton5.Caption;
+ SPR_RAION.Caption:='Довідник '+dxBarButton5.Caption;
+  SPR_RAION.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_RAION;
  //SPR_STRANA.AutoMAX;
  AddToolBar(SPR_RAION);
  end
@@ -400,7 +407,8 @@ begin
  if SPR_GOROD=nil then
  begin
  Application.CreateForm(TFrmSpr,SPR_GOROD);
- SPR_GOROD.Caption:=dxBarButton6.Caption;
+ SPR_GOROD.Caption:='Довідник '+dxBarButton6.Caption;
+  SPR_GOROD.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_GOROD;
  //SPR_STRANA.AutoMAX;
  AddToolBar(SPR_GOROD);
  end
@@ -416,7 +424,8 @@ begin
  if SPR_TIPUL=nil then
  begin
  Application.CreateForm(TFrmSpr,SPR_TIPUL);
- SPR_TIPUL.Caption:=dxBarButton7.Caption;
+ SPR_TIPUL.Caption:='Довідник '+dxBarButton7.Caption;
+  SPR_TIPUL.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_TIPUL;
  //SPR_STRANA.AutoMAX;
  AddToolBar(SPR_TIPUL);
  end
@@ -432,7 +441,8 @@ begin
  if SPR_UL=nil then
  begin
  Application.CreateForm(TFrmSpr,SPR_UL);
- SPR_UL.Caption:=dxBarButton8.Caption;
+ SPR_UL.Caption:='Довідник '+dxBarButton8.Caption;
+  SPR_UL.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_UL;
  //SPR_STRANA.AutoMAX;
  AddToolBar(SPR_UL);
  end
@@ -445,17 +455,18 @@ end;
 
 procedure TMain.dxBarButton9Click(Sender: TObject);
 begin
- if SPR_STRANA=nil then
+ if SPR_VIDDOC=nil then
  begin
- Application.CreateForm(TFrmSpr,SPR_STRANA);
- SPR_STRANA.Caption:=dxBarButton9.Caption;
+ Application.CreateForm(TFrmSpr,SPR_VIDDOC);
+ SPR_VIDDOC.Caption:='Довідник '+dxBarButton9.Caption;
+  SPR_VIDDOC.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_VIDDOC;
  //SPR_STRANA.AutoMAX;
- AddToolBar(SPR_STRANA);
+ AddToolBar(SPR_VIDDOC);
  end
  else
  begin
- SPR_STRANA.Show;
- SPR_STRANA.SetFocus;
+ SPR_VIDDOC.Show;
+ SPR_VIDDOC.SetFocus;
  end;
 end;
 

@@ -16,7 +16,8 @@ uses
   ree in 'ree.pas' {FrmReestr},
   Spr in 'Spr.pas' {FrmSpr},
   EditRee in 'EditRee.pas' {EditReeFrm},
-  Setting in 'Setting.pas' {SettingFrm};
+  Setting in 'Setting.pas' {SettingFrm},
+  EditSpr in 'EditSpr.pas' {EditSprFrm};
 
 {$R *.res}
 
@@ -26,6 +27,7 @@ begin
   Start := TStart.Create(Application);
   Application.Title := 'Розрахунок тарифів';
   Application.CreateForm(TDataM, DataM);
+
   //Application.CreateForm(TFrmReestr, FrmReestr);
  // Application.CreateForm(TFrmSpr, FrmSpr);
   application.ProcessMessages;
@@ -35,6 +37,7 @@ begin
   Application.CreateForm(TMain, Main);
   Application.CreateForm(TAbout, About);
   Application.CreateForm(TProres, Prores);
+  Application.CreateForm(TEditSprFrm, EditSprFrm);
   Start.Free;
   Application.Run;
 end.
