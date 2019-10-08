@@ -1,20 +1,21 @@
 inherited FrmReestr: TFrmReestr
   Caption = #1056#1077#1108#1089#1090#1088
-  ClientWidth = 959
-  ExplicitWidth = 975
+  ClientWidth = 752
+  OnCreate = FormCreate
+  ExplicitWidth = 768
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel [0]
     Left = 0
     Top = 0
-    Width = 959
-    Height = 89
+    Width = 752
+    Height = 97
     Align = alTop
     TabOrder = 0
     object Panel3: TPanel
       Left = 1
       Top = 1
-      Width = 957
+      Width = 750
       Height = 42
       Align = alTop
       TabOrder = 0
@@ -585,6 +586,7 @@ inherited FrmReestr: TFrmReestr
           0000000000000000000000000000000000000000000000000000}
         OptionsImage.Layout = blGlyphRight
         TabOrder = 3
+        OnClick = cxButton9Click
       end
       object cxButton5: TcxButton
         Left = 81
@@ -728,21 +730,123 @@ inherited FrmReestr: TFrmReestr
         OptionsImage.Layout = blGlyphRight
         TabOrder = 4
       end
+      object cxButton1: TcxButton
+        Left = 210
+        Top = 0
+        Width = 79
+        Height = 41
+        Caption = #1044#1086#1074#1110#1076#1082#1080
+        DropDownMenu = PopupMenu1
+        Kind = cxbkOfficeDropDown
+        TabOrder = 5
+      end
+    end
+    object cxGroupBox1: TcxGroupBox
+      Left = 5
+      Top = 48
+      Caption = #1060#1110#1083#1100#1090#1088#1080
+      TabOrder = 1
+      Height = 42
+      Width = 647
+      object cxTextEdit1: TcxTextEdit
+        Left = 56
+        Top = 16
+        Properties.OnChange = cxTextEdit1PropertiesChange
+        TabOrder = 0
+        Width = 121
+      end
+      object cxLabel1: TcxLabel
+        Left = 3
+        Top = 17
+        Caption = #1055#1088#1110#1079#1074#1080#1097#1077
+      end
+      object cxTextEdit2: TcxTextEdit
+        Left = 239
+        Top = 16
+        Properties.OnChange = cxTextEdit2PropertiesChange
+        TabOrder = 2
+        Width = 121
+      end
+      object cxLabel2: TcxLabel
+        Left = 179
+        Top = 17
+        Caption = #1053#1072#1089'.'#1087#1091#1085#1082#1090
+      end
+      object cxTextEdit3: TcxTextEdit
+        Left = 407
+        Top = 16
+        Properties.OnChange = cxTextEdit3PropertiesChange
+        TabOrder = 4
+        Width = 121
+      end
+      object cxLabel3: TcxLabel
+        Left = 363
+        Top = 17
+        Caption = #1042#1091#1083#1080#1094#1103
+      end
+      object cxLabel5: TcxLabel
+        Left = 538
+        Top = 17
+        Caption = #1041#1091#1076#1080#1085#1086#1082
+      end
+      object cxTextEdit4: TcxTextEdit
+        Left = 589
+        Top = 16
+        Properties.OnChange = cxTextEdit4PropertiesChange
+        TabOrder = 7
+        Width = 50
+      end
     end
   end
   object Panel2: TPanel [1]
     Left = 0
-    Top = 512
-    Width = 959
-    Height = 22
+    Top = 472
+    Width = 752
+    Height = 62
     Align = alBottom
     TabOrder = 1
+    object cxLabel4: TcxLabel
+      Left = 5
+      Top = 3
+      Caption = 'cxLabel4'
+      ParentFont = False
+      Style.Font.Charset = DEFAULT_CHARSET
+      Style.Font.Color = clWindowText
+      Style.Font.Height = -13
+      Style.Font.Name = 'Tahoma'
+      Style.Font.Style = []
+      Style.IsFontAssigned = True
+    end
+    object cxLabel6: TcxLabel
+      Left = 5
+      Top = 38
+      Caption = 'cxLabel6'
+      ParentFont = False
+      Style.Font.Charset = DEFAULT_CHARSET
+      Style.Font.Color = clWindowText
+      Style.Font.Height = -13
+      Style.Font.Name = 'Tahoma'
+      Style.Font.Style = []
+      Style.IsFontAssigned = True
+    end
+    object cxLabel7: TcxLabel
+      Left = 5
+      Top = 20
+      Caption = 'cxLabel7'
+      ParentFont = False
+      Style.Font.Charset = DEFAULT_CHARSET
+      Style.Font.Color = clWindowText
+      Style.Font.Height = -13
+      Style.Font.Name = 'Tahoma'
+      Style.Font.Style = []
+      Style.IsFontAssigned = True
+    end
   end
   object cxGrid1: TcxGrid [2]
     Left = 0
-    Top = 89
-    Width = 959
-    Height = 423
+    Top = 97
+    Width = 752
+    Height = 375
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -775,9 +879,14 @@ inherited FrmReestr: TFrmReestr
       Navigator.Buttons.SaveBookmark.Visible = True
       Navigator.Buttons.GotoBookmark.Visible = True
       Navigator.Buttons.Filter.Visible = True
+      OnFilterCustomization = cxGrid1DBTableView1FilterCustomization
+      OnFilterDialogShow = cxGrid1DBTableView1FilterDialogShow
+      OnFocusedRecordChanged = cxGrid1DBTableView1FocusedRecordChanged
       DataController.DataSource = Main.DSREESTR
       DataController.DetailKeyFieldNames = 'ID'
+      DataController.Filter.Options = [fcoCaseInsensitive]
       DataController.KeyFieldNames = 'ID'
+      DataController.Options = [dcoCaseInsensitive, dcoAssignGroupingValues, dcoAssignMasterDetailKeys, dcoSaveExpanding]
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
       DataController.Summary.SummaryGroups = <>
@@ -791,176 +900,369 @@ inherited FrmReestr: TFrmReestr
       OptionsView.Indicator = True
       OptionsView.IndicatorWidth = 10
       object cxGrid1DBTableView1FAM: TcxGridDBColumn
+        Caption = #1055#1088#1110#1079#1074#1080#1097#1077
         DataBinding.FieldName = 'FAM'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
+        SortIndex = 0
+        SortOrder = soAscending
+        Width = 100
       end
       object cxGrid1DBTableView1IM: TcxGridDBColumn
+        Caption = #1030#1084#39#1103
         DataBinding.FieldName = 'IM'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
+        Width = 100
       end
       object cxGrid1DBTableView1OT: TcxGridDBColumn
+        Caption = #1055#1086#1073#1072#1090#1100#1082#1086#1074#1110
         DataBinding.FieldName = 'OT'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
-      end
-      object cxGrid1DBTableView1MN_DATA: TcxGridDBColumn
-        DataBinding.FieldName = 'MN_DATA'
-        PropertiesClassName = 'TcxTextEditProperties'
-        Properties.ReadOnly = True
-        Width = 200
-      end
-      object cxGrid1DBTableView1MN_STRANA: TcxGridDBColumn
-        DataBinding.FieldName = 'MN_STRANA'
-        PropertiesClassName = 'TcxTextEditProperties'
-        Properties.ReadOnly = True
-        Width = 200
-      end
-      object cxGrid1DBTableView1MN_OBL: TcxGridDBColumn
-        DataBinding.FieldName = 'MN_OBL'
-        PropertiesClassName = 'TcxTextEditProperties'
-        Properties.ReadOnly = True
-        Width = 200
-      end
-      object cxGrid1DBTableView1MN_RAION: TcxGridDBColumn
-        DataBinding.FieldName = 'MN_RAION'
-        PropertiesClassName = 'TcxTextEditProperties'
-        Properties.ReadOnly = True
-        Width = 200
-      end
-      object cxGrid1DBTableView1MN_GOROD: TcxGridDBColumn
-        DataBinding.FieldName = 'MN_GOROD'
-        PropertiesClassName = 'TcxTextEditProperties'
-        Properties.ReadOnly = True
-        Width = 200
-      end
-      object cxGrid1DBTableView1PR_STRANA: TcxGridDBColumn
-        DataBinding.FieldName = 'PR_STRANA'
-        PropertiesClassName = 'TcxTextEditProperties'
-        Properties.ReadOnly = True
-        Width = 200
-      end
-      object cxGrid1DBTableView1PR_OBL: TcxGridDBColumn
-        DataBinding.FieldName = 'PR_OBL'
-        PropertiesClassName = 'TcxTextEditProperties'
-        Properties.ReadOnly = True
-        Width = 200
-      end
-      object cxGrid1DBTableView1PR_RAION: TcxGridDBColumn
-        DataBinding.FieldName = 'PR_RAION'
-        PropertiesClassName = 'TcxTextEditProperties'
-        Properties.ReadOnly = True
-        Width = 200
+        Width = 100
       end
       object cxGrid1DBTableView1PR_GOROD: TcxGridDBColumn
+        Caption = #1053#1072#1089'.'#1087#1091#1085#1082#1090
         DataBinding.FieldName = 'PR_GOROD'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
+        Width = 100
       end
       object cxGrid1DBTableView1PR_TIPUL: TcxGridDBColumn
+        Caption = #1058#1080#1087' '#1075#1077#1085#1110#1084#1091
         DataBinding.FieldName = 'PR_TIPUL'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
+        Width = 75
       end
       object cxGrid1DBTableView1PR_UL: TcxGridDBColumn
+        Caption = #1043#1077#1086#1085#1110#1084'('#1074#1091#1083#1080#1094#1103') '
         DataBinding.FieldName = 'PR_UL'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
+        Width = 100
       end
       object cxGrid1DBTableView1PR_DOM: TcxGridDBColumn
+        Caption = #1041#1091#1076#1080#1085#1086#1082
         DataBinding.FieldName = 'PR_DOM'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
-      end
-      object cxGrid1DBTableView1PR_KORP: TcxGridDBColumn
-        DataBinding.FieldName = 'PR_KORP'
-        PropertiesClassName = 'TcxTextEditProperties'
-        Properties.ReadOnly = True
-        Width = 200
+        Width = 57
       end
       object cxGrid1DBTableView1PR_KV: TcxGridDBColumn
+        Caption = #1050#1074'.'
         DataBinding.FieldName = 'PR_KV'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
+        Width = 44
       end
-      object cxGrid1DBTableView1PR_RDATA: TcxGridDBColumn
-        DataBinding.FieldName = 'PR_RDATA'
+      object cxGrid1DBTableView1PR_RAION: TcxGridDBColumn
+        Caption = #1056#1072#1081#1086#1085
+        DataBinding.FieldName = 'PR_RAION'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
+        Width = 100
       end
-      object cxGrid1DBTableView1PR_ZDATA: TcxGridDBColumn
-        DataBinding.FieldName = 'PR_ZDATA'
+      object cxGrid1DBTableView1PR_OBL: TcxGridDBColumn
+        Caption = #1054#1073#1083#1072#1089#1090#1100
+        DataBinding.FieldName = 'PR_OBL'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
+        Width = 189
+      end
+      object cxGrid1DBTableView1PR_STRANA: TcxGridDBColumn
+        Caption = #1050#1088#1072#1111#1085#1072
+        DataBinding.FieldName = 'PR_STRANA'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 100
+      end
+      object cxGrid1DBTableView1MN_DATA: TcxGridDBColumn
+        Caption = '('#1052#1053') '#1044#1072#1090#1072
+        DataBinding.FieldName = 'MN_DATA'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 100
+      end
+      object cxGrid1DBTableView1MN_STRANA: TcxGridDBColumn
+        Caption = '('#1052#1053') '#1050#1088#1072#1111#1085#1072
+        DataBinding.FieldName = 'MN_STRANA'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 100
+      end
+      object cxGrid1DBTableView1MN_OBL: TcxGridDBColumn
+        Caption = '('#1052#1053') '#1054#1073#1083#1072#1089#1090#1100
+        DataBinding.FieldName = 'MN_OBL'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 157
+      end
+      object cxGrid1DBTableView1MN_RAION: TcxGridDBColumn
+        Caption = '('#1052#1053') '#1056#1072#1081#1086#1085
+        DataBinding.FieldName = 'MN_RAION'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 174
+      end
+      object cxGrid1DBTableView1MN_GOROD: TcxGridDBColumn
+        Caption = '('#1052#1053') '#1053#1072#1089'.'#1087#1091#1085#1082#1090
+        DataBinding.FieldName = 'MN_GOROD'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 100
       end
       object cxGrid1DBTableView1GROMAD: TcxGridDBColumn
+        Caption = #1043#1088#1086#1084#1072#1076#1103#1085#1089#1090#1074#1086
         DataBinding.FieldName = 'GROMAD'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
+        Width = 100
+      end
+      object cxGrid1DBTableView1PR_RDATA: TcxGridDBColumn
+        Caption = #1044#1072#1090#1072' '#1088#1077#1077#1089#1090#1088#1072#1094#1110#1111
+        DataBinding.FieldName = 'PR_RDATA'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 100
+      end
+      object cxGrid1DBTableView1PR_ZDATA: TcxGridDBColumn
+        Caption = #1044#1072#1090#1072' '#1079#1085#1103#1090#1090#1103
+        DataBinding.FieldName = 'PR_ZDATA'
+        PropertiesClassName = 'TcxTextEditProperties'
+        Properties.ReadOnly = True
+        Width = 100
       end
       object cxGrid1DBTableView1EDDR: TcxGridDBColumn
+        Caption = #1028#1044#1044#1056
         DataBinding.FieldName = 'EDDR'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
+        Width = 100
       end
       object cxGrid1DBTableView1PRIBUV: TcxGridDBColumn
+        Caption = #1047#1074#1110#1076#1082#1080' '#1087#1088#1080#1073#1091#1074
         DataBinding.FieldName = 'PRIBUV'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
+        Width = 303
       end
       object cxGrid1DBTableView1VIBUV: TcxGridDBColumn
+        Caption = #1050#1091#1076#1080' '#1074#1080#1073#1091#1074
         DataBinding.FieldName = 'VIBUV'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
+        Width = 296
       end
       object cxGrid1DBTableView1DOCVID: TcxGridDBColumn
+        Caption = #1042#1080#1076' '#1076#1086#1082'.'
         DataBinding.FieldName = 'DOCVID'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
+        Width = 100
       end
       object cxGrid1DBTableView1DOCSER: TcxGridDBColumn
+        Caption = #1057#1077#1088#1110#1103
         DataBinding.FieldName = 'DOCSER'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
+        Width = 100
       end
       object cxGrid1DBTableView1DOCNOM: TcxGridDBColumn
+        Caption = #1053#1086#1084#1077#1088
         DataBinding.FieldName = 'DOCNOM'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
+        Width = 100
       end
       object cxGrid1DBTableView1DOCORG: TcxGridDBColumn
+        Caption = #1050#1080#1084' '#1074#1080#1076#1072#1085#1080#1081
         DataBinding.FieldName = 'DOCORG'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
+        Width = 100
       end
       object cxGrid1DBTableView1DOCDATA: TcxGridDBColumn
+        Caption = #1050#1086#1083#1080' '#1074#1080#1076#1072#1085#1080#1081
         DataBinding.FieldName = 'DOCDATA'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
-        Width = 200
+        Width = 100
       end
     end
     object cxGrid1Level1: TcxGridLevel
       GridView = cxGrid1DBTableView1
     end
+  end
+  inherited IBTransaction1: TIBTransaction
+    Left = 744
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 321
+    Top = 217
+    object N11: TMenuItem
+      Caption = #1044#1086#1074#1110#1076#1082#1072' '#1087#1088#1086' '#1088#1077#1077#1089#1090#1088#1072#1094#1110#1102' '#1084#1110#1089#1094#1103' '#1087#1088#1086#1078#1080#1074#1072#1085#1085#1103
+      OnClick = N11Click
+    end
+    object N41: TMenuItem
+      Caption = #1044#1086#1074#1110#1076#1082#1072' '#1087#1088#1086' '#1079#1085#1103#1090#1090#1103' '#1079' '#1084#1110#1089#1094#1103' '#1088#1077#1108#1089#1090#1088#1072#1094#1110#1111
+    end
+    object N21: TMenuItem
+      Caption = #1044#1086#1074#1110#1076#1082#1072' '#1087#1088#1086' '#1089#1082#1083#1072#1076' '#1089#1110#1084#39#1111
+    end
+    object N31: TMenuItem
+      Caption = #1044#1086#1074#1110#1076#1082#1072' '#1074#1110#1083#1100#1085#1072
+    end
+  end
+  object frxReport1: TfrxReport
+    Version = '5.3.16'
+    DataSet = frxDBDataset1
+    DataSetName = 'frxDBDataset1'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 43746.410721782410000000
+    ReportOptions.LastChange = 43746.426769849540000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 496
+    Top = 232
+    Datasets = <
+      item
+        DataSet = frxDBDataset1
+        DataSetName = 'frxDBDataset1'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      object Memo1: TfrxMemoView
+        Left = 634.961040000000000000
+        Top = 18.897650000000000000
+        Width = 71.811070000000000000
+        Height = 34.015770000000010000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Memo.UTF8W = (
+          #1044#1086#1076#1072#1090#1086#1082' 13'
+          #1076#1086' '#1055#1088#1072#1074#1080#1083)
+        ParentFont = False
+      end
+      object Memo2: TfrxMemoView
+        Left = 52.913420000000000000
+        Top = 120.944960000000000000
+        Width = 616.063390000000000000
+        Height = 37.795300000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftBottom]
+        Memo.UTF8W = (
+          
+            #1047#1072' '#1074#1110#1076#1086#1084#1086#1089#1090#1103#1084#1080' '#1088#1077#1108#1089#1090#1088#1072#1094#1110#1081#1085#1086#1075#1086' '#1074#1110#1076#1076#1110#1083#1091' '#1082#1086#1084#1091#1085#1072#1083#1100#1085#1086#1075#1086' '#1087#1110#1076#1087#1088#1080#1108#1084#1089#1090#1074#1072' ' +
+            #171#1044#1086#1083#1080#1085#1089#1100#1082#1077' '#1084#1110#1089#1100#1082#1077' '#1082#1086#1084#1091#1085#1072#1083#1100#1085#1077' '#1075#1086#1089#1087#1086#1076#1072#1088#1089#1090#1074#1086#187' '#1087#1088#1080' '#1044#1086#1083#1080#1085#1089#1100#1082#1110#1081' '#1084#1110#1089#1100#1082#1110 +
+            #1081' '#1088#1072#1076#1110' ')
+        ParentFont = False
+      end
+      object Memo3: TfrxMemoView
+        Top = 79.370130000000000000
+        Width = 721.890230000000000000
+        Height = 37.795300000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          #1044#1054#1042#1030#1044#1050#1040
+          #1087#1088#1086' '#1088#1077#1108#1089#1090#1088#1072#1094#1110#1102' '#1084#1110#1089#1094#1103' '#1087#1088#1086#1078#1080#1074#1072#1085#1085#1103' '#1086#1089#1086#1073#1080)
+        ParentFont = False
+      end
+      object Memo4: TfrxMemoView
+        Left = 260.787570000000000000
+        Top = 158.740260000000000000
+        Width = 162.519790000000000000
+        Height = 15.118120000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        HAlign = haCenter
+        Memo.UTF8W = (
+          '('#1085#1072#1079#1074#1072' '#1086#1088#1075#1072#1085#1091' '#1088#1077#1108#1089#1090#1088#1072#1094#1110#1111')')
+        ParentFont = False
+      end
+    end
+  end
+  object frxDesigner1: TfrxDesigner
+    DefaultScriptLanguage = 'PascalScript'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = -13
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultLeftMargin = 10.000000000000000000
+    DefaultRightMargin = 10.000000000000000000
+    DefaultTopMargin = 10.000000000000000000
+    DefaultBottomMargin = 10.000000000000000000
+    DefaultPaperSize = 9
+    DefaultOrientation = poPortrait
+    GradientEnd = 11982554
+    GradientStart = clWindow
+    TemplatesExt = 'fr3'
+    Restrictions = []
+    RTLLanguage = False
+    MemoParentFont = False
+    Left = 568
+    Top = 232
+  end
+  object frxDBDataset1: TfrxDBDataset
+    UserName = 'frxDBDataset1'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'FIO=FIO'
+      'KOL_KV=KOL_KV'
+      'DOLG=DOLG'
+      'BGST=BGST'
+      'PRST=PRST'
+      'NACH=NACH'
+      'PERE=PERE'
+      'SUBS=SUBS'
+      'OPLNOTSUBS=OPLNOTSUBS'
+      'SAL=SAL'
+      'BGEND=BGEND'
+      'PREND=PREND'
+      'BORGNIKI=BORGNIKI'
+      'PROCENT=PROCENT'
+      'UL=UL'
+      'DOM=DOM')
+    DataSet = Main.IBREESTR
+    BCDToCurrency = False
+    Left = 420
+    Top = 232
   end
 end

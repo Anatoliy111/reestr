@@ -6,7 +6,10 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, AllMdiFrm, IBX.IBDatabase, cxGraphics,
   cxLookAndFeels, cxLookAndFeelPainters, Vcl.Menus, cxControls, cxContainer,
-  cxEdit, cxProgressBar, Vcl.StdCtrls, cxButtons, cxTextEdit;
+  cxEdit, cxProgressBar, Vcl.StdCtrls, cxButtons, cxTextEdit, cxStyles,
+  cxCustomData, cxFilter, cxData, cxDataStorage, cxNavigator, Data.DB, cxDBData,
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGridLevel,
+  cxClasses, cxGridCustomView, cxGrid, Vcl.ExtCtrls;
 
 type
   TSettingFrm = class(TAllMdiForm)
@@ -16,8 +19,20 @@ type
     cxTextEdit1: TcxTextEdit;
     cxTextEdit2: TcxTextEdit;
     cxTextEdit3: TcxTextEdit;
+    Panel2: TPanel;
+    cxButton7: TcxButton;
+    cxButton8: TcxButton;
+    cxButton9: TcxButton;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    cxGrid1DBTableView1NAME: TcxGridDBColumn;
+    cxGrid1DBTableView1PW: TcxGridDBColumn;
     procedure cxButton1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure cxButton9Click(Sender: TObject);
+    procedure cxButton8Click(Sender: TObject);
+    procedure cxButton7Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -222,9 +237,31 @@ begin
   ShowMessage('Завантаження закінчено');
 end;
 
+procedure TSettingFrm.cxButton7Click(Sender: TObject);
+begin
+  inherited;
+Main.IBUSERS.Close;
+Main.IBUSERS.Open;
+end;
+
+procedure TSettingFrm.cxButton8Click(Sender: TObject);
+begin
+  inherited;
+Main.IBUSERS.Delete;
+end;
+
+procedure TSettingFrm.cxButton9Click(Sender: TObject);
+begin
+  inherited;
+Main.IBUSERS.Append;
+end;
+
 procedure TSettingFrm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
+if Main.IBUSERS.State in [dsInsert,dsEdit] then
+   Main.IBUSERS.Post;
+
   if  (SettingFrm <> nil) and (SettingFrm.Active) then SettingFrm:=nil;
 end;
 

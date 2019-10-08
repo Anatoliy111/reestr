@@ -9,7 +9,7 @@ uses
   Vcl.StdCtrls, cxButtons, Vcl.ExtCtrls, cxStyles, cxCustomData, cxFilter,
   cxData, cxDataStorage, cxEdit, cxNavigator, Data.DB, cxDBData, cxGridLevel,
   cxClasses, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
-  cxGridDBTableView, cxGrid, cxContainer, cxLabel, cxTextEdit;
+  cxGridDBTableView, cxGrid, cxContainer, cxLabel, cxTextEdit,EditRee;
 
 type
   TFrmSpr = class(TAllInEdForm)
@@ -21,15 +21,20 @@ type
     procedure cxButton8Click(Sender: TObject);
     procedure cxButton9Click(Sender: TObject);
     procedure cxButton5Click(Sender: TObject);
-    procedure cxTextEdit1PropertiesEditValueChanged(Sender: TObject);
     procedure cxTextEdit1PropertiesChange(Sender: TObject);
+    procedure cxButton1Click(Sender: TObject);
+    procedure cxGrid1DBTableView1CellDblClick(Sender: TcxCustomGridTableView;
+      ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+      AShift: TShiftState; var AHandled: Boolean);
   private
     { Private declarations }
+    procedure ExportValue;
   public
     { Public declarations }
     form:TFrmSpr;
-
-
+    EditRee: TEditReeFrm;
+    value:TObject;
+//    value1:TcxbuttonEditReeFrm;
   end;
 
 var
@@ -38,11 +43,28 @@ var
   AColumn: TcxGridDBColumn;
 
 
+
 implementation
 
 {$R *.dfm}
 
 uses MainForm, EditSpr;
+
+procedure TFrmSpr.cxButton1Click(Sender: TObject);
+begin
+  inherited;
+ExportValue;
+end;
+
+procedure TFrmSpr.ExportValue;
+begin
+if EditRee<>nil then
+begin
+  EditRee.val.Text:=cxGrid1DBTableView1.DataController.DataSource.DataSet.FieldByName('name').Value;
+  close;
+end;
+
+end;
 
 procedure TFrmSpr.cxButton5Click(Sender: TObject);
 begin
@@ -74,6 +96,14 @@ EditSprFrm.Show;
 
 end;
 
+procedure TFrmSpr.cxGrid1DBTableView1CellDblClick(
+  Sender: TcxCustomGridTableView; ACellViewInfo: TcxGridTableDataCellViewInfo;
+  AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
+begin
+  inherited;
+ExportValue;
+end;
+
 procedure TFrmSpr.cxTextEdit1PropertiesChange(Sender: TObject);
 begin
   inherited;
@@ -97,19 +127,6 @@ begin
 
   else
     cxGrid1DBTableView1.DataController.Filter.Active := false;
-end;
-
-procedure TFrmSpr.cxTextEdit1PropertiesEditValueChanged(Sender: TObject);
-begin
-  inherited;
-///cxGrid1DBTableView1.DataController.DataSource.DataSet.OnFilterRecord
-
-
-
-
-{чтобы добавить условие ИЛИ
-<cxGridDBTableView>.DataController.Filter.Root.BoolOperatorKind := fboOr
-}
 end;
 
 procedure TFrmSpr.FormClose(Sender: TObject; var Action: TCloseAction);

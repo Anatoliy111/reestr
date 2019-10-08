@@ -6,10 +6,10 @@ inherited FrmSpr: TFrmSpr
   TextHeight = 13
   inherited Panel4: TPanel
     Width = 475
-    ExplicitWidth = 359
+    ExplicitWidth = 475
     inherited Panel3: TPanel
       Left = 399
-      ExplicitLeft = 283
+      ExplicitLeft = 399
       inherited cxButton3: TcxButton
         Top = 7
         ExplicitTop = 7
@@ -17,51 +17,59 @@ inherited FrmSpr: TFrmSpr
     end
     inherited dxStatusBar1: TdxStatusBar
       Width = 467
-      ExplicitWidth = 351
+      ExplicitWidth = 467
     end
   end
   inherited Panel2: TPanel
     Width = 475
     Height = 39
-    ExplicitWidth = 359
+    ExplicitWidth = 475
     ExplicitHeight = 39
     inherited cxButton6: TcxButton
       Height = 37
       ExplicitLeft = 261
+      ExplicitHeight = 37
     end
     inherited cxButton7: TcxButton
       Height = 37
       ExplicitLeft = 219
+      ExplicitHeight = 37
     end
     inherited cxButton8: TcxButton
       Height = 37
       OnClick = cxButton8Click
       ExplicitLeft = 137
+      ExplicitHeight = 37
     end
     inherited cxButton9: TcxButton
       Height = 37
       OnClick = cxButton9Click
       ExplicitLeft = 97
+      ExplicitHeight = 37
     end
     inherited cxButton5: TcxButton
       Height = 37
       OnClick = cxButton5Click
       ExplicitLeft = 177
+      ExplicitHeight = 37
     end
     inherited cxButton1: TcxButton
       Height = 37
+      OnClick = cxButton1Click
+      ExplicitHeight = 37
     end
   end
   inherited cxGrid1: TcxGrid
     Top = 73
     Width = 475
     Height = 392
-    ExplicitLeft = 8
-    ExplicitTop = 88
-    ExplicitWidth = 359
-    ExplicitHeight = 361
+    ExplicitLeft = 0
+    ExplicitTop = 73
+    ExplicitWidth = 475
+    ExplicitHeight = 392
     inherited cxGrid1DBTableView1: TcxGridDBTableView
       FilterBox.Visible = fvNever
+      OnCellDblClick = cxGrid1DBTableView1CellDblClick
       DataController.DataSource = Main.DSSPR_GOROD
       DataController.Filter.Options = [fcoCaseInsensitive]
       DataController.Options = [dcoCaseInsensitive, dcoAssignGroupingValues, dcoAssignMasterDetailKeys, dcoSaveExpanding]
@@ -86,7 +94,6 @@ inherited FrmSpr: TFrmSpr
       Left = 72
       Top = 7
       Properties.OnChange = cxTextEdit1PropertiesChange
-      Properties.OnEditValueChanged = cxTextEdit1PropertiesEditValueChanged
       TabOrder = 0
       Width = 121
     end

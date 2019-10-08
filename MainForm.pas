@@ -11,7 +11,7 @@ uses
   Data.DB, IBX.IBCustomDataSet, IBX.IBDatabase, cxRichEdit, cxTextEdit,
   cxHyperLinkEdit, dxRatingControl, dxSparkline, dxToggleSwitch,AllFrm,
   cxRadioGroup, cxTrackBar, dxRibbonGallery, IBX.IBQuery,
-  Data.Win.ADODB,cxStyles,Spr;
+  Data.Win.ADODB,cxStyles,Spr, frxDesgn, frxClass;
 
 type
   TMain = class(TForm)
@@ -173,6 +173,14 @@ type
     dxBarButton10: TdxBarButton;
     dxBarButton11: TdxBarButton;
     dxBarButton12: TdxBarButton;
+    IBUSERS: TIBDataSet;
+    DSUSERS: TDataSource;
+    IBUSERSID: TIntegerField;
+    IBUSERSNAME: TIBStringField;
+    IBUSERSPW: TIBStringField;
+    frxDesigner1: TfrxDesigner;
+    frxReport1: TfrxReport;
+    dxBarButton13: TdxBarButton;
     procedure Button1Click(Sender: TObject);
     procedure dxBarButton34Click(Sender: TObject);
     procedure dxBarButton19Click(Sender: TObject);
@@ -191,6 +199,9 @@ type
     procedure dxBarButton11Click(Sender: TObject);
     procedure dxBarButton12Click(Sender: TObject);
     procedure dxBarButton32Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure dxBarButton28Click(Sender: TObject);
+    procedure frxDesigner1GetTemplateList(List: TStrings);
     private
     { Private declarations }
     procedure ClickBarButton(Sender: TObject);
@@ -225,7 +236,7 @@ var
  // TB:TToolButton;
 implementation
 
-uses Aboutt, DataMod, mytools, Progress, UITypes, ree, Setting;
+uses Aboutt, DataMod, mytools, Progress, UITypes, ree, Setting, Zastavka;
 
 {$R *.dfm}
 
@@ -322,6 +333,11 @@ end;
 procedure TMain.dxBarButton19Click(Sender: TObject);
 begin
 Close;
+end;
+
+procedure TMain.dxBarButton28Click(Sender: TObject);
+begin
+frxReport1.DesignReport;
 end;
 
 procedure TMain.dxBarButton32Click(Sender: TObject);
@@ -501,10 +517,21 @@ IBSPR_TIPUL.Open;
 IBSPR_UL.Open;
 IBSPR_VIDDOC.Open;
 IBREESTR.Open;
+IBUSERS.Open;
 
 
 
 
+
+end;
+
+procedure TMain.FormShow(Sender: TObject);
+begin
+Start.Show;
+end;
+
+procedure TMain.frxDesigner1GetTemplateList(List: TStrings);
+begin
 
 end;
 

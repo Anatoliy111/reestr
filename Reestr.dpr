@@ -24,20 +24,21 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Start := TStart.Create(Application);
+ // Start := TStart.Create(Application);
   Application.Title := 'Розрахунок тарифів';
   Application.CreateForm(TDataM, DataM);
 
   //Application.CreateForm(TFrmReestr, FrmReestr);
  // Application.CreateForm(TFrmSpr, FrmSpr);
   application.ProcessMessages;
-  Start.Show;
+  //Start.Show;
 //  for i:=1 to 1000000 do
 //  Start.Gauge1.Progress:= i div 10000;
   Application.CreateForm(TMain, Main);
   Application.CreateForm(TAbout, About);
   Application.CreateForm(TProres, Prores);
   Application.CreateForm(TEditSprFrm, EditSprFrm);
-  Start.Free;
+  Application.CreateForm(TStart, Start);
+  //Start.Free;
   Application.Run;
 end.

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="5.3.16" DataSet="frxDBDataset1" DataSetName="frxDBDataset1" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="43746,4107217824" ReportOptions.Description.Text="" ReportOptions.LastChange="43746,4267698495" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end.">
+  <Datasets>
+    <item DataSet="frxDBDataset1" DataSetName="frxDBDataset1"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxMemoView Name="Memo1" Left="634,96104" Top="18,89765" Width="71,81107" Height="34,01577" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="Додаток 13&#13;&#10;до Правил"/>
+    <TfrxMemoView Name="Memo2" Left="52,91342" Top="120,94496" Width="616,06339" Height="37,7953" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="8" ParentFont="False" Text="За відомостями реєстраційного відділу комунального підприємства «Долинське міське комунальне господарство» при Долинській міській раді "/>
+    <TfrxMemoView Name="Memo3" Left="0" Top="79,37013" Width="721,89023" Height="37,7953" Font.Charset="1" Font.Color="-16777208" Font.Height="-16" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="ДОВІДКА&#13;&#10;про реєстрацію місця проживання особи"/>
+    <TfrxMemoView Name="Memo4" Left="260,78757" Top="158,74026" Width="162,51979" Height="15,11812" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="(назва органу реєстрації)"/>
+  </TfrxReportPage>
+</TfrxReport>

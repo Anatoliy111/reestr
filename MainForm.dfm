@@ -2,8 +2,8 @@ object Main: TMain
   Left = 163
   Top = 138
   Caption = #1056#1077#1108#1089#1090#1088
-  ClientHeight = 479
-  ClientWidth = 735
+  ClientHeight = 477
+  ClientWidth = 755
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,13 +16,14 @@ object Main: TMain
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object ImageList1: TImageList
     Left = 608
     Top = 56
     Bitmap = {
-      494C010105000900FC0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101050009000C0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       00000000000000000000000000000000000000000000000000006473C1004254
       B300000000000000000000000000000000000000000000000000000000000000
@@ -358,6 +359,10 @@ object Main: TMain
           ItemName = 'dxBarButton19'
         end
         item
+          Visible = True
+          ItemName = 'dxBarButton13'
+        end
+        item
           UserDefine = [udWidth]
           UserWidth = 187
           Visible = True
@@ -571,6 +576,7 @@ object Main: TMain
       Category = 0
       Hint = #1044#1080#1079#1072#1081#1085#1077#1088' '#1086#1090#1095#1077#1090#1086#1074
       Visible = ivAlways
+      OnClick = dxBarButton28Click
     end
     object dxBarButton31: TdxBarButton
       Caption = #1055#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1080
@@ -720,11 +726,9 @@ object Main: TMain
     end
     object cxBarEditItem4: TcxBarEditItem
       Align = iaRight
-      Caption = 
-        '                                                                ' +
-        '                                    '#1044#1072#1090#1072
+      Caption = #1050#1086#1088#1080#1089#1090#1091#1074#1072#1095
       Category = 0
-      Hint = #1044#1072#1090#1072
+      Hint = #1050#1086#1088#1080#1089#1090#1091#1074#1072#1095
       Visible = ivAlways
       Width = 200
       PropertiesClassName = 'TcxLabelProperties'
@@ -1030,6 +1034,12 @@ object Main: TMain
       Visible = ivAlways
       OnClick = dxBarButton12Click
     end
+    object dxBarButton13: TdxBarButton
+      Caption = '                              '
+      Category = 0
+      Hint = '                              '
+      Visible = ivAlways
+    end
   end
   object ActionList1: TActionList
     Images = ImageList2
@@ -1068,7 +1078,7 @@ object Main: TMain
     Left = 608
     Top = 112
     Bitmap = {
-      494C010112001400FC0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101120014000C0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000005000000001002000000000000050
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1916,7 +1926,7 @@ object Main: TMain
     Left = 568
     Top = 176
     Bitmap = {
-      494C010107000900FC0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101070009000C0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000F5F3F500CFE0F40000000000000000000000
@@ -2934,5 +2944,108 @@ object Main: TMain
     DataSet = IBSPR_VIDDOC
     Left = 664
     Top = 360
+  end
+  object IBUSERS: TIBDataSet
+    Database = DataM.IBDatabase1
+    Transaction = IBTransaction1
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from USERS'
+      'where'
+      '  ID = :OLD_ID')
+    InsertSQL.Strings = (
+      'insert into USERS'
+      '  (ID, NAME, PW)'
+      'values'
+      '  (:ID, :NAME, :PW)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  ID,'
+      '  NAME,'
+      '  PW'
+      'from USERS '
+      'where'
+      '  ID = :ID')
+    SelectSQL.Strings = (
+      'select *  from USERS')
+    ModifySQL.Strings = (
+      'update USERS'
+      'set'
+      '  ID = :ID,'
+      '  NAME = :NAME,'
+      '  PW = :PW'
+      'where'
+      '  ID = :OLD_ID')
+    ParamCheck = True
+    UniDirectional = False
+    GeneratorField.Field = 'ID'
+    GeneratorField.Generator = 'GEN_USERS_ID'
+    Left = 32
+    Top = 312
+    object IBUSERSID: TIntegerField
+      FieldName = 'ID'
+      Origin = '"USERS"."ID"'
+      Required = True
+    end
+    object IBUSERSNAME: TIBStringField
+      FieldName = 'NAME'
+      Origin = '"USERS"."NAME"'
+      Size = 30
+    end
+    object IBUSERSPW: TIBStringField
+      FieldName = 'PW'
+      Origin = '"USERS"."PW"'
+      Size = 10
+    end
+  end
+  object DSUSERS: TDataSource
+    DataSet = IBUSERS
+    Left = 32
+    Top = 368
+  end
+  object frxDesigner1: TfrxDesigner
+    DefaultScriptLanguage = 'PascalScript'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = -13
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultLeftMargin = 10.000000000000000000
+    DefaultRightMargin = 10.000000000000000000
+    DefaultTopMargin = 10.000000000000000000
+    DefaultBottomMargin = 10.000000000000000000
+    DefaultPaperSize = 9
+    DefaultOrientation = poPortrait
+    GradientEnd = 11982554
+    GradientStart = clWindow
+    TemplatesExt = 'fr3'
+    Restrictions = []
+    RTLLanguage = False
+    MemoParentFont = False
+    OnGetTemplateList = frxDesigner1GetTemplateList
+    Left = 448
+    Top = 208
+  end
+  object frxReport1: TfrxReport
+    Version = '5.3.16'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 43746.498180486110000000
+    ReportOptions.LastChange = 43746.498180486110000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 248
+    Top = 176
+    Datasets = <>
+    Variables = <>
+    Style = <>
   end
 end
