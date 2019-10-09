@@ -1,24 +1,28 @@
 inherited FrmReestr: TFrmReestr
   Caption = #1056#1077#1108#1089#1090#1088
-  ClientWidth = 752
+  ClientHeight = 541
+  ClientWidth = 736
   OnCreate = FormCreate
-  ExplicitWidth = 768
+  ExplicitWidth = 752
+  ExplicitHeight = 579
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel [0]
     Left = 0
     Top = 0
-    Width = 752
+    Width = 736
     Height = 97
     Align = alTop
     TabOrder = 0
+    ExplicitWidth = 752
     object Panel3: TPanel
       Left = 1
       Top = 1
-      Width = 750
+      Width = 734
       Height = 42
       Align = alTop
       TabOrder = 0
+      ExplicitWidth = 750
       object cxButton6: TcxButton
         Left = 165
         Top = 1
@@ -444,6 +448,7 @@ inherited FrmReestr: TFrmReestr
           0000000000000000000000000000000000000000000000000000}
         OptionsImage.Layout = blGlyphRight
         TabOrder = 2
+        OnClick = cxButton8Click
       end
       object cxButton9: TcxButton
         Left = 1
@@ -729,6 +734,7 @@ inherited FrmReestr: TFrmReestr
           0000000000000000000000000000000000000000000000000000}
         OptionsImage.Layout = blGlyphRight
         TabOrder = 4
+        OnClick = cxButton5Click
       end
       object cxButton1: TcxButton
         Left = 210
@@ -800,9 +806,9 @@ inherited FrmReestr: TFrmReestr
   end
   object Panel2: TPanel [1]
     Left = 0
-    Top = 472
-    Width = 752
-    Height = 62
+    Top = 456
+    Width = 736
+    Height = 85
     Align = alBottom
     TabOrder = 1
     object cxLabel4: TcxLabel
@@ -841,12 +847,33 @@ inherited FrmReestr: TFrmReestr
       Style.Font.Style = []
       Style.IsFontAssigned = True
     end
+    object cxMemo1: TcxMemo
+      Left = 1
+      Top = 1
+      Align = alClient
+      ParentFont = False
+      Properties.ReadOnly = True
+      Properties.ScrollBars = ssVertical
+      Style.Font.Charset = DEFAULT_CHARSET
+      Style.Font.Color = clWindowText
+      Style.Font.Height = -13
+      Style.Font.Name = 'Tahoma'
+      Style.Font.Style = []
+      Style.IsFontAssigned = True
+      TabOrder = 3
+      ExplicitLeft = 320
+      ExplicitTop = 16
+      ExplicitWidth = 185
+      ExplicitHeight = 89
+      Height = 83
+      Width = 734
+    end
   end
   object cxGrid1: TcxGrid [2]
     Left = 0
     Top = 97
-    Width = 752
-    Height = 375
+    Width = 736
+    Height = 359
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -861,6 +888,10 @@ inherited FrmReestr: TFrmReestr
     LockedStateImageOptions.Font.Height = -13
     LockedStateImageOptions.Font.Name = 'Tahoma'
     LockedStateImageOptions.Font.Style = []
+    ExplicitLeft = 64
+    ExplicitTop = 96
+    ExplicitWidth = 752
+    ExplicitHeight = 375
     object cxGrid1DBTableView1: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       Navigator.Buttons.First.Visible = True
@@ -879,8 +910,6 @@ inherited FrmReestr: TFrmReestr
       Navigator.Buttons.SaveBookmark.Visible = True
       Navigator.Buttons.GotoBookmark.Visible = True
       Navigator.Buttons.Filter.Visible = True
-      OnFilterCustomization = cxGrid1DBTableView1FilterCustomization
-      OnFilterDialogShow = cxGrid1DBTableView1FilterDialogShow
       OnFocusedRecordChanged = cxGrid1DBTableView1FocusedRecordChanged
       DataController.DataSource = Main.DSREESTR
       DataController.DetailKeyFieldNames = 'ID'
@@ -930,7 +959,7 @@ inherited FrmReestr: TFrmReestr
         Width = 100
       end
       object cxGrid1DBTableView1PR_TIPUL: TcxGridDBColumn
-        Caption = #1058#1080#1087' '#1075#1077#1085#1110#1084#1091
+        Caption = #1058#1080#1087' '#1075#1077#1086#1085#1110#1084#1091
         DataBinding.FieldName = 'PR_TIPUL'
         PropertiesClassName = 'TcxTextEditProperties'
         Properties.ReadOnly = True
@@ -1037,9 +1066,7 @@ inherited FrmReestr: TFrmReestr
       object cxGrid1DBTableView1EDDR: TcxGridDBColumn
         Caption = #1028#1044#1044#1056
         DataBinding.FieldName = 'EDDR'
-        PropertiesClassName = 'TcxTextEditProperties'
-        Properties.ReadOnly = True
-        Width = 100
+        Width = 133
       end
       object cxGrid1DBTableView1PRIBUV: TcxGridDBColumn
         Caption = #1047#1074#1110#1076#1082#1080' '#1087#1088#1080#1073#1091#1074
@@ -1096,7 +1123,7 @@ inherited FrmReestr: TFrmReestr
     end
   end
   inherited IBTransaction1: TIBTransaction
-    Left = 744
+    Left = 648
   end
   object PopupMenu1: TPopupMenu
     Left = 321

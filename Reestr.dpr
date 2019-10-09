@@ -25,9 +25,8 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
  // Start := TStart.Create(Application);
-  Application.Title := 'Розрахунок тарифів';
+  Application.Title := 'Реєстр';
   Application.CreateForm(TDataM, DataM);
-
   //Application.CreateForm(TFrmReestr, FrmReestr);
  // Application.CreateForm(TFrmSpr, FrmSpr);
   application.ProcessMessages;

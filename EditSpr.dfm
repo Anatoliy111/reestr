@@ -10,8 +10,9 @@ object EditSprFrm: TEditSprFrm
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  FormStyle = fsStayOnTop
   OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poMainFormCenter
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13

@@ -11,7 +11,7 @@ uses
   Data.DB, IBX.IBCustomDataSet, IBX.IBDatabase, cxRichEdit, cxTextEdit,
   cxHyperLinkEdit, dxRatingControl, dxSparkline, dxToggleSwitch,AllFrm,
   cxRadioGroup, cxTrackBar, dxRibbonGallery, IBX.IBQuery,
-  Data.Win.ADODB,cxStyles,Spr, frxDesgn, frxClass;
+  Data.Win.ADODB,cxStyles,Spr, frxDesgn, frxClass,ree;
 
 type
   TMain = class(TForm)
@@ -116,35 +116,6 @@ type
     DSSPR_UL: TDataSource;
     IBSPR_VIDDOC: TIBDataSet;
     DSSPR_VIDDOC: TDataSource;
-    IBREESTRID: TIntegerField;
-    IBREESTRFAM: TIBStringField;
-    IBREESTRIM: TIBStringField;
-    IBREESTROT: TIBStringField;
-    IBREESTRMN_DATA: TDateField;
-    IBREESTRMN_STRANA: TIBStringField;
-    IBREESTRMN_OBL: TIBStringField;
-    IBREESTRMN_RAION: TIBStringField;
-    IBREESTRMN_GOROD: TIBStringField;
-    IBREESTRPR_STRANA: TIBStringField;
-    IBREESTRPR_OBL: TIBStringField;
-    IBREESTRPR_RAION: TIBStringField;
-    IBREESTRPR_GOROD: TIBStringField;
-    IBREESTRPR_TIPUL: TIBStringField;
-    IBREESTRPR_UL: TIBStringField;
-    IBREESTRPR_DOM: TIBStringField;
-    IBREESTRPR_KORP: TIBStringField;
-    IBREESTRPR_KV: TIBStringField;
-    IBREESTRPR_RDATA: TDateField;
-    IBREESTRPR_ZDATA: TDateField;
-    IBREESTRGROMAD: TIBStringField;
-    IBREESTREDDR: TIntegerField;
-    IBREESTRPRIBUV: TIBStringField;
-    IBREESTRVIBUV: TIBStringField;
-    IBREESTRDOCVID: TIBStringField;
-    IBREESTRDOCSER: TIBStringField;
-    IBREESTRDOCNOM: TIBStringField;
-    IBREESTRDOCORG: TIBStringField;
-    IBREESTRDOCDATA: TDateField;
     IBSPR_GORODID: TIntegerField;
     IBSPR_GORODNAME: TIBStringField;
     IBSPR_GROMADID: TIntegerField;
@@ -181,6 +152,35 @@ type
     frxDesigner1: TfrxDesigner;
     frxReport1: TfrxReport;
     dxBarButton13: TdxBarButton;
+    IBREESTRID: TIntegerField;
+    IBREESTRFAM: TIBStringField;
+    IBREESTRIM: TIBStringField;
+    IBREESTROT: TIBStringField;
+    IBREESTRMN_DATA: TDateField;
+    IBREESTRMN_STRANA: TIBStringField;
+    IBREESTRMN_OBL: TIBStringField;
+    IBREESTRMN_RAION: TIBStringField;
+    IBREESTRMN_GOROD: TIBStringField;
+    IBREESTRPR_STRANA: TIBStringField;
+    IBREESTRPR_OBL: TIBStringField;
+    IBREESTRPR_RAION: TIBStringField;
+    IBREESTRPR_GOROD: TIBStringField;
+    IBREESTRPR_TIPUL: TIBStringField;
+    IBREESTRPR_UL: TIBStringField;
+    IBREESTRPR_DOM: TIBStringField;
+    IBREESTRPR_KORP: TIBStringField;
+    IBREESTRPR_KV: TIBStringField;
+    IBREESTRPR_RDATA: TDateField;
+    IBREESTRPR_ZDATA: TDateField;
+    IBREESTRGROMAD: TIBStringField;
+    IBREESTREDDR: TIBStringField;
+    IBREESTRPRIBUV: TIBStringField;
+    IBREESTRVIBUV: TIBStringField;
+    IBREESTRDOCVID: TIBStringField;
+    IBREESTRDOCSER: TIBStringField;
+    IBREESTRDOCNOM: TIBStringField;
+    IBREESTRDOCORG: TIBStringField;
+    IBREESTRDOCDATA: TDateField;
     procedure Button1Click(Sender: TObject);
     procedure dxBarButton34Click(Sender: TObject);
     procedure dxBarButton19Click(Sender: TObject);
@@ -232,11 +232,23 @@ var
   SPR_UL: TFrmSpr;
   SPR_VIDDOC: TFrmSpr;
 
+  SPRV_GOROD: TFrmSpr;
+  SPRV_GROMAD: TFrmSpr;
+  SPRV_OBL: TFrmSpr;
+  SPRV_ORGDOC: TFrmSpr;
+  SPRV_RAION: TFrmSpr;
+  SPRV_STRANA: TFrmSpr;
+  SPRV_TIPUL: TFrmSpr;
+  SPRV_UL: TFrmSpr;
+  SPRV_VIDDOC: TFrmSpr;
+
+  FrmRee:TFrmReestr;
+
 
  // TB:TToolButton;
 implementation
 
-uses Aboutt, DataMod, mytools, Progress, UITypes, ree, Setting, Zastavka;
+uses Aboutt, DataMod, mytools, Progress, UITypes, Setting, Zastavka;
 
 {$R *.dfm}
 
@@ -265,7 +277,15 @@ begin
   NewButton.Caption:=frm.Caption;
   NewButton.Data:=frm;
 
+//  if frm.Caption=dxBarButton12.Caption then
+//     frm.barbut:=NewButton;
+
+
+
   TAllForm(frm).ABar := dxBarManager1Bar2;
+
+
+
  // TInsert(frm).ABar := dxBarManager1Bar2;
 end;
 
@@ -283,6 +303,7 @@ begin
  if SPR_ORGDOC=nil then
  begin
  Application.CreateForm(TFrmSpr,SPR_ORGDOC);
+ SPR_ORGDOC.cxButton1.Visible:=false;
  SPR_ORGDOC.Caption:='Довідник '+dxBarButton10.Caption;
   SPR_ORGDOC.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_ORGDOC;
  //SPR_STRANA.AutoMAX;
@@ -301,6 +322,7 @@ begin
  begin
 
  Application.CreateForm(TFrmSpr,SPR_GROMAD);
+ SPR_GROMAD.cxButton1.Visible:=false;
  SPR_GROMAD.Caption:='Довідник '+dxBarButton11.Caption;
   SPR_GROMAD.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_GROMAD;
  //SPR_STRANA.AutoMAX;
@@ -316,17 +338,29 @@ begin
 end;
 
 procedure TMain.dxBarButton12Click(Sender: TObject);
+var I:integer;
 begin
- if FrmReestr=nil then
+ if FrmRee=nil then
  begin
- Application.CreateForm(TFrmReestr,FrmReestr);
- FrmReestr.AutoMAX;
- AddToolBar(FrmReestr);
+ Application.CreateForm(TFrmReestr,FrmRee);
+ FrmRee.AutoMAX;
+      //запись кнопки на нижней панели в переменную
+
+ AddToolBar(FrmRee);
+
+       if FrmRee.ABar<>nil then
+      for I := 0 to FrmRee.ABar.ItemLinks.Count - 1 do
+        if FrmRee.ABar.ItemLinks[i].Item.Data=FrmRee then
+          begin
+          //TdxBarButton(ABar.ItemLinks[i].Item).free;
+          FrmRee.BarBut:=TdxBarButton(FrmRee.ABar.ItemLinks[i].Item);
+          break;
+          end;
  end
  else
  begin
- FrmReestr.Show;
- FrmReestr.SetFocus;
+ FrmRee.Show;
+ FrmRee.SetFocus;
  end;
 end;
 
@@ -389,6 +423,7 @@ begin
  if SPR_OBL=nil then
  begin
  Application.CreateForm(TFrmSpr,SPR_OBL);
+ SPR_OBL.cxButton1.Visible:=false;
  SPR_OBL.Caption:='Довідник '+dxBarButton4.Caption;
   SPR_OBL.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_OBL;
  //SPR_STRANA.AutoMAX;
@@ -406,6 +441,7 @@ begin
  if SPR_RAION=nil then
  begin
  Application.CreateForm(TFrmSpr,SPR_RAION);
+ SPR_RAION.cxButton1.Visible:=false;
  SPR_RAION.Caption:='Довідник '+dxBarButton5.Caption;
   SPR_RAION.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_RAION;
  //SPR_STRANA.AutoMAX;
@@ -423,6 +459,7 @@ begin
  if SPR_GOROD=nil then
  begin
  Application.CreateForm(TFrmSpr,SPR_GOROD);
+ SPR_GOROD.cxButton1.Visible:=false;
  SPR_GOROD.Caption:='Довідник '+dxBarButton6.Caption;
   SPR_GOROD.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_GOROD;
  //SPR_STRANA.AutoMAX;
@@ -440,6 +477,7 @@ begin
  if SPR_TIPUL=nil then
  begin
  Application.CreateForm(TFrmSpr,SPR_TIPUL);
+ SPR_TIPUL.cxButton1.Visible:=false;
  SPR_TIPUL.Caption:='Довідник '+dxBarButton7.Caption;
   SPR_TIPUL.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_TIPUL;
  //SPR_STRANA.AutoMAX;
@@ -457,6 +495,7 @@ begin
  if SPR_UL=nil then
  begin
  Application.CreateForm(TFrmSpr,SPR_UL);
+ SPR_UL.cxButton1.Visible:=false;
  SPR_UL.Caption:='Довідник '+dxBarButton8.Caption;
   SPR_UL.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_UL;
  //SPR_STRANA.AutoMAX;
@@ -474,6 +513,7 @@ begin
  if SPR_VIDDOC=nil then
  begin
  Application.CreateForm(TFrmSpr,SPR_VIDDOC);
+ SPR_VIDDOC.cxButton1.Visible:=false;
  SPR_VIDDOC.Caption:='Довідник '+dxBarButton9.Caption;
   SPR_VIDDOC.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_VIDDOC;
  //SPR_STRANA.AutoMAX;

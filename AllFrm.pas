@@ -56,6 +56,7 @@ begin//  ExB:=MessageBox(handle,pchar('Сохранить все изменения?'),pchar(''),65);
         if ABar.ItemLinks[i].Item.Data=Self then
           begin
           TdxBarButton(ABar.ItemLinks[i].Item).free;
+          //TdxBarButton(ABar.ItemLinks[i].Item).Enabled:=false;
           break;
           end;
     Action := caFree;

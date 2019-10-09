@@ -32,6 +32,7 @@ inherited FrmSpr: TFrmSpr
     end
     inherited cxButton7: TcxButton
       Height = 37
+      OnClick = cxButton7Click
       ExplicitLeft = 219
       ExplicitHeight = 37
     end
@@ -76,6 +77,7 @@ inherited FrmSpr: TFrmSpr
       OptionsData.Editing = False
       OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
+      OptionsView.Indicator = True
       object cxGrid1DBTableView1NAME: TcxGridDBColumn
         Caption = #1053#1072#1081#1084#1077#1085#1091#1074#1072#1085#1085#1103
         DataBinding.FieldName = 'NAME'

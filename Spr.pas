@@ -26,6 +26,7 @@ type
     procedure cxGrid1DBTableView1CellDblClick(Sender: TcxCustomGridTableView;
       ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
       AShift: TShiftState; var AHandled: Boolean);
+    procedure cxButton7Click(Sender: TObject);
   private
     { Private declarations }
     procedure ExportValue;
@@ -74,6 +75,13 @@ EditSprFrm.cxDBTextEdit1.DataBinding.DataSource:=cxGrid1DBTableView1.DataControl
 EditSprFrm.ShowModal;
 
 
+end;
+
+procedure TFrmSpr.cxButton7Click(Sender: TObject);
+begin
+  inherited;
+  cxGrid1DBTableView1.DataController.DataSource.DataSet.Close;
+  cxGrid1DBTableView1.DataController.DataSource.DataSet.Open;
 end;
 
 procedure TFrmSpr.cxButton8Click(Sender: TObject);
@@ -142,6 +150,16 @@ begin
   if  (SPR_TIPUL <> nil) and (SPR_TIPUL.Active) then SPR_TIPUL:=nil;
   if  (SPR_UL <> nil) and (SPR_UL.Active) then SPR_UL:=nil;
   if  (SPR_VIDDOC <> nil) and (SPR_VIDDOC.Active) then SPR_VIDDOC:=nil;
+
+  if  (SPRV_GOROD <> nil) and (SPRV_GOROD.Active) then SPRV_GOROD:=nil;
+  if  (SPRV_GROMAD <> nil) and (SPRV_GROMAD.Active) then SPRV_GROMAD:=nil;
+  if  (SPRV_OBL <> nil) and (SPRV_OBL.Active) then SPRV_OBL:=nil;
+  if  (SPRV_ORGDOC <> nil) and (SPRV_ORGDOC.Active) then SPRV_ORGDOC:=nil;
+  if  (SPRV_RAION <> nil) and (SPRV_RAION.Active) then SPRV_RAION:=nil;
+  if  (SPRV_STRANA <> nil) and (SPRV_STRANA.Active) then SPRV_STRANA:=nil;
+  if  (SPRV_TIPUL <> nil) and (SPRV_TIPUL.Active) then SPRV_TIPUL:=nil;
+  if  (SPRV_UL <> nil) and (SPRV_UL.Active) then SPRV_UL:=nil;
+  if  (SPRV_VIDDOC <> nil) and (SPRV_VIDDOC.Active) then SPRV_VIDDOC:=nil;
 
 end;
 
