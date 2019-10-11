@@ -11,7 +11,8 @@ uses
   cxGridLevel, cxClasses, cxGridCustomView, cxGrid, Vcl.StdCtrls, cxButtons,
   cxTextEdit, cxContainer, cxLabel, cxGroupBox, Vcl.ButtonGroup, Vcl.Buttons,
   Vcl.ComCtrls, Vcl.ToolWin, dxNavBar, cxMaskEdit, cxDropDownEdit, frxDesgn,
-  frxClass, frxDBSet,dxBar, cxMemo;
+  frxClass, frxDBSet,dxBar, cxMemo, frxExportRTF, frxExportXLS, frxExportPDF,
+  cxCustomPivotGrid, cxDBPivotGrid;
 
 type
   TFrmReestr = class(TAllMdiForm)
@@ -75,6 +76,8 @@ type
     cxTextEdit4: TcxTextEdit;
     cxGrid1DBTableView1EDDR: TcxGridDBColumn;
     cxMemo1: TcxMemo;
+    frxXLSExport1: TfrxXLSExport;
+    frxRTFExport1: TfrxRTFExport;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure cxGrid1DBTableView1FocusedRecordChanged(
       Sender: TcxCustomGridTableView; APrevFocusedRecord,
@@ -89,6 +92,7 @@ type
     procedure cxButton9Click(Sender: TObject);
     procedure cxButton8Click(Sender: TObject);
     procedure cxButton5Click(Sender: TObject);
+    procedure cxButton7Click(Sender: TObject);
   private
     { Private declarations }
     procedure Filter;
@@ -111,11 +115,21 @@ uses MainForm,StrUtils, EditRee;
 procedure TFrmReestr.cxButton5Click(Sender: TObject);
 begin
   inherited;
- if EditR=nil then
+  try
+     main.IBREESTR.Edit;
+  main.IBREESTR.Post;
+
+   if EditR=nil then
  begin
  Application.CreateForm(TEditReeFrm,EditR);
+
  EditR.Caption:='Редагування реєстру';
  EditR.mode:=2;
+
+
+
+
+
 
  EditR.cxTextEdit1.Text:=Main.IBREESTRFAM.Value;
  EditR.cxTextEdit2.Text:=Main.IBREESTRIM.Value;
@@ -164,13 +178,62 @@ begin
  EditR.Show;
  EditR.SetFocus;
  end;
+
+
+  finally
+
+  end;
+
+
+
+end;
+
+procedure TFrmReestr.cxButton7Click(Sender: TObject);
+var rec:integer;
+    Bookmark: TBookmark;
+begin
+  inherited;
+//rec:=Main.IBREESTRID.Value;
+//Main.IBREESTR.Close;
+//Main.IBREESTR.Open;
+//Main.IBREESTR.Locate('ID',rec,[]);
+//cxGrid1DBTableView1.DataController.GotoFirst;
+  rec:=cxGrid1DBTableView1.Controller.FocusedRowIndex;
+//  Bookmark := Main.IBREESTR.GetBookmark;
+//  Main.IBREESTR.Refresh;
+  Main.IBREESTR.Close;
+  Main.IBREESTR.Open;
+//  Main.IBREESTR.GotoBookmark(Bookmark);
+   cxGrid1DBTableView1.Controller.FocusedRowIndex:=rec;
+
+
+
 end;
 
 procedure TFrmReestr.cxButton8Click(Sender: TObject);
+var rec:integer;
+Bookmark: TBookmark;
 begin
   inherited;
   case MessageBox(handle,pchar('Ви дійсно бажаєте видалити запис?'),pchar(''),36) of
-    IDYES: cxGrid1DBTableView1.DataController.DataSource.DataSet.Delete;
+    IDYES:
+    begin
+
+    cxGrid1.FocusedView.DataController.DeleteFocused;
+//    cxGrid1.FocusedView.DataController.
+//      rec:=cxGrid1DBTableView1.Controller.FocusedRowIndex;
+//    Bookmark := cxGrid1DBTableView1.DataController.Bookmark;
+//      cxGrid1DBTableView1.DataController.DataSource.DataSet.
+      //cxGrid1DBTableView1.DataController.DataSource.DataSet.Delete;
+     // cxGrid1DBTableView1.DataController.DeleteRecord(cxGrid1DBTableView1.Controller.FocusedRowIndex);
+//    main.IBREESTR.Delete;
+//      cxGrid1DBTableView1.Controller.FocusedRowIndex:=rec;
+//    cxGrid1DBTableView1.DataController.GotoBookmark;
+//    cxGrid1DBTableView1.DataController.DataSource.DataSet.ff
+    //main.IBREESTR.FetchAll;
+    Main.IBTransaction1.CommitRetaining;
+
+    end;
   end;
 end;
 
@@ -184,6 +247,8 @@ begin
  EditR.Caption:='Додати до реєстру';
 
   EditR.mode:=1;
+
+
  //SPR_STRANA.AutoMAX;
  Main.AddToolBar(EditR);
 
@@ -242,7 +307,11 @@ end;
 procedure TFrmReestr.FormCreate(Sender: TObject);
 begin
   inherited;
+
+main.IBREESTR.Close;
+main.IBREESTR.Open;
 cxGrid1DBTableView1.DataController.GotoFirst;
+
 end;
 
 procedure TFrmReestr.N11Click(Sender: TObject);
@@ -251,7 +320,7 @@ begin
 //if RadioButton5.Checked then
 //begin
 //   IBREPMES.SelectSQL.Text:=IBREPMES.SelectSQL.Text+' order by fio,ul,dom,posl';
-//   frxReport1.LoadFromFile('report/orderfioadresposlmes.fr3');
+   frxReport1.LoadFromFile('report/DovidkaMP.fr3');
 //end;
 //
 //
@@ -264,12 +333,13 @@ begin
 //
 ////  frxXLSExport1.FileName:='Звіт за період '+Datename1+' '+Datename2;
 //
-//frxReport1.Variables['datemes1']:=''''+mon_slovoDt(Ordposlmesdt1)+'''';
+//frxReport1.Variables['datemes1']:=cxBarEditItem4mon_slovoDt(Ordposlmesdt1)+'''';
 //frxReport1.Variables['datemes2']:=''''+mon_slovoDt(Ordposlmesdt2)+'''';
 //frxReport1.Variables['dtmes1']:=Ordposlmesdt1;
 //frxReport1.Variables['dtmes2']:=Ordposlmesdt2;
 //frxReport1.Variables['org']:=''''+Form1.ORG+'''';
-//frxReport1.ShowReport;
+frxReport1.Variables['user']:=''''+Main.cxBarEditItem4.Caption+'''';
+frxReport1.ShowReport;
 end;
 
 procedure TFrmReestr.cxTextEdit1PropertiesChange(Sender: TObject);

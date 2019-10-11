@@ -72,10 +72,10 @@ begin
     else
     begin
     kolst:=kolst+1;
-//    cxTextEdit1.Text:=int2str(kolst);
-//    cxTextEdit2.Text:=int2str(Length(MsExcel.WorkSheets[1].Cells[kolst,1]));
-//    cxTextEdit3.Text:=MsExcel.WorkSheets[1].Cells[kolst,1];
-//    Application.ProcessMessages;
+    cxTextEdit1.Text:=int2str(kolst);
+    cxTextEdit2.Text:=int2str(Length(MsExcel.WorkSheets[1].Cells[kolst,1]));
+    cxTextEdit3.Text:=MsExcel.WorkSheets[1].Cells[kolst,1];
+    Application.ProcessMessages;
     end;
     end;
     cxProgressBar1.Properties.Min:=0;

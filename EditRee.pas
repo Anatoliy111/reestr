@@ -8,7 +8,7 @@ uses
   cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, Vcl.Menus, cxControls,
   cxContainer, cxEdit, cxMaskEdit, cxButtonEdit, cxGroupBox, cxLabel,
   cxTextEdit, Vcl.StdCtrls, cxButtons, Vcl.ExtCtrls, Vcl.ComCtrls, dxCore,
-  cxDateUtils, cxDropDownEdit, cxCalendar, cxMemo,ree;
+  cxDateUtils, cxDropDownEdit, cxCalendar, cxMemo,ree,DB;
 
 type
   TEditReeFrm = class(TAllMdiForm)
@@ -111,6 +111,7 @@ type
     procedure cxButtonEdit12PropertiesChange(Sender: TObject);
     procedure cxButtonEdit5PropertiesChange(Sender: TObject);
     procedure cxButtonEdit6PropertiesChange(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 
   private
 
@@ -153,7 +154,7 @@ begin
    exit;
  end;
 
-
+//
 if mode=1 then
   main.IBREESTR.Append;
 if mode=2 then
@@ -201,9 +202,10 @@ if mode=2 then
  else
     Main.IBREESTRDOCDATA.Clear;
 
- main.IBREESTR.Post;
+    if main.IBREESTR.State in [dsInsert,dsEdit] then
+       main.IBREESTR.Post;
 
-
+main.IBTransaction1.CommitRetaining;
 
 close;
 
@@ -212,6 +214,7 @@ end;
 procedure TEditReeFrm.cxButton2Click(Sender: TObject);
 begin
   inherited
+
   close;
 end;
 
@@ -569,11 +572,22 @@ if  (EditR <> nil) and (EditR.Active) then EditR:=nil;
 
 end;
 
+procedure TEditReeFrm.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  inherited;
+//    if main.IBREESTR.State in [dsInsert,dsEdit] then
+//    else main.IBTransaction1.RollbackRetaining;
+
+
+end;
+
 procedure TEditReeFrm.FormCreate(Sender: TObject);
 begin
   inherited;
   FrmRee.Enabled:=false;
   FrmRee.BarBut.Enabled:=false;
+
+
 end;
 
 end.

@@ -201,7 +201,26 @@ type
     procedure dxBarButton32Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure dxBarButton28Click(Sender: TObject);
-    procedure frxDesigner1GetTemplateList(List: TStrings);
+    procedure IBREESTRPostError(DataSet: TDataSet; E: EDatabaseError;
+      var Action: TDataAction);
+    procedure IBSPR_GORODPostError(DataSet: TDataSet; E: EDatabaseError;
+      var Action: TDataAction);
+    procedure IBSPR_GROMADPostError(DataSet: TDataSet; E: EDatabaseError;
+      var Action: TDataAction);
+    procedure IBSPR_OBLPostError(DataSet: TDataSet; E: EDatabaseError;
+      var Action: TDataAction);
+    procedure IBSPR_ORGDOCPostError(DataSet: TDataSet; E: EDatabaseError;
+      var Action: TDataAction);
+    procedure IBSPR_RAIONPostError(DataSet: TDataSet; E: EDatabaseError;
+      var Action: TDataAction);
+    procedure IBSPR_STRANAPostError(DataSet: TDataSet; E: EDatabaseError;
+      var Action: TDataAction);
+    procedure IBSPR_TIPULPostError(DataSet: TDataSet; E: EDatabaseError;
+      var Action: TDataAction);
+    procedure IBSPR_ULPostError(DataSet: TDataSet; E: EDatabaseError;
+      var Action: TDataAction);
+    procedure IBSPR_VIDDOCPostError(DataSet: TDataSet; E: EDatabaseError;
+      var Action: TDataAction);
     private
     { Private declarations }
     procedure ClickBarButton(Sender: TObject);
@@ -306,6 +325,8 @@ begin
  SPR_ORGDOC.cxButton1.Visible:=false;
  SPR_ORGDOC.Caption:='Довідник '+dxBarButton10.Caption;
   SPR_ORGDOC.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_ORGDOC;
+  Main.IBSPR_ORGDOC.Close;
+ Main.IBSPR_ORGDOC.Open;
  //SPR_STRANA.AutoMAX;
  AddToolBar(SPR_ORGDOC);
  end
@@ -325,6 +346,8 @@ begin
  SPR_GROMAD.cxButton1.Visible:=false;
  SPR_GROMAD.Caption:='Довідник '+dxBarButton11.Caption;
   SPR_GROMAD.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_GROMAD;
+  Main.IBSPR_GROMAD.Close;
+ Main.IBSPR_GROMAD.Open;
  //SPR_STRANA.AutoMAX;
  AddToolBar(SPR_GROMAD);
 
@@ -401,6 +424,9 @@ begin
  SPR_STRANA.cxButton1.Visible:=false;
  SPR_STRANA.Caption:='Довідник '+dxBarButton3.Caption;
  SPR_STRANA.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_STRANA;
+ Main.IBSPR_STRANA.Close;
+ Main.IBSPR_STRANA.Open;
+
  //SPR_STRANA.AutoMAX;
  AddToolBar(SPR_STRANA);
  end
@@ -426,6 +452,8 @@ begin
  SPR_OBL.cxButton1.Visible:=false;
  SPR_OBL.Caption:='Довідник '+dxBarButton4.Caption;
   SPR_OBL.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_OBL;
+  Main.IBSPR_OBL.Close;
+ Main.IBSPR_OBL.Open;
  //SPR_STRANA.AutoMAX;
  AddToolBar(SPR_OBL);
  end
@@ -444,6 +472,8 @@ begin
  SPR_RAION.cxButton1.Visible:=false;
  SPR_RAION.Caption:='Довідник '+dxBarButton5.Caption;
   SPR_RAION.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_RAION;
+  Main.IBSPR_RAION.Close;
+ Main.IBSPR_RAION.Open;
  //SPR_STRANA.AutoMAX;
  AddToolBar(SPR_RAION);
  end
@@ -462,6 +492,8 @@ begin
  SPR_GOROD.cxButton1.Visible:=false;
  SPR_GOROD.Caption:='Довідник '+dxBarButton6.Caption;
   SPR_GOROD.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_GOROD;
+  Main.IBSPR_GOROD.Close;
+ Main.IBSPR_GOROD.Open;
  //SPR_STRANA.AutoMAX;
  AddToolBar(SPR_GOROD);
  end
@@ -480,6 +512,8 @@ begin
  SPR_TIPUL.cxButton1.Visible:=false;
  SPR_TIPUL.Caption:='Довідник '+dxBarButton7.Caption;
   SPR_TIPUL.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_TIPUL;
+  Main.IBSPR_TIPUL.Close;
+ Main.IBSPR_TIPUL.Open;
  //SPR_STRANA.AutoMAX;
  AddToolBar(SPR_TIPUL);
  end
@@ -498,6 +532,8 @@ begin
  SPR_UL.cxButton1.Visible:=false;
  SPR_UL.Caption:='Довідник '+dxBarButton8.Caption;
   SPR_UL.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_UL;
+  Main.IBSPR_UL.Close;
+ Main.IBSPR_UL.Open;
  //SPR_STRANA.AutoMAX;
  AddToolBar(SPR_UL);
  end
@@ -516,6 +552,8 @@ begin
  SPR_VIDDOC.cxButton1.Visible:=false;
  SPR_VIDDOC.Caption:='Довідник '+dxBarButton9.Caption;
   SPR_VIDDOC.cxGrid1DBTableView1.DataController.DataSource:=Main.DSSPR_VIDDOC;
+  Main.IBSPR_VIDDOC.Close;
+ Main.IBSPR_VIDDOC.Open;
  //SPR_STRANA.AutoMAX;
  AddToolBar(SPR_VIDDOC);
  end
@@ -535,11 +573,11 @@ end;
 
 procedure TMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
-  CanClose:=true;
-  case MessageBox(handle,pchar('Закрити програму? Всі не збережені дані будуть втрачені.'),pchar(''),36) of
-    IDYES:ModalResult:=mrYes;
-    IDNO:CanClose:=false;
-  end;
+//  CanClose:=true;
+//  case MessageBox(handle,pchar('Закрити програму? Всі не збережені дані будуть втрачені.'),pchar(''),36) of
+//    IDYES:ModalResult:=mrYes;
+//    IDNO:CanClose:=false;
+//  end;
 end;
 
 procedure TMain.FormCreate(Sender: TObject);
@@ -570,9 +608,85 @@ begin
 Start.Show;
 end;
 
-procedure TMain.frxDesigner1GetTemplateList(List: TStrings);
+procedure TMain.IBREESTRPostError(DataSet: TDataSet; E: EDatabaseError;
+  var Action: TDataAction);
 begin
 
+ShowMessage('На даний момент цей запис редагується іншим користувачем! ');
+Action:=daabort;
+IBREESTR.Cancel;
+end;
+
+procedure TMain.IBSPR_GORODPostError(DataSet: TDataSet; E: EDatabaseError;
+  var Action: TDataAction);
+begin
+  ShowMessage('На даний момент цей запис редагується іншим користувачем! ');
+Action:=daabort;
+IBSPR_GOROD.Cancel;
+end;
+
+procedure TMain.IBSPR_GROMADPostError(DataSet: TDataSet; E: EDatabaseError;
+  var Action: TDataAction);
+begin
+  ShowMessage('На даний момент цей запис редагується іншим користувачем! ');
+Action:=daabort;
+IBSPR_GROMAD.Cancel;
+end;
+
+procedure TMain.IBSPR_OBLPostError(DataSet: TDataSet; E: EDatabaseError;
+  var Action: TDataAction);
+begin
+  ShowMessage('На даний момент цей запис редагується іншим користувачем! ');
+Action:=daabort;
+IBSPR_OBL.Cancel;
+end;
+
+procedure TMain.IBSPR_ORGDOCPostError(DataSet: TDataSet; E: EDatabaseError;
+  var Action: TDataAction);
+begin
+ ShowMessage('На даний момент цей запис редагується іншим користувачем! ');
+Action:=daabort;
+IBSPR_ORGDOC.Cancel;
+end;
+
+procedure TMain.IBSPR_RAIONPostError(DataSet: TDataSet; E: EDatabaseError;
+  var Action: TDataAction);
+begin
+  ShowMessage('На даний момент цей запис редагується іншим користувачем! ');
+Action:=daabort;
+IBSPR_RAION.Cancel;
+end;
+
+procedure TMain.IBSPR_STRANAPostError(DataSet: TDataSet; E: EDatabaseError;
+  var Action: TDataAction);
+begin
+  ShowMessage('На даний момент цей запис редагується іншим користувачем! ');
+Action:=daabort;
+IBSPR_STRANA.Cancel;
+end;
+
+procedure TMain.IBSPR_TIPULPostError(DataSet: TDataSet; E: EDatabaseError;
+  var Action: TDataAction);
+begin
+   ShowMessage('На даний момент цей запис редагується іншим користувачем! ');
+Action:=daabort;
+IBSPR_TIPUL.Cancel;
+end;
+
+procedure TMain.IBSPR_ULPostError(DataSet: TDataSet; E: EDatabaseError;
+  var Action: TDataAction);
+begin
+  ShowMessage('На даний момент цей запис редагується іншим користувачем! ');
+Action:=daabort;
+IBSPR_UL.Cancel;
+end;
+
+procedure TMain.IBSPR_VIDDOCPostError(DataSet: TDataSet; E: EDatabaseError;
+  var Action: TDataAction);
+begin
+ ShowMessage('На даний момент цей запис редагується іншим користувачем! ');
+Action:=daabort;
+IBSPR_VIDDOC.Cancel;
 end;
 
 //

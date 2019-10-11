@@ -1,13 +1,77 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<TfrxReport Version="5.3.16" DataSet="frxDBDataset1" DataSetName="frxDBDataset1" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="43746,4107217824" ReportOptions.Description.Text="" ReportOptions.LastChange="43746,4267698495" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end.">
+<TfrxReport Version="5.3.16" DataSet="FrmReestr.frxDBDataset1" DataSetName="frxDBDataset1" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="43746,4107217824" ReportOptions.Description.Text="" ReportOptions.LastChange="43748,4764737268" ScriptLanguage="PascalScript" ScriptText.Text="function DateToPropis(dDate: Extended):string;&#13;&#10;var                                         &#13;&#10; d, m, y : word;&#13;&#10; mess:string;&#13;&#10;begin&#13;&#10;&#13;&#10;  if DateToStr(dDate)='30.12.1899' then&#13;&#10;     Result := '____ ________ 20 __ р.'  &#13;&#10;  else&#13;&#10;  begin            &#13;&#10;  &#13;&#10;       DecodeDate(dDate,y,m,d);&#13;&#10;&#13;&#10;       case m of&#13;&#10;        1: mess:='січня';&#13;&#10;        2: mess:='лютого';&#13;&#10;        3: mess:='березня';&#13;&#10;        4: mess:='квітня';&#13;&#10;        5: mess:='травня';&#13;&#10;        6: mess:='червня';&#13;&#10;        7: mess:='липня';&#13;&#10;        8: mess:='серпня';&#13;&#10;        9: mess:='вересня';&#13;&#10;        10: mess:='жовтня';&#13;&#10;        11: mess:='листопада';&#13;&#10;        12: mess:='грудня';&#13;&#10;       end;&#13;&#10;&#13;&#10;        Result := IntToStr(d) + ' ' + mess + ' ' + IntToStr(y) + ' р.';&#13;&#10;      //  Result := Format(&#34;%.2d %s %.4d&#34;, [d, MonthNames[mess], y]);              &#13;&#10;  end;                  &#13;&#10;end;   &#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;end.">
   <Datasets>
-    <item DataSet="frxDBDataset1" DataSetName="frxDBDataset1"/>
+    <item DataSet="FrmReestr.frxDBDataset1" DataSetName="frxDBDataset1"/>
   </Datasets>
   <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
-  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
-    <TfrxMemoView Name="Memo1" Left="634,96104" Top="18,89765" Width="71,81107" Height="34,01577" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="Додаток 13&#13;&#10;до Правил"/>
-    <TfrxMemoView Name="Memo2" Left="52,91342" Top="120,94496" Width="616,06339" Height="37,7953" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="8" ParentFont="False" Text="За відомостями реєстраційного відділу комунального підприємства «Долинське міське комунальне господарство» при Долинській міській раді "/>
-    <TfrxMemoView Name="Memo3" Left="0" Top="79,37013" Width="721,89023" Height="37,7953" Font.Charset="1" Font.Color="-16777208" Font.Height="-16" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="ДОВІДКА&#13;&#10;про реєстрацію місця проживання особи"/>
-    <TfrxMemoView Name="Memo4" Left="260,78757" Top="158,74026" Width="162,51979" Height="15,11812" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="(назва органу реєстрації)"/>
+  <TfrxReportPage Name="Page1" Orientation="poLandscape" PaperWidth="297" PaperHeight="210" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" BackPicturePrintable="False" HGuides.Text="" VGuides.Text="">
+    <TfrxMemoView Name="Memo1" Left="918,98485" Top="3,77953" Width="128,50402" Height="34,01577" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="Додаток 13&#13;&#10;до Правил"/>
+    <TfrxMemoView Name="Memo2" Left="567,48856" Top="110,37013" Width="480,00031" Height="37,7953" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="8" ParentFont="False" Text="За відомостями реєстраційного відділу комунального підприємства «Долинське міське комунальне господарство» при Долинській міській раді "/>
+    <TfrxMemoView Name="Memo3" Left="567,48856" Top="68,7953" Width="480,00031" Height="37,7953" Font.Charset="1" Font.Color="-16777208" Font.Height="-16" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="ДОВІДКА&#13;&#10;про реєстрацію місця проживання особи"/>
+    <TfrxMemoView Name="Memo4" Left="567,48856" Top="148,16543" Width="480,00031" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-9" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="(назва органу реєстрації)"/>
+    <TfrxMemoView Name="Memo5" Left="567,48856" Top="182,1812" Width="117,16543" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="місце проживання "/>
+    <TfrxMemoView Name="Memo6" Left="567,48856" Top="208,63791" Width="71,81107" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="прізвище"/>
+    <TfrxMemoView Name="Memo7" Left="567,48856" Top="235,09462" Width="71,81107" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="ім’я"/>
+    <TfrxMemoView Name="frxDBDataset1FAM" Left="639,29963" Top="208,63791" Width="408,18904472" Height="18,89765" DataField="FAM" DataSet="FrmReestr.frxDBDataset1" DataSetName="frxDBDataset1" Font.Charset="1" Font.Color="-16777208" Font.Height="-16" Font.Name="Arial" Font.Style="0" Frame.Typ="8" ParentFont="False" Text="[frxDBDataset1.&#34;FAM&#34;]"/>
+    <TfrxMemoView Name="frxDBDataset1IM" Left="639,29963" Top="235,09462" Width="408,18904472" Height="18,89765" DataField="IM" DataSet="FrmReestr.frxDBDataset1" DataSetName="frxDBDataset1" Font.Charset="1" Font.Color="-16777208" Font.Height="-16" Font.Name="Arial" Font.Style="0" Frame.Typ="8" ParentFont="False" Text="[frxDBDataset1.&#34;IM&#34;]"/>
+    <TfrxMemoView Name="frxDBDataset1OT" Left="639,29963" Top="261,55133" Width="408,18904472" Height="18,89765" DataField="OT" DataSet="FrmReestr.frxDBDataset1" DataSetName="frxDBDataset1" Font.Charset="1" Font.Color="-16777208" Font.Height="-16" Font.Name="Arial" Font.Style="0" Frame.Typ="8" ParentFont="False" Text="[frxDBDataset1.&#34;OT&#34;]"/>
+    <TfrxMemoView Name="Memo8" Left="567,48856" Top="261,55133" Width="71,81107" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="по батькові "/>
+    <TfrxMemoView Name="Memo9" Left="567,48856" Top="288,00804" Width="158,74026" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="дата і місце народження "/>
+    <TfrxMemoView Name="Memo10" Left="726,22882" Top="288,00804" Width="321,25985472" Height="56,69295" Font.Charset="1" Font.Color="-16777208" Font.Height="-16" Font.Name="Arial" Font.Style="0" Frame.Typ="8" ParentFont="False" Text="[frxDBDataset1.&#34;MN_DATA&#34;], [frxDBDataset1.&#34;MN_STRANA&#34;] [frxDBDataset1.&#34;MN_OBL&#34;] [frxDBDataset1.&#34;MN_RAION&#34;] [frxDBDataset1.&#34;MN_GOROD&#34;]">
+      <Formats>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+      </Formats>
+    </TfrxMemoView>
+    <TfrxMemoView Name="Memo11" Left="567,48856" Top="353,70099" Width="158,74026" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="громадянство/підданство"/>
+    <TfrxMemoView Name="frxDBDataset1GROMAD" Left="726,22882" Top="353,70099" Width="321,25985472" Height="18,89765" DataField="GROMAD" DataSet="FrmReestr.frxDBDataset1" DataSetName="frxDBDataset1" Font.Charset="1" Font.Color="-16777208" Font.Height="-16" Font.Name="Arial" Font.Style="0" Frame.Typ="8" ParentFont="False" Text="[frxDBDataset1.&#34;GROMAD&#34;]"/>
+    <TfrxMemoView Name="Memo12" Left="567,48856" Top="380,71676" Width="480,00031" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="унікальний номер запису в Єдиному державному демографічному реєстрі* "/>
+    <TfrxMemoView Name="frxDBDataset1EDDR" Left="567,48856" Top="399,61441" Width="480,00031" Height="18,89765" DataField="EDDR" DataSet="FrmReestr.frxDBDataset1" DataSetName="frxDBDataset1" Font.Charset="1" Font.Color="-16777208" Font.Height="-16" Font.Name="Arial" Font.Style="0" Frame.Typ="8" ParentFont="False" Text="[frxDBDataset1.&#34;EDDR&#34;]"/>
+    <TfrxMemoView Name="Memo13" Left="567,48856" Top="426,07112" Width="170,07885" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="зареєстроване за адресою "/>
+    <TfrxMemoView Name="Memo14" Left="737,56741" Top="426,07112" Width="309,92126472" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-16" Font.Name="Arial" Font.Style="0" Frame.Typ="8" ParentFont="False" Text="[frxDBDataset1.&#34;PR_STRANA&#34;] [frxDBDataset1.&#34;PR_OBL&#34;]">
+      <Formats>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+      </Formats>
+    </TfrxMemoView>
+    <TfrxMemoView Name="Memo15" Left="737,56741" Top="444,96877" Width="309,92146" Height="11,33859" Font.Charset="1" Font.Color="-16777208" Font.Height="-9" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="(адреса житла або адреса місцезнаходження)"/>
+    <TfrxMemoView Name="Memo16" Left="568,48856" Top="459,86642" Width="480,00011472" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-16" Font.Name="Arial" Font.Style="0" Frame.Typ="8" ParentFont="False" Text="[frxDBDataset1.&#34;PR_RAION&#34;] [frxDBDataset1.&#34;PR_GOROD&#34;]">
+      <Formats>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+      </Formats>
+    </TfrxMemoView>
+    <TfrxMemoView Name="Memo17" Left="567,48856" Top="480,76407" Width="480,00031" Height="11,33859" Font.Charset="1" Font.Color="-16777208" Font.Height="-9" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="спеціалізованої соціальної установи, закладу соціального обслуговування та соціального захисту"/>
+    <TfrxMemoView Name="Memo18" Left="567,48856" Top="494,10266" Width="480,00011472" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-16" Font.Name="Arial" Font.Style="0" Frame.Typ="8" ParentFont="False" Text="[frxDBDataset1.&#34;PR_TIPUL&#34;] [frxDBDataset1.&#34;PR_UL&#34;] [frxDBDataset1.&#34;PR_DOM&#34;] [iif(trim(&#60;frxDBDataset1.&#34;PR_KV&#34;&#62;)&#60;&#62;'','кв.'+&#60;frxDBDataset1.&#34;PR_KV&#34;&#62;,'')]">
+      <Formats>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+      </Formats>
+    </TfrxMemoView>
+    <TfrxMemoView Name="Memo19" Left="567,48856" Top="513,00031" Width="480,00031" Height="15,11812" Font.Charset="1" Font.Color="-16777208" Font.Height="-9" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="або військової частини, за якою реєструється місце проживання)"/>
+    <TfrxMemoView Name="Memo21" Left="566,9295" Top="549,01608" Width="105,82684" Height="15,11812" Font.Charset="1" Font.Color="-16777208" Font.Height="-9" Font.Name="Arial" Font.Style="0" HAlign="haRight" ParentFont="False" Text="(необхідне зазначити)."/>
+    <TfrxMemoView Name="Memo22" Left="566,9295" Top="565,25232" Width="94,48825" Height="71,81107" Font.Charset="1" Font.Color="-16777208" Font.Height="-16" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="МП"/>
+    <TfrxMemoView Name="Memo23" Left="661,41775" Top="620,60668" Width="90,70872" Height="15,11812" Font.Charset="1" Font.Color="-16777208" Font.Height="-9" Font.Name="Arial" Font.Style="0" Frame.Typ="4" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="(підпис)"/>
+    <TfrxMemoView Name="Memo24" Left="759,68553" Top="620,60668" Width="287,24428" Height="15,11812" Font.Charset="1" Font.Color="-16777208" Font.Height="-9" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="(посада, прізвище та ініціали)"/>
+    <TfrxMemoView Name="Memo25" Left="759,68553" Top="601,70903" Width="287,24408472" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-16" Font.Name="Arial" Font.Style="0" Frame.Typ="8" ParentFont="False" Text="реєстратор [user]"/>
+    <TfrxMemoView Name="Memo20" Left="566,9295" Top="635,7248" Width="480,00031" Height="68,03154" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" VAlign="vaCenter" Text="* Для осіб, яким оформлено паспорт громадянина України чи паспорт громадянина України для виїзду за кордон засобами Єдиного державного демографічного реєстру."/>
+    <TfrxMemoView Name="Memo26" Left="566,9295" Top="529,1342" Width="483,77964472" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-15" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="з [DateToPropis(&#60;frxDBDataset1.&#34;PR_RDATA&#34;&#62;)] по [DateToPropis(Date)] /по теперішній час">
+      <Formats>
+        <item/>
+        <item/>
+      </Formats>
+    </TfrxMemoView>
   </TfrxReportPage>
 </TfrxReport>

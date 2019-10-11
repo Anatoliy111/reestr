@@ -71,8 +71,16 @@ procedure TFrmSpr.cxButton5Click(Sender: TObject);
 begin
   inherited;
 EditSprFrm.Caption:='Редагування '+self.Caption;
-EditSprFrm.cxDBTextEdit1.DataBinding.DataSource:=cxGrid1DBTableView1.DataController.DataSource;
+try
+cxGrid1DBTableView1.DataController.DataSource.DataSet.Edit;
+cxGrid1DBTableView1.DataController.DataSource.DataSet.Post;
+
+   EditSprFrm.cxDBTextEdit1.DataBinding.DataSource:=cxGrid1DBTableView1.DataController.DataSource;
 EditSprFrm.ShowModal;
+finally
+
+end;
+
 
 
 end;

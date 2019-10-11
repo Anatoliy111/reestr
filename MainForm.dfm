@@ -23,7 +23,7 @@ object Main: TMain
     Left = 608
     Top = 56
     Bitmap = {
-      494C010105000900180110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010105000900200110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       00000000000000000000000000000000000000000000000000006473C1004254
       B300000000000000000000000000000000000000000000000000000000000000
@@ -1079,7 +1079,7 @@ object Main: TMain
     Left = 608
     Top = 112
     Bitmap = {
-      494C010112001400180110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010112001400200110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000005000000001002000000000000050
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1927,7 +1927,7 @@ object Main: TMain
     Left = 568
     Top = 176
     Bitmap = {
-      494C010107000900180110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107000900200110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000F5F3F500CFE0F40000000000000000000000
@@ -2223,6 +2223,7 @@ object Main: TMain
   object IBREESTR: TIBDataSet
     Database = DataM.IBDatabase1
     Transaction = IBTransaction1
+    OnPostError = IBREESTRPostError
     BufferChunks = 1000
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2287,7 +2288,7 @@ object Main: TMain
       'where'
       '  ID = :ID')
     SelectSQL.Strings = (
-      'select * from REESTR')
+      'select * from REESTR order by PR_GOROD, PR_DOM, PR_KV')
     ModifySQL.Strings = (
       'update REESTR'
       'set'
@@ -2475,6 +2476,7 @@ object Main: TMain
   object IBSPR_GOROD: TIBDataSet
     Database = DataM.IBDatabase1
     Transaction = IBTransaction1
+    OnPostError = IBSPR_GORODPostError
     BufferChunks = 1000
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2528,6 +2530,7 @@ object Main: TMain
   object IBSPR_GROMAD: TIBDataSet
     Database = DataM.IBDatabase1
     Transaction = IBTransaction1
+    OnPostError = IBSPR_GROMADPostError
     BufferChunks = 1000
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2581,6 +2584,7 @@ object Main: TMain
   object IBSPR_OBL: TIBDataSet
     Database = DataM.IBDatabase1
     Transaction = IBTransaction1
+    OnPostError = IBSPR_OBLPostError
     BufferChunks = 1000
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2634,6 +2638,7 @@ object Main: TMain
   object IBSPR_ORGDOC: TIBDataSet
     Database = DataM.IBDatabase1
     Transaction = IBTransaction1
+    OnPostError = IBSPR_ORGDOCPostError
     BufferChunks = 1000
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2687,6 +2692,7 @@ object Main: TMain
   object IBSPR_RAION: TIBDataSet
     Database = DataM.IBDatabase1
     Transaction = IBTransaction1
+    OnPostError = IBSPR_RAIONPostError
     BufferChunks = 1000
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2740,6 +2746,7 @@ object Main: TMain
   object IBSPR_STRANA: TIBDataSet
     Database = DataM.IBDatabase1
     Transaction = IBTransaction1
+    OnPostError = IBSPR_STRANAPostError
     BufferChunks = 1000
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2793,6 +2800,7 @@ object Main: TMain
   object IBSPR_TIPUL: TIBDataSet
     Database = DataM.IBDatabase1
     Transaction = IBTransaction1
+    OnPostError = IBSPR_TIPULPostError
     BufferChunks = 1000
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2845,6 +2853,7 @@ object Main: TMain
   object IBSPR_UL: TIBDataSet
     Database = DataM.IBDatabase1
     Transaction = IBTransaction1
+    OnPostError = IBSPR_ULPostError
     BufferChunks = 1000
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2898,6 +2907,7 @@ object Main: TMain
   object IBSPR_VIDDOC: TIBDataSet
     Database = DataM.IBDatabase1
     Transaction = IBTransaction1
+    OnPostError = IBSPR_VIDDOCPostError
     BufferChunks = 1000
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -3025,7 +3035,6 @@ object Main: TMain
     Restrictions = []
     RTLLanguage = False
     MemoParentFont = False
-    OnGetTemplateList = frxDesigner1GetTemplateList
     Left = 448
     Top = 208
   end

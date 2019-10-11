@@ -40,6 +40,7 @@ uses MainForm;
 procedure TEditSprFrm.cxButton1Click(Sender: TObject);
 begin
 EditSprFrm.cxDBTextEdit1.DataBinding.DataSource.DataSet.post;
+main.IBTransaction1.CommitRetaining;
 close;
 end;
 
