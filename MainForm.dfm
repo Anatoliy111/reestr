@@ -23,7 +23,7 @@ object Main: TMain
     Left = 608
     Top = 56
     Bitmap = {
-      494C010105000900200110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010105000900280110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       00000000000000000000000000000000000000000000000000006473C1004254
       B300000000000000000000000000000000000000000000000000000000000000
@@ -1045,7 +1045,7 @@ object Main: TMain
   object ActionList1: TActionList
     Images = ImageList2
     Left = 576
-    Top = 112
+    Top = 80
     object WindowCascade1: TWindowCascade
       Category = 'Window'
       Caption = '&Cascade'
@@ -1077,9 +1077,9 @@ object Main: TMain
   end
   object ImageList2: TImageList
     Left = 608
-    Top = 112
+    Top = 88
     Bitmap = {
-      494C010112001400200110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010112001400280110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000005000000001002000000000000050
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1927,7 +1927,7 @@ object Main: TMain
     Left = 568
     Top = 176
     Bitmap = {
-      494C010107000900200110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107000900280110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000F5F3F500CFE0F40000000000000000000000
@@ -2199,6 +2199,7 @@ object Main: TMain
       000000000000}
   end
   object IBTransaction1: TIBTransaction
+    Active = True
     DefaultDatabase = DataM.IBDatabase1
     Params.Strings = (
       'read_committed'
@@ -2288,7 +2289,14 @@ object Main: TMain
       'where'
       '  ID = :ID')
     SelectSQL.Strings = (
-      'select * from REESTR order by PR_GOROD, PR_DOM, PR_KV')
+      'select REESTR.*,'
+      'case'
+      'when pr_zdata is not null then'
+      '1'
+      'else'
+      '0'
+      'end ch'
+      'from REESTR order by PR_GOROD, PR_DOM, PR_KV')
     ModifySQL.Strings = (
       'update REESTR'
       'set'
@@ -2327,6 +2335,7 @@ object Main: TMain
     UniDirectional = False
     GeneratorField.Field = 'ID'
     GeneratorField.Generator = 'GEN_REESTR_ID'
+    Active = True
     Left = 104
     Top = 304
     object IBREESTRID: TIntegerField
@@ -2466,6 +2475,10 @@ object Main: TMain
     object IBREESTRDOCDATA: TDateField
       FieldName = 'DOCDATA'
       Origin = '"REESTR"."DOCDATA"'
+    end
+    object IBREESTRCH: TIntegerField
+      FieldName = 'CH'
+      ProviderFlags = []
     end
   end
   object DSREESTR: TDataSource
@@ -3058,5 +3071,260 @@ object Main: TMain
     Datasets = <>
     Variables = <>
     Style = <>
+  end
+  object IBSIMJA: TIBDataSet
+    Database = DataM.IBDatabase1
+    Transaction = IBTransaction1
+    OnPostError = IBREESTRPostError
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from REESTR'
+      'where'
+      '  ID = :OLD_ID')
+    InsertSQL.Strings = (
+      'insert into REESTR'
+      
+        '  (ID, FAM, IM, OT, MN_DATA, MN_STRANA, MN_OBL, MN_RAION, MN_GOR' +
+        'OD, PR_STRANA, '
+      
+        '   PR_OBL, PR_RAION, PR_GOROD, PR_TIPUL, PR_UL, PR_DOM, PR_KORP,' +
+        ' PR_KV, '
+      
+        '   PR_RDATA, PR_ZDATA, GROMAD, EDDR, PRIBUV, VIBUV, DOCVID, DOCS' +
+        'ER, DOCNOM, '
+      '   DOCORG, DOCDATA)'
+      'values'
+      
+        '  (:ID, :FAM, :IM, :OT, :MN_DATA, :MN_STRANA, :MN_OBL, :MN_RAION' +
+        ', :MN_GOROD, '
+      
+        '   :PR_STRANA, :PR_OBL, :PR_RAION, :PR_GOROD, :PR_TIPUL, :PR_UL,' +
+        ' :PR_DOM, '
+      
+        '   :PR_KORP, :PR_KV, :PR_RDATA, :PR_ZDATA, :GROMAD, :EDDR, :PRIB' +
+        'UV, :VIBUV, '
+      '   :DOCVID, :DOCSER, :DOCNOM, :DOCORG, :DOCDATA)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  ID,'
+      '  FAM,'
+      '  IM,'
+      '  OT,'
+      '  MN_DATA,'
+      '  MN_STRANA,'
+      '  MN_OBL,'
+      '  MN_RAION,'
+      '  MN_GOROD,'
+      '  PR_STRANA,'
+      '  PR_OBL,'
+      '  PR_RAION,'
+      '  PR_GOROD,'
+      '  PR_TIPUL,'
+      '  PR_UL,'
+      '  PR_DOM,'
+      '  PR_KORP,'
+      '  PR_KV,'
+      '  PR_RDATA,'
+      '  PR_ZDATA,'
+      '  GROMAD,'
+      '  EDDR,'
+      '  PRIBUV,'
+      '  VIBUV,'
+      '  DOCVID,'
+      '  DOCSER,'
+      '  DOCNOM,'
+      '  DOCORG,'
+      '  DOCDATA'
+      'from REESTR '
+      'where'
+      '  ID = :ID')
+    SelectSQL.Strings = (
+      'select * from REESTR where PR_GOROD='#39#1084'.'#1044#1086#1083#1080#1085#1089#1100#1082#1072#39)
+    ModifySQL.Strings = (
+      'update REESTR'
+      'set'
+      '  ID = :ID,'
+      '  FAM = :FAM,'
+      '  IM = :IM,'
+      '  OT = :OT,'
+      '  MN_DATA = :MN_DATA,'
+      '  MN_STRANA = :MN_STRANA,'
+      '  MN_OBL = :MN_OBL,'
+      '  MN_RAION = :MN_RAION,'
+      '  MN_GOROD = :MN_GOROD,'
+      '  PR_STRANA = :PR_STRANA,'
+      '  PR_OBL = :PR_OBL,'
+      '  PR_RAION = :PR_RAION,'
+      '  PR_GOROD = :PR_GOROD,'
+      '  PR_TIPUL = :PR_TIPUL,'
+      '  PR_UL = :PR_UL,'
+      '  PR_DOM = :PR_DOM,'
+      '  PR_KORP = :PR_KORP,'
+      '  PR_KV = :PR_KV,'
+      '  PR_RDATA = :PR_RDATA,'
+      '  PR_ZDATA = :PR_ZDATA,'
+      '  GROMAD = :GROMAD,'
+      '  EDDR = :EDDR,'
+      '  PRIBUV = :PRIBUV,'
+      '  VIBUV = :VIBUV,'
+      '  DOCVID = :DOCVID,'
+      '  DOCSER = :DOCSER,'
+      '  DOCNOM = :DOCNOM,'
+      '  DOCORG = :DOCORG,'
+      '  DOCDATA = :DOCDATA'
+      'where'
+      '  ID = :OLD_ID')
+    ParamCheck = True
+    UniDirectional = False
+    GeneratorField.Field = 'ID'
+    GeneratorField.Generator = 'GEN_REESTR_ID'
+    Active = True
+    Left = 152
+    Top = 232
+    object IBSIMJAID: TIntegerField
+      FieldName = 'ID'
+      Origin = '"REESTR"."ID"'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object IBSIMJAFAM: TIBStringField
+      FieldName = 'FAM'
+      Origin = '"REESTR"."FAM"'
+      Size = 100
+    end
+    object IBSIMJAIM: TIBStringField
+      FieldName = 'IM'
+      Origin = '"REESTR"."IM"'
+      Size = 100
+    end
+    object IBSIMJAOT: TIBStringField
+      FieldName = 'OT'
+      Origin = '"REESTR"."OT"'
+      Size = 100
+    end
+    object IBSIMJAMN_DATA: TDateField
+      FieldName = 'MN_DATA'
+      Origin = '"REESTR"."MN_DATA"'
+    end
+    object IBSIMJAMN_STRANA: TIBStringField
+      FieldName = 'MN_STRANA'
+      Origin = '"REESTR"."MN_STRANA"'
+      Size = 100
+    end
+    object IBSIMJAMN_OBL: TIBStringField
+      FieldName = 'MN_OBL'
+      Origin = '"REESTR"."MN_OBL"'
+      Size = 150
+    end
+    object IBSIMJAMN_RAION: TIBStringField
+      FieldName = 'MN_RAION'
+      Origin = '"REESTR"."MN_RAION"'
+      Size = 150
+    end
+    object IBSIMJAMN_GOROD: TIBStringField
+      FieldName = 'MN_GOROD'
+      Origin = '"REESTR"."MN_GOROD"'
+      Size = 150
+    end
+    object IBSIMJAPR_STRANA: TIBStringField
+      FieldName = 'PR_STRANA'
+      Origin = '"REESTR"."PR_STRANA"'
+      Size = 100
+    end
+    object IBSIMJAPR_OBL: TIBStringField
+      FieldName = 'PR_OBL'
+      Origin = '"REESTR"."PR_OBL"'
+      Size = 150
+    end
+    object IBSIMJAPR_RAION: TIBStringField
+      FieldName = 'PR_RAION'
+      Origin = '"REESTR"."PR_RAION"'
+      Size = 150
+    end
+    object IBSIMJAPR_GOROD: TIBStringField
+      FieldName = 'PR_GOROD'
+      Origin = '"REESTR"."PR_GOROD"'
+      Size = 150
+    end
+    object IBSIMJAPR_TIPUL: TIBStringField
+      FieldName = 'PR_TIPUL'
+      Origin = '"REESTR"."PR_TIPUL"'
+    end
+    object IBSIMJAPR_UL: TIBStringField
+      FieldName = 'PR_UL'
+      Origin = '"REESTR"."PR_UL"'
+      Size = 100
+    end
+    object IBSIMJAPR_DOM: TIBStringField
+      FieldName = 'PR_DOM'
+      Origin = '"REESTR"."PR_DOM"'
+      Size = 10
+    end
+    object IBSIMJAPR_KORP: TIBStringField
+      FieldName = 'PR_KORP'
+      Origin = '"REESTR"."PR_KORP"'
+      Size = 10
+    end
+    object IBSIMJAPR_KV: TIBStringField
+      FieldName = 'PR_KV'
+      Origin = '"REESTR"."PR_KV"'
+      Size = 10
+    end
+    object IBSIMJAPR_RDATA: TDateField
+      FieldName = 'PR_RDATA'
+      Origin = '"REESTR"."PR_RDATA"'
+    end
+    object IBSIMJAPR_ZDATA: TDateField
+      FieldName = 'PR_ZDATA'
+      Origin = '"REESTR"."PR_ZDATA"'
+    end
+    object IBSIMJAGROMAD: TIBStringField
+      FieldName = 'GROMAD'
+      Origin = '"REESTR"."GROMAD"'
+      Size = 50
+    end
+    object IBSIMJAEDDR: TIBStringField
+      FieldName = 'EDDR'
+      Origin = '"REESTR"."EDDR"'
+      Size = 15
+    end
+    object IBSIMJAPRIBUV: TIBStringField
+      FieldName = 'PRIBUV'
+      Origin = '"REESTR"."PRIBUV"'
+      Size = 200
+    end
+    object IBSIMJAVIBUV: TIBStringField
+      FieldName = 'VIBUV'
+      Origin = '"REESTR"."VIBUV"'
+      Size = 200
+    end
+    object IBSIMJADOCVID: TIBStringField
+      FieldName = 'DOCVID'
+      Origin = '"REESTR"."DOCVID"'
+    end
+    object IBSIMJADOCSER: TIBStringField
+      FieldName = 'DOCSER'
+      Origin = '"REESTR"."DOCSER"'
+      Size = 10
+    end
+    object IBSIMJADOCNOM: TIBStringField
+      FieldName = 'DOCNOM'
+      Origin = '"REESTR"."DOCNOM"'
+    end
+    object IBSIMJADOCORG: TIBStringField
+      FieldName = 'DOCORG'
+      Origin = '"REESTR"."DOCORG"'
+      Size = 200
+    end
+    object IBSIMJADOCDATA: TDateField
+      FieldName = 'DOCDATA'
+      Origin = '"REESTR"."DOCDATA"'
+    end
+  end
+  object DSSIMJA: TDataSource
+    DataSet = IBSIMJA
+    Left = 208
+    Top = 232
   end
 end

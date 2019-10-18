@@ -12,7 +12,10 @@ uses
   cxTextEdit, cxContainer, cxLabel, cxGroupBox, Vcl.ButtonGroup, Vcl.Buttons,
   Vcl.ComCtrls, Vcl.ToolWin, dxNavBar, cxMaskEdit, cxDropDownEdit, frxDesgn,
   frxClass, frxDBSet,dxBar, cxMemo, frxExportRTF, frxExportXLS, frxExportPDF,
-  cxCustomPivotGrid, cxDBPivotGrid;
+  cxCustomPivotGrid, cxCheckBox,
+  dxmdaset,
+  Spin,
+  cxGridDBDataDefinitions;
 
 type
   TFrmReestr = class(TAllMdiForm)
@@ -78,12 +81,12 @@ type
     cxMemo1: TcxMemo;
     frxXLSExport1: TfrxXLSExport;
     frxRTFExport1: TfrxRTFExport;
+    frxDBDataset2: TfrxDBDataset;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure cxGrid1DBTableView1FocusedRecordChanged(
       Sender: TcxCustomGridTableView; APrevFocusedRecord,
       AFocusedRecord: TcxCustomGridRecord;
       ANewItemRecordFocusingChanged: Boolean);
-    procedure cxTextEdit1PropertiesChange(Sender: TObject);
     procedure cxTextEdit2PropertiesChange(Sender: TObject);
     procedure cxTextEdit3PropertiesChange(Sender: TObject);
     procedure N11Click(Sender: TObject);
@@ -93,9 +96,25 @@ type
     procedure cxButton8Click(Sender: TObject);
     procedure cxButton5Click(Sender: TObject);
     procedure cxButton7Click(Sender: TObject);
+    procedure cxGrid1DBTableView1CustomDrawCell(Sender: TcxCustomGridTableView;
+      ACanvas: TcxCanvas; AViewInfo: TcxGridTableDataCellViewInfo;
+      var ADone: Boolean);
+    procedure N41Click(Sender: TObject);
+    procedure N21Click(Sender: TObject);
+    procedure cxTextEdit1PropertiesChange(Sender: TObject);
+    procedure cxTextEdit1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure cxTextEdit2KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure cxTextEdit3KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure cxTextEdit4KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure N31Click(Sender: TObject);
   private
     { Private declarations }
-    procedure Filter;
+    procedure AddFilter(column:TcxGridDBColumn;text:string);
+    procedure DelFilter(col:TcxGridDBColumn;s:string);
   public
     { Public declarations }
     BarBut:TdxBarButton;
@@ -103,6 +122,8 @@ type
 
 var
   FrmReestr: TFrmReestr;
+  Filt1,Filt2,Filt3,Filt4:integer;
+//  column:TcxGridDBColumn;
 
 
 
@@ -262,6 +283,16 @@ begin
 //main.IBREESTR.Append;
 end;
 
+procedure TFrmReestr.cxGrid1DBTableView1CustomDrawCell(
+  Sender: TcxCustomGridTableView; ACanvas: TcxCanvas;
+  AViewInfo: TcxGridTableDataCellViewInfo; var ADone: Boolean);
+begin
+  inherited;
+
+//     if not (AViewInfo.GridRecord.Values[cxGrid1DBTableView1PR_ZDATA.Index] = null) then
+//    ACanvas.Brush.Color := clPurple;
+end;
+
 procedure TFrmReestr.cxGrid1DBTableView1FocusedRecordChanged(
   Sender: TcxCustomGridTableView; APrevFocusedRecord,
   AFocusedRecord: TcxCustomGridRecord; ANewItemRecordFocusingChanged: Boolean);
@@ -342,61 +373,163 @@ frxReport1.Variables['user']:=''''+Main.cxBarEditItem4.Caption+'''';
 frxReport1.ShowReport;
 end;
 
+procedure TFrmReestr.N21Click(Sender: TObject);
+
+begin
+  inherited;
+   frxReport1.LoadFromFile('report/PovidomZMP.fr3');
+frxReport1.Variables['user']:=''''+Main.cxBarEditItem4.Caption+'''';
+frxReport1.ShowReport;
+end;
+
+procedure TFrmReestr.N31Click(Sender: TObject);
+var Rollback:boolean;
+begin
+  inherited;
+  Rollback:=false;
+main.IBSIMJA.Close;
+
+//main.IBSIMJA.SelectSQL.Text:='select * from REESTR';
+//main.IBSIMJA.SelectSQL.Text:='select * from REESTR where PR_GOROD=:gorod';
+main.IBSIMJA.SelectSQL.Text:='select * from REESTR where PR_GOROD='''+main.IBREESTRPR_GOROD.Value+'''';
+main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_TIPUL='''+main.IBREESTRPR_TIPUL.Value+'''';
+main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_UL='''+main.IBREESTRPR_UL.Value+'''';
+main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_DOM='''+main.IBREESTRPR_DOM.Value+'''';
+main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_ZDATA is null';
+if (Length(main.IBREESTRPR_KV.Value)<>0) then
+main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_KV='''+main.IBREESTRPR_DOM.Value+'''';
+
+main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and ID<>'+IntToStr(main.IBREESTRID.Value);
+main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' order by MN_DATA';
+
+//main.IBSIMJA.ParamByName('id').Value:=main.IBREESTRID.Value;
+//main.IBSIMJA.ParamByName('gorod').Value:=main.IBREESTRPR_GOROD.Value;
+//main.IBSIMJA.ParamByName('tipul').Value:=main.IBREESTRPR_TIPUL.Value;
+//main.IBSIMJA.ParamByName('ul').Value:=main.IBREESTRPR_UL.Value;
+//main.IBSIMJA.ParamByName('dom').Value:=main.IBREESTRPR_DOM.Value;
+
+main.IBSIMJA.Open;
+main.IBSIMJA.RecordCount;
+
+frxReport1.LoadFromFile('report/DovidkaVilna.fr3');
+
+if main.IBSIMJA.IsEmpty then
+      with TfrxMasterData(frxReport1.FindObject('MasterData1')) do
+      begin
+        DataSet := nil;
+        RowCount := 1;
+      end;
+
+
+frxReport1.Variables['user']:=''''+Main.cxBarEditItem4.Caption+'''';
+frxReport1.ShowReport;
+
+
+end;
+
+procedure TFrmReestr.N41Click(Sender: TObject);
+begin
+  inherited;
+   frxReport1.LoadFromFile('report/DovidkaZMP.fr3');
+frxReport1.Variables['user']:=''''+Main.cxBarEditItem4.Caption+'''';
+frxReport1.ShowReport;
+end;
+
+procedure TFrmReestr.cxTextEdit1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  DelFilter(cxGrid1DBTableView1FAM,cxTextEdit1.Text);
+end;
+
 procedure TFrmReestr.cxTextEdit1PropertiesChange(Sender: TObject);
 begin
   inherited;
-Filter;
+AddFilter(cxGrid1DBTableView1FAM,cxTextEdit1.Text);
+end;
+
+procedure TFrmReestr.cxTextEdit2KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+ DelFilter(cxGrid1DBTableView1PR_GOROD,cxTextEdit2.Text);
 end;
 
 procedure TFrmReestr.cxTextEdit2PropertiesChange(Sender: TObject);
 begin
   inherited;
-Filter;
+AddFilter(cxGrid1DBTableView1PR_GOROD,cxTextEdit2.Text);;
+end;
+
+procedure TFrmReestr.cxTextEdit3KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+ DelFilter(cxGrid1DBTableView1PR_UL,cxTextEdit3.Text);
 end;
 
 procedure TFrmReestr.cxTextEdit3PropertiesChange(Sender: TObject);
 begin
   inherited;
-Filter;
+AddFilter(cxGrid1DBTableView1PR_UL,cxTextEdit3.Text);;
+end;
+
+procedure TFrmReestr.cxTextEdit4KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+DelFilter(cxGrid1DBTableView1PR_DOM,cxTextEdit4.Text);
 end;
 
 procedure TFrmReestr.cxTextEdit4PropertiesChange(Sender: TObject);
 begin
   inherited;
-Filter;
+AddFilter(cxGrid1DBTableView1PR_DOM,cxTextEdit4.Text);;
 end;
 
-procedure TFrmReestr.Filter;
+procedure TFrmReestr.DelFilter(col:TcxGridDBColumn;s:string);
+var I:integer;
 begin
 
-  if (cxTextEdit1.Text<>'') or (cxTextEdit2.Text<>'') or (cxTextEdit3.Text<>'') or (cxTextEdit4.Text<>'') then
+with cxGrid1DBTableView1.DataController do
+  begin
+    try
+      Filter.BeginUpdate;
+//      cxGrid1DBTableView1.DataController.Filter.Root.AddItem(cxGrid1DBTableView1FAM, foLike, '%'+cxTextEdit1.Text+'%', cxTextEdit1.Text);
+      for I := Filter.Root.Count - 1 downto 0 do
+        if (not Filter.Root.Items[I].IsItemList) and
+        ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).Value = '%'+s+'%') and
+        ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).ItemLink = col) then
+          Filter.Root.Items[I].free;
+    finally
+      Filter.EndUpdate;
+    end;
+  end;
+  cxGrid1DBTableView1.DataController.Filter.Active := true;
+
+
+
+end;
+
+procedure TFrmReestr.AddFilter(column:TcxGridDBColumn;text:string);
+var    I:integer;
+begin
+
+  cxGrid1DBTableView1.DataController.Filter.Active := true;
+
+  if (Text<>'') then
   begin
         cxGrid1DBTableView1.DataController.Filter.BeginUpdate;
       try
-      cxGrid1DBTableView1.DataController.Filter.Root.Clear;
-      if (cxTextEdit1.Text<>'') then
-          cxGrid1DBTableView1.DataController.Filter.Root.AddItem(cxGrid1DBTableView1FAM, foLike, '%'+cxTextEdit1.Text+'%', cxTextEdit1.Text);
-      if (cxTextEdit2.Text<>'') then
-          cxGrid1DBTableView1.DataController.Filter.Root.AddItem(cxGrid1DBTableView1PR_GOROD, foLike, '%'+cxTextEdit2.Text+'%', cxTextEdit2.Text);
-      if (cxTextEdit3.Text<>'') then
-          cxGrid1DBTableView1.DataController.Filter.Root.AddItem(cxGrid1DBTableView1PR_UL, foLike, '%'+cxTextEdit3.Text+'%', cxTextEdit3.Text);
-      if (cxTextEdit4.Text<>'') then
-          cxGrid1DBTableView1.DataController.Filter.Root.AddItem(cxGrid1DBTableView1PR_DOM, foLike, '%'+cxTextEdit4.Text+'%', cxTextEdit4.Text);
-
+          cxGrid1DBTableView1.DataController.Filter.Root.AddItem(column, foLike, '%'+Text+'%', Text);
       finally
       cxGrid1DBTableView1.DataController.Filter.EndUpdate;
       end;
-      cxGrid1DBTableView1.DataController.Filter.Active := true;
+//      cxGrid1DBTableView1.DataController.Filter.Active := true;
+//
 
+  end;
 
-  end
-
-  else
-      if (cxTextEdit1.Text='') and (cxTextEdit2.Text='') and (cxTextEdit3.Text='') and (cxTextEdit4.Text='') then
-      begin
-        // cxGrid1DBTableView1.DataController.Filter.Root.Clear;
-         cxGrid1DBTableView1.DataController.Filter.Active := false;
-      end;
 end;
 
 end.

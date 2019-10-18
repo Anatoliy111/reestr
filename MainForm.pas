@@ -11,7 +11,10 @@ uses
   Data.DB, IBX.IBCustomDataSet, IBX.IBDatabase, cxRichEdit, cxTextEdit,
   cxHyperLinkEdit, dxRatingControl, dxSparkline, dxToggleSwitch,AllFrm,
   cxRadioGroup, cxTrackBar, dxRibbonGallery, IBX.IBQuery,
-  Data.Win.ADODB,cxStyles,Spr, frxDesgn, frxClass,ree;
+  Data.Win.ADODB,cxStyles,Spr, frxDesgn, frxClass,ree, cxLookAndFeels,
+  cxLookAndFeelPainters, cxCustomData, cxFilter, cxData, cxDataStorage,
+  cxNavigator, cxDBData, cxGridCustomTableView, cxGridTableView,
+  cxGridDBTableView, cxGridLevel, cxGridCustomView, cxGrid;
 
 type
   TMain = class(TForm)
@@ -181,6 +184,38 @@ type
     IBREESTRDOCNOM: TIBStringField;
     IBREESTRDOCORG: TIBStringField;
     IBREESTRDOCDATA: TDateField;
+    IBREESTRCH: TIntegerField;
+    IBSIMJA: TIBDataSet;
+    DSSIMJA: TDataSource;
+    IBSIMJAID: TIntegerField;
+    IBSIMJAFAM: TIBStringField;
+    IBSIMJAIM: TIBStringField;
+    IBSIMJAOT: TIBStringField;
+    IBSIMJAMN_DATA: TDateField;
+    IBSIMJAMN_STRANA: TIBStringField;
+    IBSIMJAMN_OBL: TIBStringField;
+    IBSIMJAMN_RAION: TIBStringField;
+    IBSIMJAMN_GOROD: TIBStringField;
+    IBSIMJAPR_STRANA: TIBStringField;
+    IBSIMJAPR_OBL: TIBStringField;
+    IBSIMJAPR_RAION: TIBStringField;
+    IBSIMJAPR_GOROD: TIBStringField;
+    IBSIMJAPR_TIPUL: TIBStringField;
+    IBSIMJAPR_UL: TIBStringField;
+    IBSIMJAPR_DOM: TIBStringField;
+    IBSIMJAPR_KORP: TIBStringField;
+    IBSIMJAPR_KV: TIBStringField;
+    IBSIMJAPR_RDATA: TDateField;
+    IBSIMJAPR_ZDATA: TDateField;
+    IBSIMJAGROMAD: TIBStringField;
+    IBSIMJAEDDR: TIBStringField;
+    IBSIMJAPRIBUV: TIBStringField;
+    IBSIMJAVIBUV: TIBStringField;
+    IBSIMJADOCVID: TIBStringField;
+    IBSIMJADOCSER: TIBStringField;
+    IBSIMJADOCNOM: TIBStringField;
+    IBSIMJADOCORG: TIBStringField;
+    IBSIMJADOCDATA: TDateField;
     procedure Button1Click(Sender: TObject);
     procedure dxBarButton34Click(Sender: TObject);
     procedure dxBarButton19Click(Sender: TObject);
