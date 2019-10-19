@@ -15,7 +15,7 @@ uses
   cxCustomPivotGrid, cxCheckBox,
   dxmdaset,
   Spin,
-  cxGridDBDataDefinitions;
+  cxGridDBDataDefinitions, cxRadioGroup;
 
 type
   TFrmReestr = class(TAllMdiForm)
@@ -82,6 +82,9 @@ type
     frxXLSExport1: TfrxXLSExport;
     frxRTFExport1: TfrxRTFExport;
     frxDBDataset2: TfrxDBDataset;
+    cxRadioButton1: TcxRadioButton;
+    cxRadioButton2: TcxRadioButton;
+    cxRadioButton3: TcxRadioButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure cxGrid1DBTableView1FocusedRecordChanged(
       Sender: TcxCustomGridTableView; APrevFocusedRecord,
@@ -111,6 +114,10 @@ type
     procedure cxTextEdit4KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure N31Click(Sender: TObject);
+    procedure cxRadioButton1Click(Sender: TObject);
+    procedure cxRadioButton2Click(Sender: TObject);
+    procedure cxRadioButton3Click(Sender: TObject);
+    procedure cxButton6Click(Sender: TObject);
   private
     { Private declarations }
     procedure AddFilter(column:TcxGridDBColumn;text:string);
@@ -209,6 +216,12 @@ begin
 
 end;
 
+procedure TFrmReestr.cxButton6Click(Sender: TObject);
+begin
+  inherited;
+Main.ExportGrid(cxGrid1,self.Caption);
+end;
+
 procedure TFrmReestr.cxButton7Click(Sender: TObject);
 var rec:integer;
     Bookmark: TBookmark;
@@ -289,8 +302,8 @@ procedure TFrmReestr.cxGrid1DBTableView1CustomDrawCell(
 begin
   inherited;
 
-//     if not (AViewInfo.GridRecord.Values[cxGrid1DBTableView1PR_ZDATA.Index] = null) then
-//    ACanvas.Brush.Color := clPurple;
+     if not (AViewInfo.GridRecord.Values[cxGrid1DBTableView1PR_ZDATA.Index] = null) then
+    ACanvas.Brush.Color := clScrollBar;
 end;
 
 procedure TFrmReestr.cxGrid1DBTableView1FocusedRecordChanged(
@@ -325,6 +338,50 @@ IfThen(Main.IBREESTRPR_RDATA.IsNull,'',' Дата реестрації: '+DateToStr(Main.IBREE
 IfThen(Main.IBREESTRPR_ZDATA.IsNull,'',' Дата зняття з реестрації: '+DateToStr(Main.IBREESTRPR_ZDATA.Value))+
 IfThen(Main.IBREESTRPRIBUV.IsNull,'',' Прибув: '+Main.IBREESTRPRIBUV.Value)+
 IfThen(Main.IBREESTRVIBUV.IsNull,'',' Вибув: '+Main.IBREESTRVIBUV.Value);
+
+end;
+
+procedure TFrmReestr.cxRadioButton1Click(Sender: TObject);
+var rec:integer;
+begin
+  inherited;
+  rec:= main.IBREESTRID.Value;
+
+    main.IBREESTR.SelectSQL.Text:='select * from REESTR order by pr_gorod,pr_tipul,pr_ul,pr_dom,pr_kv';
+    main.IBREESTR.Close;
+    main.IBREESTR.Open;
+
+
+  main.IBREESTR.Locate('ID',rec,[]);
+
+end;
+
+procedure TFrmReestr.cxRadioButton2Click(Sender: TObject);
+var rec:integer;
+begin
+  inherited;
+  rec:= main.IBREESTRID.Value;
+
+    main.IBREESTR.SelectSQL.Text:='select * from REESTR where pr_zdata is null order by pr_gorod,pr_tipul,pr_ul,pr_dom,pr_kv';
+    main.IBREESTR.Close;
+    main.IBREESTR.Open;
+
+
+  main.IBREESTR.Locate('ID',rec,[]);
+
+end;
+
+procedure TFrmReestr.cxRadioButton3Click(Sender: TObject);
+var rec:integer;
+begin
+  inherited;
+  rec:= main.IBREESTRID.Value;
+    main.IBREESTR.SelectSQL.Text:='select * from REESTR where pr_zdata is not null order by pr_gorod,pr_tipul,pr_ul,pr_dom,pr_kv';
+    main.IBREESTR.Close;
+    main.IBREESTR.Open;
+
+
+  main.IBREESTR.Locate('ID',rec,[]);
 
 end;
 
@@ -384,6 +441,7 @@ end;
 
 procedure TFrmReestr.N31Click(Sender: TObject);
 var Rollback:boolean;
+    row:integer;
 begin
   inherited;
   Rollback:=false;
@@ -409,6 +467,7 @@ main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' order by MN_DATA';
 //main.IBSIMJA.ParamByName('dom').Value:=main.IBREESTRPR_DOM.Value;
 
 main.IBSIMJA.Open;
+main.IBSIMJA.Last;
 main.IBSIMJA.RecordCount;
 
 frxReport1.LoadFromFile('report/DovidkaVilna.fr3');
@@ -417,8 +476,22 @@ if main.IBSIMJA.IsEmpty then
       with TfrxMasterData(frxReport1.FindObject('MasterData1')) do
       begin
         DataSet := nil;
-        RowCount := 1;
+        RowCount := 8;
+      end
+else
+  if main.IBSIMJA.RecordCount<8 then
+  begin
+    row:=8-main.IBSIMJA.RecordCount;
+    with TfrxMasterData(frxReport1.FindObject('MasterData2')) do
+      begin
+        DataSet := nil;
+        RowCount := row;
       end;
+  end;
+
+
+
+
 
 
 frxReport1.Variables['user']:=''''+Main.cxBarEditItem4.Caption+'''';
@@ -497,10 +570,17 @@ with cxGrid1DBTableView1.DataController do
       Filter.BeginUpdate;
 //      cxGrid1DBTableView1.DataController.Filter.Root.AddItem(cxGrid1DBTableView1FAM, foLike, '%'+cxTextEdit1.Text+'%', cxTextEdit1.Text);
       for I := Filter.Root.Count - 1 downto 0 do
-        if (not Filter.Root.Items[I].IsItemList) and
-        ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).Value = '%'+s+'%') and
-        ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).ItemLink = col) then
-          Filter.Root.Items[I].free;
+        if (not Filter.Root.Items[I].IsItemList) then
+        begin
+          if ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).Value = s) and
+             ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).ItemLink = cxGrid1DBTableView1PR_DOM) then
+              Filter.Root.Items[I].free
+          else
+             if ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).Value = '%'+s+'%') and
+                ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).ItemLink = col) then
+                Filter.Root.Items[I].free
+
+        end;
     finally
       Filter.EndUpdate;
     end;
@@ -521,7 +601,10 @@ begin
   begin
         cxGrid1DBTableView1.DataController.Filter.BeginUpdate;
       try
-          cxGrid1DBTableView1.DataController.Filter.Root.AddItem(column, foLike, '%'+Text+'%', Text);
+          if column=cxGrid1DBTableView1PR_DOM then
+             cxGrid1DBTableView1.DataController.Filter.Root.AddItem(column, foEqual, Text, Text)
+          else
+             cxGrid1DBTableView1.DataController.Filter.Root.AddItem(column, foLike, '%'+Text+'%', Text);
       finally
       cxGrid1DBTableView1.DataController.Filter.EndUpdate;
       end;

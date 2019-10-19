@@ -23,7 +23,7 @@ object Main: TMain
     Left = 608
     Top = 56
     Bitmap = {
-      494C010105000900280110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010105000900300110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       00000000000000000000000000000000000000000000000000006473C1004254
       B300000000000000000000000000000000000000000000000000000000000000
@@ -483,17 +483,13 @@ object Main: TMain
       ItemLinks = <>
     end
     object dxBarSubItem6: TdxBarSubItem
-      Caption = #1057#1077#1088#1074#1080#1089
+      Caption = #1057#1077#1088#1074#1110#1089
       Category = 0
       Visible = ivAlways
       ItemLinks = <
         item
           Visible = True
           ItemName = 'dxBarButton28'
-        end
-        item
-          Visible = True
-          ItemName = 'dxBarButton31'
         end
         item
           Visible = True
@@ -572,16 +568,16 @@ object Main: TMain
       ItemLinks = <>
     end
     object dxBarButton28: TdxBarButton
-      Caption = #1044#1080#1079#1072#1081#1085#1077#1088' '#1086#1090#1095#1077#1090#1086#1074
+      Caption = #1044#1080#1079#1072#1081#1085#1077#1088' '#1079#1074#1110#1090#1110#1074
       Category = 0
-      Hint = #1044#1080#1079#1072#1081#1085#1077#1088' '#1086#1090#1095#1077#1090#1086#1074
+      Hint = #1044#1080#1079#1072#1081#1085#1077#1088' '#1079#1074#1110#1090#1110#1074
       Visible = ivAlways
       OnClick = dxBarButton28Click
     end
     object dxBarButton31: TdxBarButton
-      Caption = #1055#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1080
+      Caption = #1050#1086#1088#1080#1089#1090#1091#1074#1072
       Category = 0
-      Hint = #1055#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1080
+      Hint = #1050#1086#1088#1080#1089#1090#1091#1074#1072
       Visible = ivNever
     end
     object dxBarButton32: TdxBarButton
@@ -599,14 +595,14 @@ object Main: TMain
       ImageIndex = 3
     end
     object dxBarButton34: TdxBarButton
-      Caption = #1054' '#1087#1088#1086#1075#1088#1072#1084#1084#1077
+      Caption = #1055#1088#1086' '#1087#1088#1086#1075#1088#1072#1084#1091
       Category = 0
-      Hint = #1054' '#1087#1088#1086#1075#1088#1072#1084#1084#1077
+      Hint = #1055#1088#1086' '#1087#1088#1086#1075#1088#1072#1084#1091
       Visible = ivAlways
       OnClick = dxBarButton34Click
     end
     object dxBarSubItem15: TdxBarSubItem
-      Caption = #1054#1082#1085#1072
+      Caption = #1042#1110#1082#1085#1072
       Category = 0
       Visible = ivAlways
       ItemLinks = <
@@ -1079,7 +1075,7 @@ object Main: TMain
     Left = 608
     Top = 88
     Bitmap = {
-      494C010112001400280110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010112001400300110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000005000000001002000000000000050
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1927,7 +1923,7 @@ object Main: TMain
     Left = 568
     Top = 176
     Bitmap = {
-      494C010107000900280110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107000900300110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000F5F3F500CFE0F40000000000000000000000
@@ -2289,14 +2285,9 @@ object Main: TMain
       'where'
       '  ID = :ID')
     SelectSQL.Strings = (
-      'select REESTR.*,'
-      'case'
-      'when pr_zdata is not null then'
-      '1'
-      'else'
-      '0'
-      'end ch'
-      'from REESTR order by PR_GOROD, PR_DOM, PR_KV')
+      
+        'select * from REESTR order by pr_gorod,pr_tipul,pr_ul,pr_dom,pr_' +
+        'kv')
     ModifySQL.Strings = (
       'update REESTR'
       'set'
@@ -2335,7 +2326,6 @@ object Main: TMain
     UniDirectional = False
     GeneratorField.Field = 'ID'
     GeneratorField.Generator = 'GEN_REESTR_ID'
-    Active = True
     Left = 104
     Top = 304
     object IBREESTRID: TIntegerField
@@ -2475,10 +2465,6 @@ object Main: TMain
     object IBREESTRDOCDATA: TDateField
       FieldName = 'DOCDATA'
       Origin = '"REESTR"."DOCDATA"'
-    end
-    object IBREESTRCH: TIntegerField
-      FieldName = 'CH'
-      ProviderFlags = []
     end
   end
   object DSREESTR: TDataSource

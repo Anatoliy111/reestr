@@ -27,6 +27,7 @@ type
       ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
       AShift: TShiftState; var AHandled: Boolean);
     procedure cxButton7Click(Sender: TObject);
+    procedure cxButton6Click(Sender: TObject);
   private
     { Private declarations }
     procedure ExportValue;
@@ -83,6 +84,12 @@ end;
 
 
 
+end;
+
+procedure TFrmSpr.cxButton6Click(Sender: TObject);
+begin
+  inherited;
+Main.ExportGrid(cxGrid1,self.Caption);
 end;
 
 procedure TFrmSpr.cxButton7Click(Sender: TObject);

@@ -27,6 +27,7 @@ inherited FrmSpr: TFrmSpr
     ExplicitHeight = 39
     inherited cxButton6: TcxButton
       Height = 37
+      OnClick = cxButton6Click
       ExplicitLeft = 261
       ExplicitHeight = 37
     end

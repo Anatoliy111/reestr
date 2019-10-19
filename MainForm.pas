@@ -184,7 +184,6 @@ type
     IBREESTRDOCNOM: TIBStringField;
     IBREESTRDOCORG: TIBStringField;
     IBREESTRDOCDATA: TDateField;
-    IBREESTRCH: TIntegerField;
     IBSIMJA: TIBDataSet;
     DSSIMJA: TDataSource;
     IBSIMJAID: TIntegerField;
@@ -267,6 +266,7 @@ type
        { Public declarations }
     Period:TDate;
     procedure AddToolbar(frm:TForm);
+    procedure ExportGrid(AGrid: TcxGrid;Filename:string);
 
   end;
 
@@ -302,9 +302,96 @@ var
  // TB:TToolButton;
 implementation
 
-uses Aboutt, DataMod, mytools, Progress, UITypes, Setting, Zastavka;
+uses Aboutt, DataMod, mytools, Progress, UITypes, Setting, comobj, registry, cxGridExportLink, Zastavka;
 
 {$R *.dfm}
+
+procedure TMain.ExportGrid(AGrid: TcxGrid;Filename:string);
+var
+  sd:TSaveDialog;
+  Excel: Variant;
+  Reg: TRegistry;
+  path,fdata:string;
+  i:integer;
+begin
+  Reg := TRegistry.Create;
+  try
+    Reg.RootKey := HKEY_CURRENT_USER;
+    if not Reg.OpenKey('\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders' , False) then
+      //ShowMessage('Error in opening key')
+      path := '.\'
+    else
+    begin
+      path := Reg.Readstring('Personal')+'\'
+    end;
+  finally
+    Reg.Free;
+  end;
+
+  sd:=TSaveDialog.Create(application);
+  try
+    if FileName<>'' then
+    begin
+      DateTimeToString(fdata,'mmddhhmm',now);
+//      DateTimeToString(Filename,'dd mm yyyy',now);
+//        DateTimeToString(Filename,'mm yyyy',cxLookupComboBox1.EditValue);
+      Filename:=Filename+' ('+fdata+').xls'
+    end;
+    sd.FileName := path + Filename;
+    sd.Filter := 'Excel files (*.xls)|*.XLS';
+    if not sd.Execute then exit;
+    filename:=sd.FileName;
+  finally
+    sd.Free;
+  end;
+
+  ExportGridToExcel(filename, AGrid,false,true,true);
+
+  try
+    Excel := CreateOLEObject('Excel.Application');
+    Excel.Visible := True;
+
+    Excel.WorkBooks.Open(FileName);
+    Excel.ActiveWindow.DisplayGridlines := True;
+
+    Excel.columns.NumberFormat:='0,00';
+
+//    for i:=9 to Excel.columns.count-4 do
+//    begin
+//       Excel.columns[i].NumberFormat:='0,00';
+//    end;
+
+//    Excel.columns[9].NumberFormat:='0,00';
+//    Excel.columns[10].NumberFormat:='0,00';
+//    Excel.columns[11].NumberFormat:='0,00';
+//    Excel.columns[12].NumberFormat:='0,00';
+//    Excel.columns[13].NumberFormat:='0,00';
+//    Excel.columns[14].NumberFormat:='0,00';
+//    Excel.columns[15].NumberFormat:='0,00';
+//    Excel.columns[16].NumberFormat:='0,00';
+//    Excel.columns[17].NumberFormat:='0,00';
+//    Excel.columns[18].NumberFormat:='0,00';
+//    Excel.columns[19].NumberFormat:='0,00';
+//    Excel.columns[20].NumberFormat:='0,00';
+//    Excel.columns[21].NumberFormat:='0,00';
+//    Excel.columns[22].NumberFormat:='0,00';
+//    Excel.columns[23].NumberFormat:='0,00';
+//    Excel.columns[24].NumberFormat:='0,00';
+//    Excel.columns[25].NumberFormat:='0,00';
+
+    Excel.ActiveWindow.View := 2;
+    if Excel.ActiveSheet.VPageBreaks.count <> 0 then
+       Excel.ActiveSheet.VPageBreaks[1].DragOff(Direction:=1, RegionIndex:=1);
+    if Excel.ActiveSheet.HPageBreaks.count <> 0 then
+       Excel.ActiveSheet.HPageBreaks[1].DragOff(Direction:=1, RegionIndex:=1);
+    Excel.ActiveWindow.View := 1;
+
+  except
+  end;
+end;
+
+
+
 
 procedure TMain.ClickBarButton;
 var Button:TdxBarButton;

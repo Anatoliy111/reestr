@@ -4,6 +4,7 @@ object DataM: TDataM
   Height = 341
   Width = 645
   object IBDatabase1: TIBDatabase
+    Connected = True
     DatabaseName = 'D:\WORK\KOMUN\reestr\REESTR.GDB'
     Params.Strings = (
       'user_name=sysdba'

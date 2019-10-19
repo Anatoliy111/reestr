@@ -13,6 +13,7 @@ object Start: TStart
   OldCreateOrder = False
   Position = poDesktopCenter
   OnClose = FormClose
+  OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -33,7 +34,7 @@ object Start: TStart
   object cxLookupComboBox1: TcxLookupComboBox
     Left = 104
     Top = 48
-    Properties.KeyFieldNames = 'ID'
+    Properties.KeyFieldNames = 'NAME'
     Properties.ListColumns = <
       item
         FieldName = 'NAME'

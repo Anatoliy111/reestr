@@ -1,7 +1,7 @@
 object About: TAbout
   Left = 0
   Top = 0
-  Caption = #1054' '#1087#1088#1086#1075#1088#1072#1084#1084#1077
+  Caption = #1055#1088#1086' '#1087#1088#1086#1075#1088#1072#1084#1091
   ClientHeight = 417
   ClientWidth = 497
   Color = clBtnFace
@@ -24,7 +24,7 @@ object About: TAbout
     OnClick = cxButton1Click
   end
   object cxLabel1: TcxLabel
-    Left = 72
+    Left = 144
     Top = 96
     Caption = #1056#1077#1108#1089#1090#1088#1072#1090#1086#1088
     ParentFont = False
