@@ -753,7 +753,7 @@ inherited FrmReestr: TFrmReestr
       Caption = #1060#1110#1083#1100#1090#1088#1080
       TabOrder = 1
       Height = 42
-      Width = 647
+      Width = 732
       object cxTextEdit1: TcxTextEdit
         Left = 56
         Top = 16
@@ -799,17 +799,31 @@ inherited FrmReestr: TFrmReestr
         Caption = #1041#1091#1076#1080#1085#1086#1082
       end
       object cxTextEdit4: TcxTextEdit
-        Left = 589
-        Top = 16
+        Left = 591
+        Top = 18
         Properties.OnChange = cxTextEdit4PropertiesChange
         Style.Color = clWindow
         TabOrder = 7
         OnKeyDown = cxTextEdit4KeyDown
         Width = 50
       end
+      object cxLabel8: TcxLabel
+        Left = 650
+        Top = 17
+        Caption = #1050#1074'.'
+      end
+      object cxTextEdit5: TcxTextEdit
+        Left = 677
+        Top = 16
+        Properties.OnChange = cxTextEdit5PropertiesChange
+        Style.Color = clWindow
+        TabOrder = 9
+        OnKeyDown = cxTextEdit5KeyDown
+        Width = 49
+      end
     end
     object cxRadioButton1: TcxRadioButton
-      Left = 672
+      Left = 752
       Top = 66
       Width = 113
       Height = 17
@@ -820,7 +834,7 @@ inherited FrmReestr: TFrmReestr
       OnClick = cxRadioButton1Click
     end
     object cxRadioButton2: TcxRadioButton
-      Left = 712
+      Left = 792
       Top = 51
       Width = 129
       Height = 17
@@ -829,7 +843,7 @@ inherited FrmReestr: TFrmReestr
       OnClick = cxRadioButton2Click
     end
     object cxRadioButton3: TcxRadioButton
-      Left = 712
+      Left = 792
       Top = 74
       Width = 129
       Height = 17

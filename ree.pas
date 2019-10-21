@@ -86,6 +86,8 @@ type
     cxRadioButton2: TcxRadioButton;
     cxRadioButton3: TcxRadioButton;
     N1: TMenuItem;
+    cxLabel8: TcxLabel;
+    cxTextEdit5: TcxTextEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure cxGrid1DBTableView1FocusedRecordChanged(
       Sender: TcxCustomGridTableView; APrevFocusedRecord,
@@ -120,6 +122,9 @@ type
     procedure cxRadioButton3Click(Sender: TObject);
     procedure cxButton6Click(Sender: TObject);
     procedure N1Click(Sender: TObject);
+    procedure cxTextEdit5KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure cxTextEdit5PropertiesChange(Sender: TObject);
   private
     { Private declarations }
     procedure AddFilter(column:TcxGridDBColumn;text:string);
@@ -446,7 +451,7 @@ main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_UL='''+main.IB
 main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_DOM='''+main.IBREESTRPR_DOM.Value+'''';
 main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_ZDATA is null';
 if (Length(main.IBREESTRPR_KV.Value)<>0) then
-main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_KV='''+main.IBREESTRPR_DOM.Value+'''';
+main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_KV='''+main.IBREESTRPR_KV.Value+'''';
 
 main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and ID<>'+IntToStr(main.IBREESTRID.Value);
 main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' order by MN_DATA';
@@ -477,6 +482,15 @@ frxReport1.LoadFromFile('report/DovidkaSimja.fr3');
       begin
         DataSet := nil;
         RowCount := row;
+      end;
+  end
+  else
+  begin
+    with TfrxMasterData(frxReport1.FindObject('MasterData2')) do
+      begin
+        DataSet := nil;
+        RowCount := 1;
+        visible:= false;
       end;
   end;
 
@@ -515,7 +529,7 @@ main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_UL='''+main.IB
 main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_DOM='''+main.IBREESTRPR_DOM.Value+'''';
 main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_ZDATA is null';
 if (Length(main.IBREESTRPR_KV.Value)<>0) then
-main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_KV='''+main.IBREESTRPR_DOM.Value+'''';
+main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_KV='''+main.IBREESTRPR_KV.Value+'''';
 
 main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and ID<>'+IntToStr(main.IBREESTRID.Value);
 main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' order by MN_DATA';
@@ -546,6 +560,15 @@ frxReport1.LoadFromFile('report/DovidkaVilna.fr3');
       begin
         DataSet := nil;
         RowCount := row;
+      end;
+  end
+  else
+  begin
+    with TfrxMasterData(frxReport1.FindObject('MasterData2')) do
+      begin
+        DataSet := nil;
+        RowCount := 1;
+        visible:= false;
       end;
   end;
 
@@ -617,7 +640,20 @@ end;
 procedure TFrmReestr.cxTextEdit4PropertiesChange(Sender: TObject);
 begin
   inherited;
-AddFilter(cxGrid1DBTableView1PR_DOM,cxTextEdit4.Text);;
+AddFilter(cxGrid1DBTableView1PR_DOM,cxTextEdit4.Text);
+end;
+
+procedure TFrmReestr.cxTextEdit5KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+DelFilter(cxGrid1DBTableView1PR_KV,cxTextEdit5.Text);
+end;
+
+procedure TFrmReestr.cxTextEdit5PropertiesChange(Sender: TObject);
+begin
+  inherited;
+AddFilter(cxGrid1DBTableView1PR_KV,cxTextEdit5.Text);
 end;
 
 procedure TFrmReestr.DelFilter(col:TcxGridDBColumn;s:string);
@@ -632,9 +668,12 @@ with cxGrid1DBTableView1.DataController do
       for I := Filter.Root.Count - 1 downto 0 do
         if (not Filter.Root.Items[I].IsItemList) then
         begin
+          if (col=cxGrid1DBTableView1PR_DOM) or (col=cxGrid1DBTableView1PR_KV)then
+          begin
           if ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).Value = s) and
-             ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).ItemLink = cxGrid1DBTableView1PR_DOM) then
-              Filter.Root.Items[I].free
+             ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).ItemLink = col) then
+              Filter.Root.Items[I].free;
+          end
           else
              if ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).Value = '%'+s+'%') and
                 ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).ItemLink = col) then
@@ -661,7 +700,7 @@ begin
   begin
         cxGrid1DBTableView1.DataController.Filter.BeginUpdate;
       try
-          if column=cxGrid1DBTableView1PR_DOM then
+          if (column=cxGrid1DBTableView1PR_DOM) or (column=cxGrid1DBTableView1PR_KV)then
              cxGrid1DBTableView1.DataController.Filter.Root.AddItem(column, foEqual, Text, Text)
           else
              cxGrid1DBTableView1.DataController.Filter.Root.AddItem(column, foLike, '%'+Text+'%', Text);
