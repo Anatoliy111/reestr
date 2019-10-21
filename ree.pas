@@ -85,6 +85,7 @@ type
     cxRadioButton1: TcxRadioButton;
     cxRadioButton2: TcxRadioButton;
     cxRadioButton3: TcxRadioButton;
+    N1: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure cxGrid1DBTableView1FocusedRecordChanged(
       Sender: TcxCustomGridTableView; APrevFocusedRecord,
@@ -118,6 +119,7 @@ type
     procedure cxRadioButton2Click(Sender: TObject);
     procedure cxRadioButton3Click(Sender: TObject);
     procedure cxButton6Click(Sender: TObject);
+    procedure N1Click(Sender: TObject);
   private
     { Private declarations }
     procedure AddFilter(column:TcxGridDBColumn;text:string);
@@ -430,6 +432,66 @@ frxReport1.Variables['user']:=''''+Main.cxBarEditItem4.Caption+'''';
 frxReport1.ShowReport;
 end;
 
+procedure TFrmReestr.N1Click(Sender: TObject);
+var row:integer;
+begin
+  inherited;
+main.IBSIMJA.Close;
+
+//main.IBSIMJA.SelectSQL.Text:='select * from REESTR';
+//main.IBSIMJA.SelectSQL.Text:='select * from REESTR where PR_GOROD=:gorod';
+main.IBSIMJA.SelectSQL.Text:='select * from REESTR where PR_GOROD='''+main.IBREESTRPR_GOROD.Value+'''';
+main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_TIPUL='''+main.IBREESTRPR_TIPUL.Value+'''';
+main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_UL='''+main.IBREESTRPR_UL.Value+'''';
+main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_DOM='''+main.IBREESTRPR_DOM.Value+'''';
+main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_ZDATA is null';
+if (Length(main.IBREESTRPR_KV.Value)<>0) then
+main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_KV='''+main.IBREESTRPR_DOM.Value+'''';
+
+main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and ID<>'+IntToStr(main.IBREESTRID.Value);
+main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' order by MN_DATA';
+
+//main.IBSIMJA.ParamByName('id').Value:=main.IBREESTRID.Value;
+//main.IBSIMJA.ParamByName('gorod').Value:=main.IBREESTRPR_GOROD.Value;
+//main.IBSIMJA.ParamByName('tipul').Value:=main.IBREESTRPR_TIPUL.Value;
+//main.IBSIMJA.ParamByName('ul').Value:=main.IBREESTRPR_UL.Value;
+//main.IBSIMJA.ParamByName('dom').Value:=main.IBREESTRPR_DOM.Value;
+
+main.IBSIMJA.Open;
+main.IBSIMJA.Last;
+main.IBSIMJA.RecordCount;
+
+frxReport1.LoadFromFile('report/DovidkaSimja.fr3');
+
+//if main.IBSIMJA.IsEmpty then
+//      with TfrxMasterData(frxReport1.FindObject('MasterData1')) do
+//      begin
+//        DataSet := nil;
+//        RowCount := 5;
+//      end
+//else
+  if main.IBSIMJA.RecordCount<5 then
+  begin
+    row:=5-main.IBSIMJA.RecordCount;
+    with TfrxMasterData(frxReport1.FindObject('MasterData2')) do
+      begin
+        DataSet := nil;
+        RowCount := row;
+      end;
+  end;
+
+
+
+
+
+
+frxReport1.Variables['user']:=''''+Main.cxBarEditItem4.Caption+'''';
+frxReport1.Variables['count']:=''''+inttostr(main.IBSIMJA.RecordCount)+'''';
+frxReport1.ShowReport;
+
+
+end;
+
 procedure TFrmReestr.N21Click(Sender: TObject);
 
 begin
@@ -440,11 +502,9 @@ frxReport1.ShowReport;
 end;
 
 procedure TFrmReestr.N31Click(Sender: TObject);
-var Rollback:boolean;
-    row:integer;
+var row:integer;
 begin
   inherited;
-  Rollback:=false;
 main.IBSIMJA.Close;
 
 //main.IBSIMJA.SelectSQL.Text:='select * from REESTR';
@@ -472,13 +532,13 @@ main.IBSIMJA.RecordCount;
 
 frxReport1.LoadFromFile('report/DovidkaVilna.fr3');
 
-if main.IBSIMJA.IsEmpty then
-      with TfrxMasterData(frxReport1.FindObject('MasterData1')) do
-      begin
-        DataSet := nil;
-        RowCount := 8;
-      end
-else
+//if main.IBSIMJA.IsEmpty then
+//      with TfrxMasterData(frxReport1.FindObject('MasterData1')) do
+//      begin
+//        DataSet := nil;
+//        RowCount := 8;
+//      end
+//else
   if main.IBSIMJA.RecordCount<8 then
   begin
     row:=8-main.IBSIMJA.RecordCount;
