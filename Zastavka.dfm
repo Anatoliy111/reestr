@@ -39,7 +39,6 @@ object Start: TStart
       item
         FieldName = 'NAME'
       end>
-    Properties.ListSource = Main.DSUSERS
     TabOrder = 0
     Width = 193
   end

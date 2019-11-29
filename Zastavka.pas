@@ -60,7 +60,7 @@ begin
      Start.Hide;
      end
      else
-   ShowMessage('Неправильний пароль!');
+        ShowMessage('Неправильний пароль!');
 end
 else
    ShowMessage('Виберіть користувача!');
