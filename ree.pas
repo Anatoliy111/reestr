@@ -15,7 +15,7 @@ uses
   cxCustomPivotGrid, cxCheckBox,
   dxmdaset,
   Spin,
-  cxGridDBDataDefinitions, cxRadioGroup;
+  cxGridDBDataDefinitions, cxRadioGroup, dxCore, cxDateUtils, cxCalendar;
 
 type
   TFrmReestr = class(TAllMdiForm)
@@ -88,6 +88,10 @@ type
     N1: TMenuItem;
     cxLabel8: TcxLabel;
     cxTextEdit5: TcxTextEdit;
+    cxLabel9: TcxLabel;
+    cxDateEdit1: TcxDateEdit;
+    cxComboBox1: TcxComboBox;
+    cxButton2: TcxButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure cxGrid1DBTableView1FocusedRecordChanged(
       Sender: TcxCustomGridTableView; APrevFocusedRecord,
@@ -125,6 +129,10 @@ type
     procedure cxTextEdit5KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure cxTextEdit5PropertiesChange(Sender: TObject);
+    procedure cxDateEdit1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure cxDateEdit1PropertiesChange(Sender: TObject);
+    procedure cxButton2Click(Sender: TObject);
   private
     { Private declarations }
     procedure AddFilter(column:TcxGridDBColumn;text:string);
@@ -146,6 +154,34 @@ implementation
 {$R *.dfm}
 
 uses MainForm,StrUtils, EditRee;
+
+procedure TFrmReestr.cxButton2Click(Sender: TObject);
+var I:integer;
+begin
+  inherited;
+  cxTextEdit1.Clear;
+  cxTextEdit2.Clear;
+  cxTextEdit3.Clear;
+  cxTextEdit4.Clear;
+  cxTextEdit5.Clear;
+  cxDateEdit1.Clear;
+
+with cxGrid1DBTableView1.DataController do
+  begin
+    try
+      Filter.BeginUpdate;
+//      cxGrid1DBTableView1.DataController.Filter.Root.AddItem(cxGrid1DBTableView1FAM, foLike, '%'+cxTextEdit1.Text+'%', cxTextEdit1.Text);
+      for I := Filter.Root.Count - 1 downto 0 do
+        if (not Filter.Root.Items[I].IsItemList) then
+           Filter.Root.Items[I].free
+    finally
+      Filter.EndUpdate;
+    end;
+  end;
+
+  cxGrid1DBTableView1.DataController.Filter.Active := false;
+
+end;
 
 procedure TFrmReestr.cxButton5Click(Sender: TObject);
 begin
@@ -303,6 +339,21 @@ begin
 //main.IBREESTR.Append;
 end;
 
+procedure TFrmReestr.cxDateEdit1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+DelFilter(cxGrid1DBTableView1MN_DATA,DateToStr(cxDateEdit1.Date));
+end;
+
+procedure TFrmReestr.cxDateEdit1PropertiesChange(Sender: TObject);
+begin
+  inherited;
+   DelFilter(cxGrid1DBTableView1MN_DATA,'');
+if (cxDateEdit1.EditValue<>null) then
+   AddFilter(cxGrid1DBTableView1MN_DATA,DateToStr(cxDateEdit1.Date));
+end;
+
 procedure TFrmReestr.cxGrid1DBTableView1CustomDrawCell(
   Sender: TcxCustomGridTableView; ACanvas: TcxCanvas;
   AViewInfo: TcxGridTableDataCellViewInfo; var ADone: Boolean);
@@ -445,15 +496,14 @@ main.IBSIMJA.Close;
 
 //main.IBSIMJA.SelectSQL.Text:='select * from REESTR';
 //main.IBSIMJA.SelectSQL.Text:='select * from REESTR where PR_GOROD=:gorod';
-main.IBSIMJA.SelectSQL.Text:='select * from REESTR where PR_GOROD='''+main.IBREESTRPR_GOROD.Value+'''';
-main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_TIPUL='''+main.IBREESTRPR_TIPUL.Value+'''';
-main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_UL='''+main.IBREESTRPR_UL.Value+'''';
-main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_DOM='''+main.IBREESTRPR_DOM.Value+'''';
+main.IBSIMJA.SelectSQL.Text:='select * from REESTR where PR_DOM='''+main.IBREESTRPR_DOM.Value+'''';
+if length(main.IBREESTRPR_TIPUL.Value)<>0 then main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_TIPUL='''+main.IBREESTRPR_TIPUL.Value+'''';
+if length(main.IBREESTRPR_UL.Value)<>0 then main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_UL='''+main.IBREESTRPR_UL.Value+'''';
+if length(main.IBREESTRPR_GOROD.Value)<>0 then main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_GOROD='''+main.IBREESTRPR_GOROD.Value+'''';
 main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_ZDATA is null';
-if (Length(main.IBREESTRPR_KV.Value)<>0) then
-main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_KV='''+main.IBREESTRPR_KV.Value+'''';
+if (Length(main.IBREESTRPR_KV.Value)<>0) then main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and PR_KV='''+main.IBREESTRPR_KV.Value+'''';
 
-main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and ID<>'+IntToStr(main.IBREESTRID.Value);
+//main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' and ID<>'+IntToStr(main.IBREESTRID.Value);
 main.IBSIMJA.SelectSQL.Text:=main.IBSIMJA.SelectSQL.Text+' order by MN_DATA';
 
 //main.IBSIMJA.ParamByName('id').Value:=main.IBREESTRID.Value;
@@ -675,9 +725,15 @@ with cxGrid1DBTableView1.DataController do
               Filter.Root.Items[I].free;
           end
           else
-             if ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).Value = '%'+s+'%') and
-                ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).ItemLink = col) then
-                Filter.Root.Items[I].free
+            if (col=cxGrid1DBTableView1MN_DATA)then
+            begin
+            if ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).ItemLink = col) then
+                Filter.Root.Items[I].free;
+            end
+            else
+               if ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).Value = '%'+s+'%') and
+                  ((Filter.Root.Items[I] as TcxGridDBDataFilterCriteriaItem).ItemLink = col) then
+                  Filter.Root.Items[I].free
 
         end;
     finally
@@ -703,7 +759,15 @@ begin
           if (column=cxGrid1DBTableView1PR_DOM) or (column=cxGrid1DBTableView1PR_KV)then
              cxGrid1DBTableView1.DataController.Filter.Root.AddItem(column, foEqual, Text, Text)
           else
-             cxGrid1DBTableView1.DataController.Filter.Root.AddItem(column, foLike, '%'+Text+'%', Text);
+          if (column=cxGrid1DBTableView1MN_DATA) then
+          begin
+             if cxComboBox1.Text='=' then cxGrid1DBTableView1.DataController.Filter.Root.AddItem(column, foEqual, Text, Text);
+             if cxComboBox1.Text='<>' then cxGrid1DBTableView1.DataController.Filter.Root.AddItem(column, foNotEqual, Text, Text);
+             if cxComboBox1.Text='>=' then cxGrid1DBTableView1.DataController.Filter.Root.AddItem(column, foGreaterEqual, Text, Text);
+             if cxComboBox1.Text='<=' then cxGrid1DBTableView1.DataController.Filter.Root.AddItem(column, foLessEqual, Text, Text);
+          end
+             else
+                cxGrid1DBTableView1.DataController.Filter.Root.AddItem(column, foLike, '%'+Text+'%', Text);
       finally
       cxGrid1DBTableView1.DataController.Filter.EndUpdate;
       end;

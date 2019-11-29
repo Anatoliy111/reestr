@@ -1,26 +1,28 @@
 inherited FrmReestr: TFrmReestr
   Caption = #1056#1077#1108#1089#1090#1088
   ClientHeight = 541
-  ClientWidth = 980
+  ClientWidth = 1096
   OnCreate = FormCreate
-  ExplicitWidth = 996
+  ExplicitWidth = 1112
   ExplicitHeight = 579
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel [0]
     Left = 0
     Top = 0
-    Width = 980
+    Width = 1096
     Height = 97
     Align = alTop
     TabOrder = 0
+    ExplicitWidth = 980
     object Panel3: TPanel
       Left = 1
       Top = 1
-      Width = 978
+      Width = 1094
       Height = 42
       Align = alTop
       TabOrder = 0
+      ExplicitWidth = 978
       object cxButton6: TcxButton
         Left = 165
         Top = 1
@@ -748,14 +750,14 @@ inherited FrmReestr: TFrmReestr
       end
     end
     object cxGroupBox1: TcxGroupBox
-      Left = 5
+      Left = 31
       Top = 48
       Caption = #1060#1110#1083#1100#1090#1088#1080
       TabOrder = 1
       Height = 42
-      Width = 732
+      Width = 880
       object cxTextEdit1: TcxTextEdit
-        Left = 56
+        Left = 53
         Top = 16
         Properties.OnChange = cxTextEdit1PropertiesChange
         TabOrder = 0
@@ -768,7 +770,7 @@ inherited FrmReestr: TFrmReestr
         Caption = #1055#1088#1110#1079#1074#1080#1097#1077
       end
       object cxTextEdit2: TcxTextEdit
-        Left = 239
+        Left = 230
         Top = 16
         Properties.OnChange = cxTextEdit2PropertiesChange
         TabOrder = 2
@@ -776,12 +778,12 @@ inherited FrmReestr: TFrmReestr
         Width = 121
       end
       object cxLabel2: TcxLabel
-        Left = 179
+        Left = 174
         Top = 17
         Caption = #1053#1072#1089'.'#1087#1091#1085#1082#1090
       end
       object cxTextEdit3: TcxTextEdit
-        Left = 407
+        Left = 392
         Top = 16
         Properties.OnChange = cxTextEdit3PropertiesChange
         TabOrder = 4
@@ -789,18 +791,18 @@ inherited FrmReestr: TFrmReestr
         Width = 121
       end
       object cxLabel3: TcxLabel
-        Left = 363
+        Left = 352
         Top = 17
         Caption = #1042#1091#1083#1080#1094#1103
       end
       object cxLabel5: TcxLabel
-        Left = 538
+        Left = 513
         Top = 17
         Caption = #1041#1091#1076#1080#1085#1086#1082
       end
       object cxTextEdit4: TcxTextEdit
-        Left = 591
-        Top = 18
+        Left = 560
+        Top = 16
         Properties.OnChange = cxTextEdit4PropertiesChange
         Style.Color = clWindow
         TabOrder = 7
@@ -808,12 +810,12 @@ inherited FrmReestr: TFrmReestr
         Width = 50
       end
       object cxLabel8: TcxLabel
-        Left = 650
+        Left = 611
         Top = 17
         Caption = #1050#1074'.'
       end
       object cxTextEdit5: TcxTextEdit
-        Left = 677
+        Left = 630
         Top = 16
         Properties.OnChange = cxTextEdit5PropertiesChange
         Style.Color = clWindow
@@ -821,11 +823,37 @@ inherited FrmReestr: TFrmReestr
         OnKeyDown = cxTextEdit5KeyDown
         Width = 49
       end
+      object cxLabel9: TcxLabel
+        Left = 682
+        Top = 18
+        Caption = #1044#1053
+      end
+      object cxDateEdit1: TcxDateEdit
+        Left = 751
+        Top = 16
+        Properties.OnChange = cxDateEdit1PropertiesChange
+        TabOrder = 11
+        OnKeyDown = cxDateEdit1KeyDown
+        Width = 121
+      end
+      object cxComboBox1: TcxComboBox
+        Left = 704
+        Top = 16
+        Properties.Items.Strings = (
+          '='
+          '<>'
+          '>='
+          '<=')
+        Properties.OnChange = cxDateEdit1PropertiesChange
+        TabOrder = 12
+        Text = '>='
+        Width = 44
+      end
     end
     object cxRadioButton1: TcxRadioButton
-      Left = 752
+      Left = 919
       Top = 66
-      Width = 113
+      Width = 112
       Height = 17
       Caption = #1042#1089#1110
       Checked = True
@@ -834,31 +862,78 @@ inherited FrmReestr: TFrmReestr
       OnClick = cxRadioButton1Click
     end
     object cxRadioButton2: TcxRadioButton
-      Left = 792
+      Left = 959
       Top = 51
-      Width = 129
+      Width = 128
       Height = 17
       Caption = #1058#1110#1083#1100#1082#1080' '#1079#1072#1088#1077#1108#1089#1090#1088#1086#1074#1072#1085#1110
       TabOrder = 3
       OnClick = cxRadioButton2Click
     end
     object cxRadioButton3: TcxRadioButton
-      Left = 792
+      Left = 959
       Top = 74
-      Width = 129
+      Width = 128
       Height = 17
       Caption = #1058#1110#1083#1100#1082#1080' '#1079#1085#1103#1090#1110' '#1079' '#1088#1077#1108#1089#1090#1088'.'
       TabOrder = 4
       OnClick = cxRadioButton3Click
     end
+    object cxButton2: TcxButton
+      Left = 4
+      Top = 57
+      Width = 24
+      Height = 28
+      Hint = #1054#1095#1080#1089#1090#1080#1090#1080' '#1074#1089#1110' '#1092#1110#1083#1100#1090#1088#1080
+      LookAndFeel.NativeStyle = True
+      OptionsImage.Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000000000000000000000000000000000000000000000000
+        0000000000020000000C05031A46110852AB190C76E31D0E89FF1C0E89FF190C
+        76E4120852AD06031B4D0000000E000000030000000000000000000000000000
+        000301010519130A55A9211593FF2225AEFF2430C2FF2535CBFF2535CCFF2430
+        C3FF2225AFFF211594FF140B58B20101051E0000000400000000000000020101
+        03151C1270CD2522A6FF2D3DCCFF394BD3FF3445D1FF2939CDFF2839CDFF3344
+        D0FF394AD4FF2D3CCDFF2523A8FF1C1270D20101051D00000003000000091912
+        5BA72A27AAFF2F41D0FF3541C7FF2726ABFF3137BCFF384AD3FF384BD3FF3137
+        BCFF2726ABFF3540C7FF2E40D0FF2927ACFF1A115EB10000000D08061C3D3129
+        A2FD2C3CCCFF3842C6FF5F5DBDFFEDEDF8FF8B89CEFF3337B9FF3437B9FF8B89
+        CEFFEDEDF8FF5F5DBDFF3741C6FF2B3ACDFF3028A4FF0907204A1E185F9F373B
+        BCFF3042D0FF2621A5FFECE7ECFFF5EBE4FFF8F2EEFF9491D1FF9491D1FFF8F1
+        EDFFF3E9E2FFECE6EBFF2621A5FF2E3FCFFF343ABEFF201A66B0312A92E03542
+        CBFF3446D1FF2C2FB5FF8070ADFFEBDBD3FFF4EAE4FFF7F2EDFFF8F1EDFFF4E9
+        E2FFEADAD1FF7F6FACFF2B2EB5FF3144D0FF3040CBFF312A95E53E37AEFA3648
+        D0FF374AD3FF3A4ED5FF3234B4FF8A7FB9FFF6ECE7FFF5ECE6FFF4EBE5FFF6EB
+        E5FF897DB8FF3233B4FF384BD3FF3547D2FF3446D1FF3E37AEFA453FB4FA4557
+        D7FF3B50D5FF4C5FDAFF4343B7FF9189C7FFF7EFE9FFF6EEE9FFF6EFE8FFF7ED
+        E8FF9087C5FF4242B7FF495DD8FF394CD4FF3F52D4FF443FB3FA403DA1DC5967
+        DAFF5B6EDDFF4F4DBAFF8F89CAFFFBF6F4FFF7F1ECFFEDE1D9FFEDE0D9FFF7F0
+        EAFFFAF5F2FF8F89CAFF4E4DB9FF576ADCFF5765D9FF403EA4E12E2D70987C85
+        DDFF8798E8FF291D9BFFE5DADEFFF6EEEBFFEDDFDAFF816EA9FF816EA9FFEDDF
+        D8FFF4ECE7FFE5D9DCFF291D9BFF8494E7FF7A81DDFF33317BAC111125356768
+        D0FC9EACEDFF686FCEFF5646A1FFCCB6BCFF7A68A8FF4C4AB6FF4D4BB7FF7A68
+        A8FFCBB5BCFF5646A1FF666DCCFF9BAAEEFF696CD0FD1212273F000000043B3B
+        79977D84DFFFA5B6F1FF6D74D0FF2D219BFF5151B9FF8EA2ECFF8EA1ECFF5252
+        BBFF2D219BFF6B72D0FFA2B3F0FF8086E0FF404183A700000008000000010303
+        050C4E509DBC8087E2FFAEBDF3FFA3B6F1FF9DAFF0FF95A9EEFF95A8EEFF9BAD
+        EFFFA2B3F0FFACBCF3FF838AE3FF4F52A0C10303051100000002000000000000
+        000100000005323464797378D9F8929CEAFFA1AEEFFFB0BFF3FFB0BFF4FFA2AE
+        EFFF939DE9FF7479DAF83234647D000000080000000200000000000000000000
+        000000000000000000031213232D40437D935D61B5D07378DFFC7378DFFC5D61
+        B5D040437D951212223000000004000000010000000000000000}
+      OptionsImage.Layout = blGlyphRight
+      TabOrder = 5
+      OnClick = cxButton2Click
+    end
   end
   object Panel2: TPanel [1]
     Left = 0
     Top = 456
-    Width = 980
+    Width = 1096
     Height = 85
     Align = alBottom
     TabOrder = 1
+    ExplicitWidth = 980
     object cxLabel4: TcxLabel
       Left = 5
       Top = 3
@@ -909,14 +984,15 @@ inherited FrmReestr: TFrmReestr
       Style.Font.Style = []
       Style.IsFontAssigned = True
       TabOrder = 3
+      ExplicitWidth = 978
       Height = 83
-      Width = 978
+      Width = 1094
     end
   end
   object cxGrid1: TcxGrid [2]
     Left = 0
     Top = 97
-    Width = 980
+    Width = 1096
     Height = 359
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
@@ -932,6 +1008,8 @@ inherited FrmReestr: TFrmReestr
     LockedStateImageOptions.Font.Height = -13
     LockedStateImageOptions.Font.Name = 'Tahoma'
     LockedStateImageOptions.Font.Style = []
+    ExplicitTop = 96
+    ExplicitWidth = 996
     object cxGrid1DBTableView1: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       Navigator.Buttons.First.Visible = True
