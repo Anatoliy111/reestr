@@ -17,7 +17,8 @@ uses
   Spr in 'Spr.pas' {FrmSpr},
   EditRee in 'EditRee.pas' {EditReeFrm},
   Setting in 'Setting.pas' {SettingFrm},
-  EditSpr in 'EditSpr.pas' {EditSprFrm};
+  EditSpr in 'EditSpr.pas' {EditSprFrm},
+  Check in 'Check.pas' {CheckForm};
 
 {$R *.res}
 

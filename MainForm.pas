@@ -215,6 +215,7 @@ type
     IBSIMJADOCNOM: TIBStringField;
     IBSIMJADOCORG: TIBStringField;
     IBSIMJADOCDATA: TDateField;
+    IBSIMJACH: TIntegerField;
     procedure Button1Click(Sender: TObject);
     procedure dxBarButton34Click(Sender: TObject);
     procedure dxBarButton19Click(Sender: TObject);
@@ -718,6 +719,7 @@ IBSPR_UL.Open;
 IBSPR_VIDDOC.Open;
 IBREESTR.Open;
 IBUSERS.Open;
+IBSIMJA.Open;
 
 
 

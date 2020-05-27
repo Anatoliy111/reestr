@@ -14,7 +14,6 @@ inherited FrmReestr: TFrmReestr
     Height = 97
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 980
     object Panel3: TPanel
       Left = 1
       Top = 1
@@ -22,7 +21,6 @@ inherited FrmReestr: TFrmReestr
       Height = 42
       Align = alTop
       TabOrder = 0
-      ExplicitWidth = 978
       object cxButton6: TcxButton
         Left = 165
         Top = 1
@@ -933,7 +931,6 @@ inherited FrmReestr: TFrmReestr
     Height = 85
     Align = alBottom
     TabOrder = 1
-    ExplicitWidth = 980
     object cxLabel4: TcxLabel
       Left = 5
       Top = 3
@@ -984,7 +981,6 @@ inherited FrmReestr: TFrmReestr
       Style.Font.Style = []
       Style.IsFontAssigned = True
       TabOrder = 3
-      ExplicitWidth = 978
       Height = 83
       Width = 1094
     end
@@ -1008,8 +1004,6 @@ inherited FrmReestr: TFrmReestr
     LockedStateImageOptions.Font.Height = -13
     LockedStateImageOptions.Font.Name = 'Tahoma'
     LockedStateImageOptions.Font.Style = []
-    ExplicitTop = 96
-    ExplicitWidth = 996
     object cxGrid1DBTableView1: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       Navigator.Buttons.First.Visible = True
@@ -1283,6 +1277,10 @@ inherited FrmReestr: TFrmReestr
       Caption = #1044#1086#1074#1110#1076#1082#1072' '#1087#1088#1086' '#1089#1082#1083#1072#1076' '#1089#1110#1084#39#1111
       OnClick = N1Click
     end
+    object N2: TMenuItem
+      Caption = #1044#1086#1074#1110#1076#1082#1072' '#1084#1072#1090#1077#1088#1110
+      OnClick = N2Click
+    end
   end
   object frxReport1: TfrxReport
     Version = '5.3.16'
@@ -1295,7 +1293,7 @@ inherited FrmReestr: TFrmReestr
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43746.410721782400000000
-    ReportOptions.LastChange = 43759.403570740740000000
+    ReportOptions.LastChange = 43971.473549861090000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'function DateToPropis(dDate: Extended):string;'
@@ -1334,6 +1332,8 @@ inherited FrmReestr: TFrmReestr
         ' y]);              '
       '  end;                  '
       'end;   '
+      ''
+      ''
       ''
       'begin'
       ''
@@ -1556,10 +1556,12 @@ inherited FrmReestr: TFrmReestr
         DataSet = frxDBDataset2
         DataSetName = 'frxDBDataset2'
         RowCount = 0
+        Stretched = True
         object Memo10: TfrxMemoView
           Left = 34.015770000000000000
           Width = 343.937230000000000000
           Height = 26.456710000000000000
+          StretchMode = smMaxHeight
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
@@ -1571,10 +1573,12 @@ inherited FrmReestr: TFrmReestr
               '[<frxDBDataset2."FAM">] [<frxDBDataset2."IM">] [<frxDBDataset2."' +
               'OT">]')
           ParentFont = False
+          VAlign = vaCenter
         end
         object Memo11: TfrxMemoView
           Width = 34.015770000000000000
           Height = 26.456710000000000000
+          StretchMode = smMaxHeight
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
@@ -1591,13 +1595,13 @@ inherited FrmReestr: TFrmReestr
           Left = 377.953000000000000000
           Width = 75.590600000000000000
           Height = 26.456710000000000000
+          StretchMode = smMaxHeight
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
-          HAlign = haCenter
           ParentFont = False
           VAlign = vaCenter
         end
@@ -1605,6 +1609,7 @@ inherited FrmReestr: TFrmReestr
           Left = 453.543600000000000000
           Width = 90.708720000000000000
           Height = 26.456710000000000000
+          StretchMode = smMaxHeight
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
@@ -1613,7 +1618,7 @@ inherited FrmReestr: TFrmReestr
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           HAlign = haCenter
           Memo.UTF8W = (
-            '[frxDBDataset2."MN_DATA"]')
+            '[IIF(<frxDBDataset2."MN_DATA">=0,'#39#39',<frxDBDataset2."MN_DATA">)]')
           ParentFont = False
           VAlign = vaCenter
         end
@@ -1621,13 +1626,13 @@ inherited FrmReestr: TFrmReestr
           Left = 544.252320000000000000
           Width = 173.858380000000000000
           Height = 26.456710000000000000
+          StretchMode = smMaxHeight
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
-          HAlign = haCenter
           Memo.UTF8W = (
             
               '[<frxDBDataset2."DOCVID">] [<frxDBDataset2."DOCSER">] [<frxDBDat' +
@@ -1641,7 +1646,6 @@ inherited FrmReestr: TFrmReestr
         Height = 208.637910000000000000
         Top = 487.559370000000000000
         Width = 718.110700000000000000
-        PrintChildIfInvisible = True
         object Memo17: TfrxMemoView
           Left = 306.141930000000000000
           Top = 117.165430000000000000
@@ -1927,6 +1931,31 @@ inherited FrmReestr: TFrmReestr
         end
       end
     end
+    object DialogPage1: TfrxDialogPage
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = []
+      Height = 473.000000000000000000
+      ClientHeight = 435.000000000000000000
+      Left = 265.000000000000000000
+      Top = 150.000000000000000000
+      Width = 701.000000000000000000
+      ClientWidth = 685.000000000000000000
+      object CheckListBox1: TfrxCheckListBoxControl
+        Left = 104.000000000000000000
+        Top = 116.000000000000000000
+        Width = 437.000000000000000000
+        Height = 193.000000000000000000
+        ShowHint = True
+        Color = clWindow
+        Items.Strings = (
+          #1072#1077#1082#1088#1072#1074#1086#1087#1072#1086
+          #1074#1072#1086#1074#1072#1074#1072
+          #1074#1072#1086#1074#1072#1087#1086#1087)
+      end
+    end
   end
   object frxDesigner1: TfrxDesigner
     DefaultScriptLanguage = 'PascalScript'
@@ -2057,6 +2086,14 @@ inherited FrmReestr: TFrmReestr
     DataSet = Main.IBSIMJA
     BCDToCurrency = False
     Left = 252
+    Top = 232
+  end
+  object frxCheckBoxObject1: TfrxCheckBoxObject
+    Left = 656
+    Top = 240
+  end
+  object frxDialogControls1: TfrxDialogControls
+    Left = 784
     Top = 232
   end
 end

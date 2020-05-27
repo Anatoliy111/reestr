@@ -15,7 +15,8 @@ uses
   cxCustomPivotGrid, cxCheckBox,
   dxmdaset,
   Spin,
-  cxGridDBDataDefinitions, cxRadioGroup, dxCore, cxDateUtils, cxCalendar;
+  cxGridDBDataDefinitions, cxRadioGroup, dxCore, cxDateUtils, cxCalendar,
+  frxChBox, frxDCtrl;
 
 type
   TFrmReestr = class(TAllMdiForm)
@@ -92,6 +93,9 @@ type
     cxDateEdit1: TcxDateEdit;
     cxComboBox1: TcxComboBox;
     cxButton2: TcxButton;
+    N2: TMenuItem;
+    frxCheckBoxObject1: TfrxCheckBoxObject;
+    frxDialogControls1: TfrxDialogControls;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure cxGrid1DBTableView1FocusedRecordChanged(
       Sender: TcxCustomGridTableView; APrevFocusedRecord,
@@ -133,6 +137,7 @@ type
       Shift: TShiftState);
     procedure cxDateEdit1PropertiesChange(Sender: TObject);
     procedure cxButton2Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
   private
     { Private declarations }
     procedure AddFilter(column:TcxGridDBColumn;text:string);
@@ -153,7 +158,7 @@ implementation
 
 {$R *.dfm}
 
-uses MainForm,StrUtils, EditRee;
+uses MainForm,StrUtils, EditRee, Check;
 
 procedure TFrmReestr.cxButton2Click(Sender: TObject);
 var I:integer;
@@ -563,6 +568,25 @@ begin
    frxReport1.LoadFromFile('report/PovidomZMP.fr3');
 frxReport1.Variables['user']:=''''+Main.cxBarEditItem4.Caption+'''';
 frxReport1.ShowReport;
+end;
+
+procedure TFrmReestr.N2Click(Sender: TObject);
+begin
+  inherited;
+ if CheckForm=nil then
+ begin
+ Application.CreateForm(TCheckForm,CheckForm);
+ CheckForm.Caption:=N2.Caption;
+ CheckForm.cxLabel1.Caption:=N2.Caption;
+ CheckForm.cxLabel2.Caption:=Main.IBREESTRFAM.Value+' '+Main.IBREESTRIM.Value+' '+Main.IBREESTROT.Value+' '+DateToStr(Main.IBREESTRMN_DATA.Value)+' ð.';
+ Main.AddToolBar(CheckForm);
+ end
+ else
+ begin
+ CheckForm.Show;
+ CheckForm.SetFocus;
+ end;
+
 end;
 
 procedure TFrmReestr.N31Click(Sender: TObject);
