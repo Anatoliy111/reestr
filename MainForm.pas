@@ -14,7 +14,7 @@ uses
   Data.Win.ADODB,cxStyles,Spr, frxDesgn, frxClass,ree, cxLookAndFeels,
   cxLookAndFeelPainters, cxCustomData, cxFilter, cxData, cxDataStorage,
   cxNavigator, cxDBData, cxGridCustomTableView, cxGridTableView,
-  cxGridDBTableView, cxGridLevel, cxGridCustomView, cxGrid;
+  cxGridDBTableView, cxGridLevel, cxGridCustomView, cxGrid, cxLocalization;
 
 type
   TMain = class(TForm)
@@ -216,6 +216,7 @@ type
     IBSIMJADOCORG: TIBStringField;
     IBSIMJADOCDATA: TDateField;
     IBSIMJACH: TIntegerField;
+    cxLocalizer1: TcxLocalizer;
     procedure Button1Click(Sender: TObject);
     procedure dxBarButton34Click(Sender: TObject);
     procedure dxBarButton19Click(Sender: TObject);
