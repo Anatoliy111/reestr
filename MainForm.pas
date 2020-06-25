@@ -722,6 +722,11 @@ IBREESTR.Open;
 IBUSERS.Open;
 IBSIMJA.Open;
 
+cxLocalizer1.Active:=false;
+cxLocalizer1.FileName:=GetCurrentDir+'\Ukr.INI';
+cxLocalizer1.Active:=true;
+cxLocalizer1.Locale:=1058;
+
 
 
 

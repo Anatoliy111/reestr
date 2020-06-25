@@ -47,6 +47,7 @@ object Start: TStart
     Left = 104
     Top = 104
     TabOrder = 1
+    OnKeyDown = cxMaskEdit1KeyDown
     Width = 193
   end
   object cxButton1: TcxButton

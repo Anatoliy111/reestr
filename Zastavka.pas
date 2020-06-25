@@ -22,6 +22,8 @@ type
     procedure cxButton1Click(Sender: TObject);
     procedure cxButton2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure cxMaskEdit1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -46,6 +48,8 @@ begin
      Main.IBUSERS.Locate('NAME',cxLookupComboBox1.EditValue,[]);
      if cxMaskEdit1.Text=Main.IBUSERSPW.Value then
      begin
+     Start.Hide;
+     Main.Enabled:=true;
        if Main.IBUSERSNAME.Value<>'admin' then
        begin
          Main.dxBarButton32.Enabled:=false;
@@ -55,9 +59,9 @@ begin
      if iniFile<>nil then
         IniFile.WriteString('User','Login',trim(cxLookupComboBox1.Text));
      Main.cxBarEditItem4.Caption:=Main.IBUSERSNAME.Value;
-     Main.Enabled:=true;
+
      Main.dxBarButton12.Click;
-     Start.Hide;
+
      end
      else
         ShowMessage('Неправильний пароль!');
@@ -70,6 +74,12 @@ end;
 procedure TStart.cxButton2Click(Sender: TObject);
 begin
 Main.Close;
+end;
+
+procedure TStart.cxMaskEdit1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+ if Key=13 then cxButton1.Click;
 end;
 
 procedure TStart.FormClose(Sender: TObject; var Action: TCloseAction);

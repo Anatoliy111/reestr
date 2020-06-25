@@ -37,8 +37,6 @@ inherited CheckForm: TCheckForm
     Height = 465
     Align = alClient
     TabOrder = 1
-    ExplicitTop = 41
-    ExplicitHeight = 249
     object cxGrid1DBTableView1: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       DataController.DataSource = DSCHECK
@@ -91,7 +89,6 @@ inherited CheckForm: TCheckForm
     Height = 41
     Align = alBottom
     TabOrder = 2
-    ExplicitTop = 290
     object cxButton1: TcxButton
       Left = 216
       Top = 6
@@ -124,7 +121,6 @@ inherited CheckForm: TCheckForm
     Style.IsFontAssigned = True
   end
   inherited IBTransaction1: TIBTransaction
-    Active = True
     Left = 104
     Top = 232
   end
@@ -437,7 +433,7 @@ inherited CheckForm: TCheckForm
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43746.410721782400000000
-    ReportOptions.LastChange = 43978.367398657410000000
+    ReportOptions.LastChange = 43978.367398657400000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'function DateToPropis(dDate: Extended):string;'
@@ -560,7 +556,7 @@ inherited CheckForm: TCheckForm
             end>
         end
         object Memo24: TfrxMemoView
-          Top = 34.015770000000010000
+          Top = 34.015770000000000000
           Width = 718.110700000000000000
           Height = 41.574830000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -576,7 +572,7 @@ inherited CheckForm: TCheckForm
         end
         object Memo27: TfrxMemoView
           Left = 3.779530000000000000
-          Top = 75.590600000000000000
+          Top = 75.590599999999990000
           Width = 200.315090000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -590,7 +586,7 @@ inherited CheckForm: TCheckForm
         end
         object Memo28: TfrxMemoView
           Left = 204.094620000000000000
-          Top = 75.590600000000000000
+          Top = 75.590599999999990000
           Width = 517.795414720000000000
           Height = 18.897650000000000000
           DataSet = FrmReestr.frxDBDataset1
@@ -672,7 +668,7 @@ inherited CheckForm: TCheckForm
         RowCount = 0
         Stretched = True
         object Memo10: TfrxMemoView
-          Left = 34.015770000000010000
+          Left = 34.015770000000000000
           Width = 476.220780000000000000
           Height = 26.456710000000000000
           StretchMode = smMaxHeight
@@ -744,7 +740,7 @@ inherited CheckForm: TCheckForm
         Width = 718.110700000000000000
         object Memo17: TfrxMemoView
           Left = 351.496290000000000000
-          Top = 64.252009999999990000
+          Top = 64.252009999999980000
           Width = 366.614214720000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -791,7 +787,7 @@ inherited CheckForm: TCheckForm
           ParentFont = False
         end
         object Memo25: TfrxMemoView
-          Top = 64.252009999999990000
+          Top = 64.252009999999980000
           Width = 351.496290000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -805,7 +801,7 @@ inherited CheckForm: TCheckForm
         end
         object Memo32: TfrxMemoView
           Left = 260.787570000000000000
-          Top = 94.488250000000000000
+          Top = 94.488249999999990000
           Width = 457.323130000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -824,9 +820,9 @@ inherited CheckForm: TCheckForm
         Top = 211.653680000000000000
         Width = 718.110700000000000000
         object Memo1: TfrxMemoView
-          Left = 34.015770000000010000
+          Left = 34.015770000000000000
           Width = 476.220780000000000000
-          Height = 34.015770000000010000
+          Height = 34.015770000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
@@ -857,7 +853,7 @@ inherited CheckForm: TCheckForm
         object Memo7: TfrxMemoView
           Left = 510.236550000000000000
           Width = 117.165430000000000000
-          Height = 34.015770000000010000
+          Height = 34.015770000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
@@ -873,7 +869,7 @@ inherited CheckForm: TCheckForm
         object Memo8: TfrxMemoView
           Left = 627.401980000000000000
           Width = 90.708720000000000000
-          Height = 34.015770000000010000
+          Height = 34.015770000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
