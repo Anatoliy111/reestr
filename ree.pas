@@ -97,6 +97,7 @@ type
     frxCheckBoxObject1: TfrxCheckBoxObject;
     frxDialogControls1: TfrxDialogControls;
     N3: TMenuItem;
+    N4: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure cxGrid1DBTableView1FocusedRecordChanged(
       Sender: TcxCustomGridTableView; APrevFocusedRecord,
@@ -140,6 +141,7 @@ type
     procedure cxButton2Click(Sender: TObject);
     procedure N2Click(Sender: TObject);
     procedure N3Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
   private
     { Private declarations }
     procedure AddFilter(column:TcxGridDBColumn;text:string);
@@ -736,6 +738,14 @@ procedure TFrmReestr.N41Click(Sender: TObject);
 begin
   inherited;
    frxReport1.LoadFromFile('report/DovidkaZMP.fr3');
+frxReport1.Variables['user']:=''''+Main.cxBarEditItem4.Caption+'''';
+frxReport1.ShowReport;
+end;
+
+procedure TFrmReestr.N4Click(Sender: TObject);
+begin
+  inherited;
+   frxReport1.LoadFromFile('report/PovidomZMP.fr3');
 frxReport1.Variables['user']:=''''+Main.cxBarEditItem4.Caption+'''';
 frxReport1.ShowReport;
 end;
