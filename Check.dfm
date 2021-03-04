@@ -40,6 +40,7 @@ inherited CheckForm: TCheckForm
     object cxGrid1DBTableView1: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       DataController.DataSource = DSCHECK
+      DataController.KeyFieldNames = 'ID'
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
       DataController.Summary.SummaryGroups = <>
@@ -126,7 +127,7 @@ inherited CheckForm: TCheckForm
   end
   object IBCHECK: TIBDataSet
     Database = DataM.IBDatabase1
-    Transaction = Main.IBTransaction1
+    Transaction = AllForm.IBTransaction1
     BufferChunks = 1000
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -383,48 +384,9 @@ inherited CheckForm: TCheckForm
     Left = 176
     Top = 272
   end
-  object frxDBDataset2: TfrxDBDataset
-    UserName = 'frxDBDataset2'
-    CloseDataSource = False
-    FieldAliases.Strings = (
-      'ID=ID'
-      'FAM=FAM'
-      'IM=IM'
-      'OT=OT'
-      'MN_DATA=MN_DATA'
-      'MN_STRANA=MN_STRANA'
-      'MN_OBL=MN_OBL'
-      'MN_RAION=MN_RAION'
-      'MN_GOROD=MN_GOROD'
-      'PR_STRANA=PR_STRANA'
-      'PR_OBL=PR_OBL'
-      'PR_RAION=PR_RAION'
-      'PR_GOROD=PR_GOROD'
-      'PR_TIPUL=PR_TIPUL'
-      'PR_UL=PR_UL'
-      'PR_DOM=PR_DOM'
-      'PR_KORP=PR_KORP'
-      'PR_KV=PR_KV'
-      'PR_RDATA=PR_RDATA'
-      'PR_ZDATA=PR_ZDATA'
-      'GROMAD=GROMAD'
-      'EDDR=EDDR'
-      'PRIBUV=PRIBUV'
-      'VIBUV=VIBUV'
-      'DOCVID=DOCVID'
-      'DOCSER=DOCSER'
-      'DOCNOM=DOCNOM'
-      'DOCORG=DOCORG'
-      'DOCDATA=DOCDATA'
-      'CH=CH')
-    DataSet = IBCHECK
-    BCDToCurrency = False
-    Left = 268
-    Top = 232
-  end
   object frxReport1: TfrxReport
     Version = '5.3.16'
-    DataSet = frxDBDataset1
+    DataSet = FrmReestr.frxDBDataset1
     DataSetName = 'frxDBDataset1'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
@@ -433,7 +395,7 @@ inherited CheckForm: TCheckForm
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43746.410721782400000000
-    ReportOptions.LastChange = 43978.367398657400000000
+    ReportOptions.LastChange = 44259.648490682870000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'function DateToPropis(dDate: Extended):string;'
@@ -481,12 +443,16 @@ inherited CheckForm: TCheckForm
     Top = 256
     Datasets = <
       item
-        DataSet = frxDBDataset1
+        DataSet = FrmReestr.frxDBDataset1
         DataSetName = 'frxDBDataset1'
       end
       item
-        DataSet = frxDBDataset2
+        DataSet = FrmReestr.frxDBDataset2
         DataSetName = 'frxDBDataset2'
+      end
+      item
+        DataSet = frxDBDataset3
+        DataSetName = 'frxDBDataset3'
       end>
     Variables = <>
     Style = <>
@@ -556,7 +522,7 @@ inherited CheckForm: TCheckForm
             end>
         end
         object Memo24: TfrxMemoView
-          Top = 34.015770000000000000
+          Top = 34.015770000000010000
           Width = 718.110700000000000000
           Height = 41.574830000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -572,7 +538,7 @@ inherited CheckForm: TCheckForm
         end
         object Memo27: TfrxMemoView
           Left = 3.779530000000000000
-          Top = 75.590599999999990000
+          Top = 75.590600000000000000
           Width = 200.315090000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -586,7 +552,7 @@ inherited CheckForm: TCheckForm
         end
         object Memo28: TfrxMemoView
           Left = 204.094620000000000000
-          Top = 75.590599999999990000
+          Top = 75.590600000000000000
           Width = 517.795414720000000000
           Height = 18.897650000000000000
           DataSet = FrmReestr.frxDBDataset1
@@ -599,9 +565,13 @@ inherited CheckForm: TCheckForm
           Frame.Typ = [ftBottom]
           HAlign = haCenter
           Memo.UTF8W = (
-            '[frxDBDataset1."FAM"] [frxDBDataset1."IM"] [frxDBDataset1."OT"]')
+            
+              '[frxDBDataset1."FAM"] [frxDBDataset1."IM"] [frxDBDataset1."OT"] ' +
+              '[IIF(<frxDBDataset1."MN_DATA">=0,'#39#39',<frxDBDataset1."MN_DATA">)]')
           ParentFont = False
           Formats = <
+            item
+            end
             item
             end
             item
@@ -662,13 +632,13 @@ inherited CheckForm: TCheckForm
         Height = 26.456710000000000000
         Top = 306.141930000000000000
         Width = 718.110700000000000000
-        DataSet = frxDBDataset2
-        DataSetName = 'frxDBDataset2'
-        Filter = '<frxDBDataset2."CH">=1'
+        DataSet = frxDBDataset3
+        DataSetName = 'frxDBDataset3'
+        Filter = '<frxDBDataset3."CH">=1'
         RowCount = 0
         Stretched = True
         object Memo10: TfrxMemoView
-          Left = 34.015770000000000000
+          Left = 34.015770000000010000
           Width = 476.220780000000000000
           Height = 26.456710000000000000
           StretchMode = smMaxHeight
@@ -680,13 +650,20 @@ inherited CheckForm: TCheckForm
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           Memo.UTF8W = (
             
-              '[<frxDBDataset2."FAM">] [<frxDBDataset2."IM">] [<frxDBDataset2."' +
+              '[<frxDBDataset3."FAM">] [<frxDBDataset3."IM">] [<frxDBDataset3."' +
               'OT">]')
           ParentFont = False
           VAlign = vaCenter
+          Formats = <
+            item
+            end
+            item
+            end
+            item
+            end>
         end
         object Memo11: TfrxMemoView
-          Width = 34.015770000000000000
+          Width = 34.015770000000010000
           Height = 26.456710000000000000
           StretchMode = smMaxHeight
           Font.Charset = DEFAULT_CHARSET
@@ -728,7 +705,7 @@ inherited CheckForm: TCheckForm
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           HAlign = haCenter
           Memo.UTF8W = (
-            '[IIF(<frxDBDataset2."MN_DATA">=0,'#39#39',<frxDBDataset2."MN_DATA">)]')
+            '[IIF(<frxDBDataset3."MN_DATA">=0,'#39#39',<frxDBDataset3."MN_DATA">)]')
           ParentFont = False
           VAlign = vaCenter
         end
@@ -740,7 +717,7 @@ inherited CheckForm: TCheckForm
         Width = 718.110700000000000000
         object Memo17: TfrxMemoView
           Left = 351.496290000000000000
-          Top = 64.252009999999980000
+          Top = 64.252009999999990000
           Width = 366.614214720000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -752,24 +729,6 @@ inherited CheckForm: TCheckForm
           Memo.UTF8W = (
             '[user]')
           ParentFont = False
-        end
-        object Memo14: TfrxMemoView
-          Top = 11.338590000000010000
-          Width = 241.889920000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -15
-          Font.Name = 'Arial'
-          Font.Style = []
-          Memo.UTF8W = (
-            #1059#1089#1100#1086#1075#1086' [COUNT(MasterData1)] '#1086#1089#1110#1073' ')
-          ParentFont = False
-          Formats = <
-            item
-            end
-            item
-            end>
         end
         object Memo30: TfrxMemoView
           Top = 37.795300000000000000
@@ -787,7 +746,7 @@ inherited CheckForm: TCheckForm
           ParentFont = False
         end
         object Memo25: TfrxMemoView
-          Top = 64.252009999999980000
+          Top = 64.252009999999990000
           Width = 351.496290000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -801,7 +760,7 @@ inherited CheckForm: TCheckForm
         end
         object Memo32: TfrxMemoView
           Left = 260.787570000000000000
-          Top = 94.488249999999990000
+          Top = 94.488250000000000000
           Width = 457.323130000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -916,44 +875,12 @@ inherited CheckForm: TCheckForm
     Left = 392
     Top = 328
   end
-  object frxDBDataset1: TfrxDBDataset
-    RangeBegin = rbCurrent
-    RangeEnd = reCurrent
-    UserName = 'frxDBDataset1'
+  object frxDBDataset3: TfrxDBDataset
+    UserName = 'frxDBDataset3'
     CloseDataSource = False
-    FieldAliases.Strings = (
-      'ID=ID'
-      'FAM=FAM'
-      'IM=IM'
-      'OT=OT'
-      'MN_DATA=MN_DATA'
-      'MN_STRANA=MN_STRANA'
-      'MN_OBL=MN_OBL'
-      'MN_RAION=MN_RAION'
-      'MN_GOROD=MN_GOROD'
-      'PR_STRANA=PR_STRANA'
-      'PR_OBL=PR_OBL'
-      'PR_RAION=PR_RAION'
-      'PR_GOROD=PR_GOROD'
-      'PR_TIPUL=PR_TIPUL'
-      'PR_UL=PR_UL'
-      'PR_DOM=PR_DOM'
-      'PR_KORP=PR_KORP'
-      'PR_KV=PR_KV'
-      'PR_RDATA=PR_RDATA'
-      'PR_ZDATA=PR_ZDATA'
-      'GROMAD=GROMAD'
-      'EDDR=EDDR'
-      'PRIBUV=PRIBUV'
-      'VIBUV=VIBUV'
-      'DOCVID=DOCVID'
-      'DOCSER=DOCSER'
-      'DOCNOM=DOCNOM'
-      'DOCORG=DOCORG'
-      'DOCDATA=DOCDATA')
-    DataSet = Main.IBREESTR
+    DataSource = DSCHECK
     BCDToCurrency = False
-    Left = 420
-    Top = 232
+    Left = 232
+    Top = 208
   end
 end

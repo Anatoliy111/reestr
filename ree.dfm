@@ -2060,7 +2060,8 @@ inherited FrmReestr: TFrmReestr
       'DOCSER=DOCSER'
       'DOCNOM=DOCNOM'
       'DOCORG=DOCORG'
-      'DOCDATA=DOCDATA')
+      'DOCDATA=DOCDATA'
+      'CH=CH')
     DataSet = Main.IBSIMJA
     BCDToCurrency = False
     Left = 252

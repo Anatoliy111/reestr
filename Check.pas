@@ -58,14 +58,13 @@ type
     IBCHECKDOCDATA: TDateField;
     DSCHECK: TDataSource;
     cxLabel2: TcxLabel;
-    frxDBDataset2: TfrxDBDataset;
     frxReport1: TfrxReport;
     frxRTFExport1: TfrxRTFExport;
     frxXLSExport1: TfrxXLSExport;
-    frxDBDataset1: TfrxDBDataset;
     cxGrid1DBTableView1CH: TcxGridDBColumn;
     IBCHECKCH: TIntegerField;
     cxLabel3: TcxLabel;
+    frxDBDataset3: TfrxDBDataset;
     procedure cxButton2Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure cxButton1Click(Sender: TObject);
@@ -109,6 +108,7 @@ begin
 
 IBCHECK.Last;
 IBCHECK.RecordCount;
+
 
 frxReport1.LoadFromFile('report/DovidkaMama.fr3');
 
