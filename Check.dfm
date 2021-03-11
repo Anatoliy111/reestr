@@ -395,7 +395,7 @@ inherited CheckForm: TCheckForm
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43746.410721782400000000
-    ReportOptions.LastChange = 44259.648490682870000000
+    ReportOptions.LastChange = 44259.658547465270000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'function DateToPropis(dDate: Extended):string;'
@@ -638,7 +638,7 @@ inherited CheckForm: TCheckForm
         RowCount = 0
         Stretched = True
         object Memo10: TfrxMemoView
-          Left = 34.015770000000010000
+          Left = 34.015770000000000000
           Width = 476.220780000000000000
           Height = 26.456710000000000000
           StretchMode = smMaxHeight
@@ -663,7 +663,7 @@ inherited CheckForm: TCheckForm
             end>
         end
         object Memo11: TfrxMemoView
-          Width = 34.015770000000010000
+          Width = 34.015770000000000000
           Height = 26.456710000000000000
           StretchMode = smMaxHeight
           Font.Charset = DEFAULT_CHARSET
